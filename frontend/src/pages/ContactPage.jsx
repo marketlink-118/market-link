@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { useLanguage } from '../context/LanguageContext';
 import { getHeadquarters } from '../data/headquartersData';
 
 export default function ContactPage() {
   const { currentCountry } = useLanguage();
+  const location = useLocation();
   const hq = getHeadquarters(currentCountry);
+
+  useEffect(() => {
+    if (location.hash === '#headquarters') {
+      const el = document.getElementById('headquarters');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -40,7 +53,7 @@ export default function ContactPage() {
           </div>
 
           <div className="row g-5 justify-content-center">
-            <div className="col-lg-5 col-md-12">
+            <div className="col-lg-5 col-md-12" id="headquarters">
               <div 
                 className="bg-primary text-white d-flex flex-column justify-content-between h-100 p-4 p-md-5 rounded shadow-sm"
                 style={{

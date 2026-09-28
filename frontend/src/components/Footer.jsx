@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { getHeadquarters } from '../data/headquartersData';
 
 export default function Footer() {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, currentCountry } = useLanguage();
+  const hq = getHeadquarters(currentCountry);
 
   return (
     <>
@@ -18,7 +20,32 @@ export default function Footer() {
             </div>
             <div className="col-lg-3 col-md-6">
               <h4 className="text-light mb-4">{t('footer_address_title')}</h4>
-              <p className="text-white-50"><i className="fa fa-envelope me-3 text-primary"></i>marketlink118@gmail.com</p>
+              <div className="mb-3">
+                <div className="d-flex align-items-center gap-2 mb-2">
+                  <span className="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-2 py-1 rounded">
+                    {hq.flag} {hq.city}
+                  </span>
+                  <span className="text-white-50 small">{hq.badge}</span>
+                </div>
+                <h6 className="text-white mb-2 fw-semibold" style={{ fontSize: '0.98rem' }}>
+                  {hq.title}
+                </h6>
+                <Link 
+                  to="/contact#headquarters" 
+                  className="text-white-50 text-decoration-none d-flex align-items-start gap-2"
+                  style={{ fontSize: '0.88rem', lineHeight: '1.45' }}
+                  title="View Headquarters Details & Map"
+                >
+                  <i className="fa fa-map-marker-alt text-primary mt-1 flex-shrink-0"></i>
+                  <span>{hq.address}</span>
+                </Link>
+              </div>
+              <p className="text-white-50 mb-0">
+                <i className="fa fa-envelope me-2 text-primary"></i>
+                <a href={`mailto:${hq.email}`} className="text-white-50 text-decoration-none">
+                  {hq.email}
+                </a>
+              </p>
             </div>
             <div className="col-lg-3 col-md-6">
               <h4 className="text-light mb-4">{t('footer_links_title')}</h4>
