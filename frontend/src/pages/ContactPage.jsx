@@ -55,7 +55,7 @@ export default function ContactPage() {
           <div className="row g-5 justify-content-center">
             <div className="col-lg-5 col-md-12" id="headquarters">
               <div 
-                className="bg-primary text-white d-flex flex-column justify-content-between h-100 p-4 p-md-5 rounded shadow-sm"
+                className="bg-primary text-white d-flex flex-column justify-content-between h-100 p-4 p-md-5 rounded-4 shadow-sm"
                 style={{
                   background: 'linear-gradient(145deg, #2e7d32 0%, #3cb815 100%)',
                   minHeight: '440px'

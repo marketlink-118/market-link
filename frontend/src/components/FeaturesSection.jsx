@@ -37,7 +37,7 @@ export default function FeaturesSection() {
               className="col-lg-4 col-md-6 wow fadeInUp" 
               data-wow-delay={`${0.1 + index * 0.2}s`}
             >
-              <div className="bg-white text-center h-100 p-4 p-xl-5 shadow-sm rounded">
+              <div className="feature-item bg-white text-center h-100 p-4 p-xl-5 shadow-sm rounded-4 border">
                 <img className="img-fluid mb-4" src={feat.icon} alt={feat.title} style={{ height: '70px' }} />
                 <h4 className="mb-3">{feat.title}</h4>
                 <p className="mb-4 text-muted">{feat.desc}</p>

@@ -43,7 +43,7 @@ export default function BlogSection() {
               className="col-lg-4 col-md-6 wow fadeInUp" 
               data-wow-delay={`${0.1 + idx * 0.2}s`}
             >
-              <div className="shadow-sm rounded overflow-hidden h-100 bg-white d-flex flex-column">
+              <div className="blog-item shadow-sm rounded-4 border overflow-hidden h-100 bg-white d-flex flex-column">
                 <img className="img-fluid w-100" src={blog.image} alt={blog.title} style={{ height: '230px', objectFit: 'cover' }} />
                 <div className="p-4 d-flex flex-column flex-grow-1">
                   <Link className="d-block h5 lh-base mb-4 text-decoration-none text-dark flex-grow-1" to="/blog">

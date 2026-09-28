@@ -474,7 +474,7 @@ export default function MarketsPage() {
 
             {/* Selected Bazaar Quick Info Card */}
             <div className="col-lg-4">
-              <div className="card h-100 shadow border-0 rounded-3 overflow-hidden">
+              <div className="card h-100 shadow border-0 rounded-4 overflow-hidden">
                 <div className="position-relative" style={{ height: '180px', overflow: 'hidden' }}>
                   <img 
                     src={activeMarket?.image || 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=600&q=80'} 
@@ -568,7 +568,7 @@ export default function MarketsPage() {
                   const isCurrent = String(market.id) === String(selectedMarketId);
                   return (
                     <div key={market.id} className="col-lg-4 col-md-6">
-                      <div className={`card h-100 shadow-sm rounded-3 border overflow-hidden transition-all ${isCurrent ? 'border-success border-2 shadow' : ''}`}>
+                      <div className={`card h-100 shadow-sm rounded-4 border overflow-hidden transition-all ${isCurrent ? 'border-success border-2 shadow' : ''}`}>
                         <div className="position-relative" style={{ height: '160px' }}>
                           <img 
                             src={market.image || 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=600&q=80'} 

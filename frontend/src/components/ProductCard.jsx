@@ -22,7 +22,7 @@ export default function ProductCard({ product, delay = '0.1s', onViewDetail, onO
 
   return (
     <div className={`${colClass} wow fadeInUp`} data-wow-delay={delay}>
-      <div className="product-item rounded bg-white overflow-hidden shadow-sm h-100 d-flex flex-column border">
+      <div className="product-item rounded-4 bg-white overflow-hidden shadow-sm h-100 d-flex flex-column border">
         <div 
           className="position-relative bg-light overflow-hidden" 
           style={{ cursor: handleDetail ? 'pointer' : 'default' }}
