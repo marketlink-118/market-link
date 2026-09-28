@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import PageHeader from '../components/PageHeader';
+import { useLanguage } from '../context/LanguageContext';
+import { getHeadquarters } from '../data/headquartersData';
 
 export default function ContactPage() {
+  const { currentCountry } = useLanguage();
+  const hq = getHeadquarters(currentCountry);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,13 +41,66 @@ export default function ContactPage() {
 
           <div className="row g-5 justify-content-center">
             <div className="col-lg-5 col-md-12">
-              <div className="bg-primary text-white d-flex flex-column justify-content-center h-100 p-5 rounded">
-                <h5 className="text-white">Call Us</h5>
-                <p className="mb-4"><i className="fa fa-phone-alt me-3"></i>+92 42 3578 9200</p>
-                <h5 className="text-white">Email Us</h5>
-                <p className="mb-4"><i className="fa fa-envelope me-3"></i>marketlink118@gmail.com</p>
-                <h5 className="text-white">Market Coordination Hub</h5>
-                <p className="mb-0"><i className="fa fa-map-marker-alt me-3"></i>Liberty Market Hub & Model Town Market, Lahore</p>
+              <div 
+                className="bg-primary text-white d-flex flex-column justify-content-between h-100 p-4 p-md-5 rounded shadow-sm"
+                style={{
+                  background: 'linear-gradient(145deg, #2e7d32 0%, #3cb815 100%)',
+                  minHeight: '440px'
+                }}
+              >
+                <div>
+                  <div className="d-flex align-items-center justify-content-between mb-3">
+                    <span 
+                      className="badge bg-white text-success px-3 py-2 rounded-pill fw-bold text-uppercase d-inline-flex align-items-center gap-1 shadow-sm"
+                      style={{ fontSize: '0.78rem', letterSpacing: '0.5px' }}
+                    >
+                      <span>{hq.flag}</span>
+                      <span>{hq.badge}</span>
+                    </span>
+                    <span className="badge bg-white bg-opacity-25 text-white fw-semibold px-2 py-1">
+                      {hq.city}
+                    </span>
+                  </div>
+
+                  <h3 className="text-white fw-bold mb-3" style={{ fontSize: '1.45rem' }}>
+                    {hq.title}
+                  </h3>
+
+                  <div className="mb-4">
+                    <h6 className="text-white text-uppercase mb-1 fw-bold" style={{ fontSize: '0.8rem', letterSpacing: '0.05em', opacity: 0.85 }}>
+                      <i className="fa fa-map-marker-alt me-2"></i>Headquarters Location
+                    </h6>
+                    <p className="mb-0 text-white" style={{ fontSize: '0.96rem', lineHeight: '1.5' }}>
+                      {hq.address}
+                    </p>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-white text-uppercase mb-1 fw-bold" style={{ fontSize: '0.8rem', letterSpacing: '0.05em', opacity: 0.85 }}>
+                      <i className="fa fa-store me-2"></i>Regional Market Desk
+                    </h6>
+                    <p className="mb-0 text-white" style={{ fontSize: '0.93rem', lineHeight: '1.5' }}>
+                      {hq.liaisonDesk}
+                    </p>
+                  </div>
+
+                  <div className="mb-4">
+                    <h6 className="text-white text-uppercase mb-1 fw-bold" style={{ fontSize: '0.8rem', letterSpacing: '0.05em', opacity: 0.85 }}>
+                      <i className="fa fa-envelope me-2"></i>Official Inquiries
+                    </h6>
+                    <p className="mb-0">
+                      <a href={`mailto:${hq.email}`} className="text-white text-decoration-none fw-semibold">
+                        {hq.email}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-top border-white border-opacity-25">
+                  <small className="text-white-50 d-block" style={{ fontSize: '0.78rem' }}>
+                    <i className="fa fa-clock me-1"></i> Liaison Hours: <strong className="text-white">{hq.hours}</strong>
+                  </small>
+                </div>
               </div>
             </div>
 
@@ -128,10 +186,10 @@ export default function ContactPage() {
         <iframe 
           className="w-100" 
           style={{ height: '450px', border: 0 }}
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+          src={`https://maps.google.com/maps?q=${encodeURIComponent(hq.mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
           allowFullScreen="" 
           loading="lazy"
-          title="Office Location Map"
+          title={`${hq.title} Location Map`}
         ></iframe>
       </div>
     </>
