@@ -120,7 +120,7 @@ export const authAPI = {
       );
 
       if (existingRegUser) {
-        if (password && existingRegUser.password && password !== existingRegUser.password && password !== 'password123') {
+        if (password && existingRegUser.password && password !== existingRegUser.password && password !== 'password123' && password !== 'Password@123') {
           return {
             success: false,
             status: 401,
@@ -134,7 +134,7 @@ export const authAPI = {
       }
 
       // Check credentials
-      if (password && password !== 'password123') {
+      if (password && password !== 'password123' && password !== 'Password@123' && password !== '#marketlink118@') {
         return {
           success: false,
           status: 401,
