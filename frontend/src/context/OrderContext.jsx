@@ -4,77 +4,86 @@
  */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { sampleOrdersData } from '../data/ordersData';
+import { useAuth } from './AuthContext';
 import { customerOrdersAPI } from '../services/api';
 
 const OrderContext = createContext(null);
-const ORDERS_STORAGE_KEY = 'marketlink_orders_list';
+const ORDERS_STORAGE_PREFIX = 'marketlink_orders_u';
 
 export function OrderProvider({ children }) {
-  const [orders, setOrders] = useState(() => {
-    try {
-      const saved = localStorage.getItem(ORDERS_STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map((ord) => {
-            const normalizedItems = (ord.items || []).map((it) => {
-              const p = Number(it.price) || 0;
-              const normalizedPrice = p < 15 ? Math.round(p * 76) : p;
-              return {
-                ...it,
-                price: normalizedPrice
-              };
-            });
-            const computedTotal = normalizedItems.reduce(
-              (sum, it) => sum + (Number(it.price) || 0) * (Number(it.quantity) || 1),
-              0
-            );
-            return {
-              ...ord,
-              items: normalizedItems,
-              totalAmount: computedTotal > 0 ? computedTotal : (Number(ord.totalAmount) < 50 ? Math.round(Number(ord.totalAmount) * 76) : Number(ord.totalAmount) || 0),
-              pickupToken: ord.pickupToken || `PKP-${String(ord.id || '').replace('ORD-', '')}X`
-            };
-          });
-        }
-      }
-      return sampleOrdersData;
-    } catch {
-      return sampleOrdersData;
-    }
-  });
-
+  const { currentUser } = useAuth();
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Sync to local storage for persistence across reloads
+  // Clean up any legacy shared localStorage cache once
   useEffect(() => {
     try {
-      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(orders));
+      localStorage.removeItem('marketlink_orders_list');
     } catch {
       // storage unavailable
     }
-  }, [orders]);
+  }, []);
 
-  // Load customer's live orders from Laravel database on mount
+  // Load customer's live orders whenever currentUser changes
   useEffect(() => {
     let isMounted = true;
+
     async function loadOrders() {
+      if (!currentUser) {
+        setOrders([]);
+        return;
+      }
+
+      const storageKey = `${ORDERS_STORAGE_PREFIX}_${currentUser.id}`;
+      // Load user-scoped cache immediately if available
+      try {
+        const cached = localStorage.getItem(storageKey);
+        if (cached && isMounted) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            setOrders(parsed);
+          }
+        }
+      } catch {
+        // ignore cache parse error
+      }
+
       const token = localStorage.getItem('marketlink_token');
       if (token && !token.startsWith('offline_')) {
+        setLoading(true);
         try {
           const liveOrders = await customerOrdersAPI.getMyOrders();
-          if (isMounted && liveOrders && liveOrders.length > 0) {
-            setOrders(liveOrders);
+          if (isMounted) {
+            const finalOrders = Array.isArray(liveOrders) ? liveOrders : [];
+            setOrders(finalOrders);
+            try {
+              localStorage.setItem(storageKey, JSON.stringify(finalOrders));
+            } catch {
+              // ignore
+            }
           }
         } catch (err) {
-          console.warn('Using existing orders list:', err);
+          console.warn('Could not load live orders:', err);
+        } finally {
+          if (isMounted) setLoading(false);
         }
       }
     }
+
     loadOrders();
     return () => { isMounted = false; };
-  }, []);
+  }, [currentUser?.id]);
+
+  // Sync state to current user's scoped storage
+  useEffect(() => {
+    if (!currentUser?.id) return;
+    try {
+      const storageKey = `${ORDERS_STORAGE_PREFIX}_${currentUser.id}`;
+      localStorage.setItem(storageKey, JSON.stringify(orders));
+    } catch {
+      // storage unavailable
+    }
+  }, [orders, currentUser?.id]);
 
   /**
    * Inject orders created from Cart Checkout into state

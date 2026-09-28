@@ -219,6 +219,7 @@ export function AuthProvider({ children }) {
     setToken(null);
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem('marketlink_orders_list');
   };
 
   // Handle session persistence from Google OAuth callback

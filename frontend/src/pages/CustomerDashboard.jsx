@@ -24,14 +24,20 @@ export default function CustomerDashboard() {
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState('');
 
-  // Filter orders for active customer
-  const customerOrders = orders.filter(
-    (ord) =>
-      !currentUser ||
-      currentUser.role === 'customer' ||
-      String(ord.customerId) === String(currentUser?.id) ||
-      (ord.customerName && currentUser?.name && ord.customerName.toLowerCase().includes(currentUser.name.toLowerCase()))
-  );
+  // Filter orders strictly for the authenticated customer
+  const customerOrders = orders.filter((ord) => {
+    if (!currentUser) return false;
+    if (ord.customerId && currentUser.id) {
+      return String(ord.customerId) === String(currentUser.id);
+    }
+    if (ord.customerEmail && currentUser.email) {
+      return ord.customerEmail.toLowerCase() === currentUser.email.toLowerCase();
+    }
+    if (ord.customerName && currentUser.name) {
+      return ord.customerName.toLowerCase() === currentUser.name.toLowerCase();
+    }
+    return !ord.customerId;
+  });
 
   const activeOrders = customerOrders.filter(
     (ord) => ord.status !== 'completed' && ord.status !== 'cancelled'

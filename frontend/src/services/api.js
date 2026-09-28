@@ -710,10 +710,13 @@ export const customerOrdersAPI = {
   async getMyOrders() {
     const res = await request('/customer/orders');
     const list = Array.isArray(res.data) ? res.data : (Array.isArray(res.data?.data) ? res.data.data : null);
-    if (res.success && list && list.length > 0) {
+    if (res.success && list) {
       return list.map(normalizeOrder);
     }
-    return sampleOrdersData.map(normalizeOrder);
+    if (FALLBACK_ENABLED && !res.success && res.isOffline) {
+      return sampleOrdersData.map(normalizeOrder);
+    }
+    return [];
   },
 
   async getOrderById(id) {
@@ -808,10 +811,13 @@ export const farmerAPI = {
   async getOrders() {
     const res = await request('/farmer/orders');
     const list = Array.isArray(res.data) ? res.data : (Array.isArray(res.data?.data) ? res.data.data : null);
-    if (res.success && list && list.length > 0) {
+    if (res.success && list) {
       return list.map(normalizeOrder);
     }
-    return sampleOrdersData.map(normalizeOrder);
+    if (FALLBACK_ENABLED && !res.success && res.isOffline) {
+      return sampleOrdersData.map(normalizeOrder);
+    }
+    return [];
   },
 
   async updateOrderStatus(orderId, status) {
