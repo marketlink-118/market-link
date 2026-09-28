@@ -1,16 +1,36 @@
-# Environment and secrets (CRITICAL: Do NOT remove)
+# ==============================================================================
+# MarketLink - Git Ignore Configuration
+# TechWiz 7: End-to-End Web Solutions
+# ==============================================================================
+
+# Environment and Secrets (CRITICAL: Never commit to Git)
 .env
 .env.*
-!.env.example
 *.env
+**/.env
+**/.env.*
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
 backend/.env
 backend/.env.*
+frontend/.env
+frontend/.env.*
+!**/.env.example
 !backend/.env.example
+!frontend/.env.example
 
-# Credentials & keys
+# Credentials, Certificates & Private Keys
 auth.json
 *.pem
 *.key
+*.cert
+*.pfx
+*.keystore
+id_rsa*
+*.id_rsa
+secrets.*
 
 # Dependencies
 node_modules/
@@ -18,7 +38,8 @@ frontend/node_modules/
 backend/vendor/
 vendor/
 
-# Build outputs & cache
+# Build Outputs & Cache
+dist/
 frontend/dist/
 frontend/build/
 backend/public/build/
@@ -29,12 +50,12 @@ backend/storage/framework/sessions/*
 backend/storage/framework/views/*
 backend/storage/logs/*
 
-# Archive files
+# Archive Files
 *.zip
 *.rar
 *.tar.gz
 
-# System & IDE files
+# System, OS & IDE Files
 .DS_Store
 Thumbs.db
 .vscode/
