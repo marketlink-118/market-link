@@ -444,7 +444,7 @@ class RichProductsCatalogSeeder extends Seeder
                 'unit' => '500g pack',
                 'price' => 550.00,
                 'stock_quantity' => 35,
-                'image' => 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=600&q=80',
+                'image' => 'https://static.vecteezy.com/system/resources/thumbnails/049/007/619/small_2x/an-array-of-nuts-forms-a-rich-textured-and-earthy-background-photo.jpg',
                 'harvest_hours' => 36,
             ],
             [

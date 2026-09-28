@@ -270,7 +270,7 @@ export const productsData = [
     farmerName: 'Swat High Altitude Orchards (Stall #S-11)',
     marketId: '9',
     marketName: 'F-6 Super Market Fresh Farm Stalls (Islamabad)',
-    image: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=600&q=80',
+    image: 'https://static.vecteezy.com/system/resources/thumbnails/049/007/619/small_2x/an-array-of-nuts-forms-a-rich-textured-and-earthy-background-photo.jpg',
     badge: 'Glacier Harvest',
     harvestHoursAgo: 36,
     harvestTimeLabel: '2 Days Ago',

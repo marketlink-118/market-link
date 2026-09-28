@@ -42,98 +42,64 @@ export default function ContactPage() {
           <div className="row g-5 justify-content-center">
             <div className="col-lg-5 col-md-12">
               <div 
-                className="bg-primary bg-icon text-white d-flex flex-column justify-content-between h-100 p-4 p-md-5 rounded shadow-sm"
+                className="bg-primary text-white d-flex flex-column justify-content-between h-100 p-4 p-md-5 rounded shadow-sm"
                 style={{
+                  background: 'linear-gradient(145deg, #2e7d32 0%, #3cb815 100%)',
                   minHeight: '440px'
                 }}
               >
                 <div>
-                  <div className="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+                  <div className="d-flex align-items-center justify-content-between mb-3">
                     <span 
-                      className="badge bg-white text-primary px-3 py-2 rounded-pill fw-bold text-uppercase d-inline-flex align-items-center gap-2 shadow-sm"
-                      style={{ fontSize: '0.8rem', letterSpacing: '0.5px' }}
+                      className="badge bg-white text-success px-3 py-2 rounded-pill fw-bold text-uppercase d-inline-flex align-items-center gap-1 shadow-sm"
+                      style={{ fontSize: '0.78rem', letterSpacing: '0.5px' }}
                     >
                       <span>{hq.flag}</span>
                       <span>{hq.badge}</span>
                     </span>
-                    <span 
-                      className="badge bg-secondary text-white px-3 py-2 rounded-pill fw-bold text-uppercase shadow-sm"
-                      style={{ fontSize: '0.78rem', letterSpacing: '0.5px' }}
-                    >
-                      <i className="fa fa-map-pin me-1"></i>{hq.city}
+                    <span className="badge bg-white bg-opacity-25 text-white fw-semibold px-2 py-1">
+                      {hq.city}
                     </span>
                   </div>
 
-                  <h3 className="text-white fw-bold mb-4" style={{ fontSize: '1.45rem', letterSpacing: '-0.01em' }}>
+                  <h3 className="text-white fw-bold mb-3" style={{ fontSize: '1.45rem' }}>
                     {hq.title}
                   </h3>
 
-                  <div className="d-flex align-items-start gap-3 mb-4">
-                    <div 
-                      className="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 shadow-sm"
-                      style={{ width: '42px', height: '42px', backgroundColor: 'rgba(255, 255, 255, 0.18)', border: '1px solid rgba(255, 255, 255, 0.3)' }}
-                    >
-                      <i className="fa fa-map-marker-alt text-warning fs-5"></i>
-                    </div>
-                    <div>
-                      <h6 className="text-uppercase mb-1 fw-bold" style={{ fontSize: '0.76rem', letterSpacing: '0.08em', color: '#FFE082' }}>
-                        Headquarters Location
-                      </h6>
-                      <p className="mb-0 text-white fw-medium" style={{ fontSize: '0.95rem', lineHeight: '1.5' }}>
-                        {hq.address}
-                      </p>
-                    </div>
+                  <div className="mb-4">
+                    <h6 className="text-white text-uppercase mb-1 fw-bold" style={{ fontSize: '0.8rem', letterSpacing: '0.05em', opacity: 0.85 }}>
+                      <i className="fa fa-map-marker-alt me-2"></i>Headquarters Location
+                    </h6>
+                    <p className="mb-0 text-white" style={{ fontSize: '0.96rem', lineHeight: '1.5' }}>
+                      {hq.address}
+                    </p>
                   </div>
 
-                  <div className="d-flex align-items-start gap-3 mb-4">
-                    <div 
-                      className="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 shadow-sm"
-                      style={{ width: '42px', height: '42px', backgroundColor: 'rgba(255, 255, 255, 0.18)', border: '1px solid rgba(255, 255, 255, 0.3)' }}
-                    >
-                      <i className="fa fa-store text-warning fs-5"></i>
-                    </div>
-                    <div>
-                      <h6 className="text-uppercase mb-1 fw-bold" style={{ fontSize: '0.76rem', letterSpacing: '0.08em', color: '#FFE082' }}>
-                        Regional Market Desk
-                      </h6>
-                      <p className="mb-0 text-white fw-medium" style={{ fontSize: '0.93rem', lineHeight: '1.5' }}>
-                        {hq.liaisonDesk}
-                      </p>
-                    </div>
+                  <div className="mb-4">
+                    <h6 className="text-white text-uppercase mb-1 fw-bold" style={{ fontSize: '0.8rem', letterSpacing: '0.05em', opacity: 0.85 }}>
+                      <i className="fa fa-store me-2"></i>Regional Market Desk
+                    </h6>
+                    <p className="mb-0 text-white" style={{ fontSize: '0.93rem', lineHeight: '1.5' }}>
+                      {hq.liaisonDesk}
+                    </p>
                   </div>
 
-                  <div className="d-flex align-items-start gap-3 mb-4">
-                    <div 
-                      className="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 shadow-sm"
-                      style={{ width: '42px', height: '42px', backgroundColor: 'rgba(255, 255, 255, 0.18)', border: '1px solid rgba(255, 255, 255, 0.3)' }}
-                    >
-                      <i className="fa fa-envelope text-warning fs-5"></i>
-                    </div>
-                    <div>
-                      <h6 className="text-uppercase mb-1 fw-bold" style={{ fontSize: '0.76rem', letterSpacing: '0.08em', color: '#FFE082' }}>
-                        Official Inquiries
-                      </h6>
-                      <p className="mb-0">
-                        <a 
-                          href={`mailto:${hq.email}`} 
-                          className="text-white text-decoration-none fw-bold"
-                          style={{ borderBottom: '1px dashed rgba(255, 255, 255, 0.6)', paddingBottom: '2px' }}
-                        >
-                          {hq.email}
-                        </a>
-                      </p>
-                    </div>
+                  <div className="mb-4">
+                    <h6 className="text-white text-uppercase mb-1 fw-bold" style={{ fontSize: '0.8rem', letterSpacing: '0.05em', opacity: 0.85 }}>
+                      <i className="fa fa-envelope me-2"></i>Official Inquiries
+                    </h6>
+                    <p className="mb-0">
+                      <a href={`mailto:${hq.email}`} className="text-white text-decoration-none fw-semibold">
+                        {hq.email}
+                      </a>
+                    </p>
                   </div>
                 </div>
 
-                <div className="pt-3 border-top" style={{ borderColor: 'rgba(255, 255, 255, 0.25)' }}>
-                  <div className="d-flex align-items-center justify-content-between flex-wrap gap-2" style={{ fontSize: '0.82rem' }}>
-                    <span className="d-inline-flex align-items-center gap-2" style={{ color: '#E8F5E9' }}>
-                      <i className="fa fa-clock text-warning"></i>
-                      <span className="fw-semibold">Liaison Hours:</span>
-                    </span>
-                    <strong className="text-white fw-bold">{hq.hours}</strong>
-                  </div>
+                <div className="pt-3 border-top border-white border-opacity-25">
+                  <small className="text-white-50 d-block" style={{ fontSize: '0.78rem' }}>
+                    <i className="fa fa-clock me-1"></i> Liaison Hours: <strong className="text-white">{hq.hours}</strong>
+                  </small>
                 </div>
               </div>
             </div>
