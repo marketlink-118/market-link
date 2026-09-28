@@ -12,6 +12,8 @@ import { farmersData } from '../data/farmersData';
 import { marketsData } from '../data/marketsData';
 import { adminAPI, marketsAPI } from '../services/api';
 import AuthModal from '../components/AuthModal';
+import { useBlog } from '../context/BlogContext';
+import BlogModal from '../components/BlogModal';
 
 export default function AdminDashboard() {
   const { currentUser, role } = useAuth();
@@ -122,6 +124,40 @@ export default function AdminDashboard() {
   const [stallToRemove, setStallToRemove] = useState(null);
   const [removalReason, setRemovalReason] = useState('');
   const [removalError, setRemovalError] = useState('');
+
+  // Blog articles management state
+  const { blogs, addBlog, updateBlog, deleteBlog } = useBlog();
+  const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
+  const [blogToEdit, setBlogToEdit] = useState(null);
+
+  const handleOpenAddBlog = () => {
+    setBlogToEdit(null);
+    setIsBlogModalOpen(true);
+  };
+
+  const handleOpenEditBlog = (blog) => {
+    setBlogToEdit(blog);
+    setIsBlogModalOpen(true);
+  };
+
+  const handleDeleteBlog = (blogId, title) => {
+    if (window.confirm(`Are you sure you want to delete the article: "${title}"?`)) {
+      deleteBlog(blogId);
+      setActionAlert({ type: 'success', text: `Article "${title}" has been deleted.` });
+      setTimeout(() => setActionAlert(null), 4000);
+    }
+  };
+
+  const handleSaveBlog = (blogData) => {
+    if (blogData.id) {
+      updateBlog(blogData.id, blogData);
+      setActionAlert({ type: 'success', text: `Article "${blogData.title}" updated successfully.` });
+    } else {
+      addBlog(blogData);
+      setActionAlert({ type: 'success', text: `New article "${blogData.title}" published successfully.` });
+    }
+    setTimeout(() => setActionAlert(null), 4000);
+  };
 
   // Load live data from Laravel Admin API on mount
   useEffect(() => {
@@ -667,7 +703,7 @@ export default function AdminDashboard() {
 
           {/* Metric KPIs */}
           <div className="row g-3 mb-5">
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg col-md-4 col-sm-6">
               <div className="bg-white p-3 rounded-3 border shadow-sm text-center metric-card">
                 <small className="text-muted fw-bold text-uppercase d-block mb-1">Registered Farmers</small>
                 <h3 className="mb-0 fw-bold" style={{ color: '#3CB815' }}>
@@ -680,22 +716,28 @@ export default function AdminDashboard() {
                 </h3>
               </div>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg col-md-4 col-sm-6">
               <div className="bg-white p-3 rounded-3 border shadow-sm text-center metric-card">
                 <small className="text-muted fw-bold text-uppercase d-block mb-1">Active Markets</small>
                 <h3 className="mb-0 fw-bold text-success">{marketsList.length}</h3>
               </div>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg col-md-4 col-sm-6">
               <div className="bg-white p-3 rounded-3 border shadow-sm text-center metric-card">
                 <small className="text-muted fw-bold text-uppercase d-block mb-1">Total Pre-Orders</small>
                 <h3 className="mb-0 fw-bold text-info">{metrics.total_orders || orders.length}</h3>
               </div>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg col-md-6 col-sm-6">
               <div className="bg-white p-3 rounded-3 border shadow-sm text-center metric-card">
                 <small className="text-muted fw-bold text-uppercase d-block mb-1">Platform Cash Volume</small>
                 <h3 className="mb-0 fw-bold text-dark">{formatPrice(metrics.gross_sales_volume || 450)}</h3>
+              </div>
+            </div>
+            <div className="col-lg col-md-6 col-sm-6">
+              <div className="bg-white p-3 rounded-3 border shadow-sm text-center metric-card">
+                <small className="text-muted fw-bold text-uppercase d-block mb-1">Live Blog Articles</small>
+                <h3 className="mb-0 fw-bold text-primary">{blogs.length}</h3>
               </div>
             </div>
           </div>
@@ -934,6 +976,93 @@ export default function AdminDashboard() {
                             onClick={() => openEditMarket(market)}
                           >
                             <i className="fa fa-edit me-1"></i> Edit
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Section 3: Farming & Nutrition Blog Articles Management */}
+          <div className="bg-white rounded-3 p-4 shadow-sm border mt-4">
+            <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom flex-wrap gap-2">
+              <div>
+                <h5 className="fw-bold mb-0 text-dark">
+                  <i className="fa fa-newspaper text-primary me-2"></i>Farming & Nutrition Blog Articles
+                </h5>
+                <small className="text-muted">Publish, edit, and moderate educational articles visible across the platform.</small>
+              </div>
+              <button
+                type="button"
+                className="btn btn-sm btn-approve-stall rounded-pill px-3 fw-bold text-white shadow-xs"
+                onClick={handleOpenAddBlog}
+              >
+                <i className="fa fa-plus me-1"></i> Publish New Article
+              </button>
+            </div>
+
+            <div className="table-responsive">
+              <table className="table table-hover align-middle mb-0">
+                <thead className="table-light small text-uppercase text-muted">
+                  <tr>
+                    <th>Article</th>
+                    <th>Summary</th>
+                    <th>Author</th>
+                    <th>Publish Date</th>
+                    <th className="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {blogs.map((b) => (
+                    <tr key={b.id}>
+                      <td>
+                        <div className="d-flex align-items-center gap-3">
+                          <img
+                            src={b.image}
+                            alt={b.title}
+                            className="rounded-3 shadow-xs border flex-shrink-0"
+                            style={{ width: '48px', height: '48px', objectFit: 'cover' }}
+                            onError={(e) => { e.target.src = '/img/blog-1.jpg'; }}
+                          />
+                          <div>
+                            <strong className="text-dark d-block" style={{ maxWidth: '280px', lineHeight: 1.3 }}>
+                              {b.title}
+                            </strong>
+                            <small className="text-muted">ID: #{b.id}</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td style={{ maxWidth: '320px' }}>
+                        <small className="text-muted line-clamp-2 d-block text-truncate">
+                          {b.excerpt || 'Educational harvest guide and organic farming principles.'}
+                        </small>
+                      </td>
+                      <td>
+                        <span className="badge bg-light text-primary border">
+                          <i className="fa fa-user-circle me-1"></i>{b.author || 'Admin'}
+                        </span>
+                      </td>
+                      <td>
+                        <small className="text-muted">{b.date}</small>
+                      </td>
+                      <td className="text-end">
+                        <div className="d-flex justify-content-end gap-2">
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-warning rounded-pill px-3"
+                            onClick={() => handleOpenEditBlog(b)}
+                          >
+                            <i className="fa fa-edit me-1"></i> Edit
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-danger rounded-pill px-3"
+                            onClick={() => handleDeleteBlog(b.id, b.title)}
+                          >
+                            <i className="fa fa-trash-alt me-1"></i> Delete
                           </button>
                         </div>
                       </td>
@@ -1291,6 +1420,14 @@ export default function AdminDashboard() {
           </div>
         </div>
       )}
+
+      {/* Blog Article Create & Edit Modal */}
+      <BlogModal
+        isOpen={isBlogModalOpen}
+        onClose={() => setIsBlogModalOpen(false)}
+        blog={blogToEdit}
+        onSave={handleSaveBlog}
+      />
     </>
   );
 }
