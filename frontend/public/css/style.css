@@ -170,25 +170,42 @@
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav {
+    .navbar-collapse {
         margin-top: 10px;
-        border-top: 1px solid rgba(0, 0, 0, .07);
         background: #FFFFFF;
-        border-radius: 12px;
-        padding: 12px 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        max-height: 82vh;
+        overflow-y: auto;
+    }
+
+    [data-theme="dark"] .navbar-collapse {
+        background: #151e2e;
+        border-color: #2e3c51;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .navbar .navbar-nav {
+        margin-top: 0;
+        border-top: none;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
     }
 
     [data-theme="dark"] .navbar .navbar-nav {
-        background: #1e293b;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        background: transparent;
+        border-top: none;
+        box-shadow: none;
     }
 
     .navbar .navbar-nav .nav-link {
-        padding: 9px 12px;
+        padding: 10px 14px;
         color: #1f2937 !important;
-        border-radius: 6px;
+        border-radius: 8px;
+        font-size: 0.95rem;
     }
 
     [data-theme="dark"] .navbar .navbar-nav .nav-link {
@@ -199,6 +216,34 @@
     .navbar .navbar-nav .nav-link.active {
         color: var(--primary) !important;
         background: rgba(60, 184, 21, 0.08);
+    }
+}
+
+/* Tablet & Compact Desktop (992px to 1199.98px) - Guarantee single-line fit */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar {
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+
+    .navbar .navbar-nav .nav-link {
+        padding: 10px 8px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .navbar-brand h1 {
+        font-size: 1.3rem !important;
+    }
+}
+
+/* Ultra Small Mobile Screens (< 380px) */
+@media (max-width: 379.98px) {
+    .navbar-brand h1 {
+        font-size: 1.15rem !important;
+    }
+
+    #country-language-switcher-btn span.badge {
+        display: none !important;
     }
 }
 

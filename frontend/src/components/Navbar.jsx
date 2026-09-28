@@ -61,21 +61,22 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5">
-        <Link to="/" className="navbar-brand ms-2 ms-lg-0 py-1">
-          <h1 className="fw-bold text-primary m-0" style={{ fontSize: '1.5rem', letterSpacing: '-0.5px' }}>
+      <nav className="navbar navbar-expand-lg navbar-light py-lg-0 px-2 px-sm-3 px-lg-5">
+        <Link to="/" className="navbar-brand ms-1 ms-lg-0 py-1 flex-shrink-0">
+          <h1 className="fw-bold text-primary m-0" style={{ fontSize: 'clamp(1.2rem, 3.8vw, 1.45rem)', letterSpacing: '-0.5px' }}>
             Market<span className="text-secondary">Link</span>
           </h1>
         </Link>
 
-        <div className="d-flex align-items-center d-lg-none gap-2 me-2">
+        {/* Mobile Controls Cluster - Guaranteed single-line flex-nowrap */}
+        <div className="d-flex align-items-center flex-nowrap d-lg-none gap-1 gap-sm-2 ms-auto me-1">
           <ThemeToggle compact={true} />
           <LanguageSelector compact={true} />
 
           {/* Direct Mobile Basket Trigger */}
           <button
             type="button"
-            className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative"
+            className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative flex-shrink-0"
             onClick={() => setIsDrawerOpen(true)}
             title={t('nav_basket')}
             style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -93,7 +94,7 @@ export default function Navbar() {
 
           <button 
             type="button" 
-            className="navbar-toggler p-1 border-0" 
+            className="navbar-toggler p-1 border-0 flex-shrink-0" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation"
             style={{ fontSize: '1.1rem' }}
@@ -145,7 +146,7 @@ export default function Navbar() {
             <Link to="/contact" className={`nav-item nav-link ${isActive('/contact')}`}>{t('nav_contact')}</Link>
           </div>
 
-          <div className="d-flex align-items-center ms-lg-3 flex-wrap gap-2 py-2 py-lg-0">
+          <div className="d-flex align-items-center ms-lg-3 flex-wrap gap-2 py-2 py-lg-0 mt-3 mt-lg-0 pt-2 pt-lg-0 border-top border-lg-0">
             {/* Theme & Language Switchers (Always accessible on desktop navbar) */}
             <div className="d-none d-lg-flex align-items-center gap-2">
               <ThemeToggle compact={true} />
@@ -166,28 +167,29 @@ export default function Navbar() {
             {!currentUser ? (
               <button
                 type="button"
-                className="btn btn-sm btn-outline-success rounded-pill px-3 py-1 d-flex align-items-center shadow-sm"
-                onClick={() => setIsAuthModalOpen(true)}
+                className="btn btn-sm btn-outline-success rounded-pill px-3 py-1.5 d-flex align-items-center shadow-sm w-100 w-lg-auto justify-content-center"
+                onClick={() => { setIsAuthModalOpen(true); setMobileMenuOpen(false); }}
                 title="Sign In or Register"
               >
                 <i className="fa fa-sign-in-alt me-1 text-success"></i>
                 <span className="small fw-semibold">{t('nav_signin')}</span>
               </button>
             ) : (
-              <div className="d-flex align-items-center gap-1">
+              <div className="d-flex align-items-center gap-1 w-100 w-lg-auto justify-content-between justify-content-lg-start">
                 <Link
                   to={role === 'admin' ? '/admin' : role === 'farmer' ? '/farmer' : '/customer'}
-                  className={`btn btn-sm ${role === 'farmer' ? 'btn-success text-white' : role === 'admin' ? 'btn-danger text-white' : 'btn-primary text-white'} rounded-pill px-3 py-1 d-flex align-items-center shadow-sm text-decoration-none`}
+                  className={`btn btn-sm ${role === 'farmer' ? 'btn-success text-white' : role === 'admin' ? 'btn-danger text-white' : 'btn-primary text-white'} rounded-pill px-3 py-1 d-flex align-items-center shadow-sm text-decoration-none flex-grow-1 flex-lg-grow-0`}
                   title="Go to Dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <i className={`fa ${role === 'farmer' ? 'fa-tractor' : role === 'admin' ? 'fa-shield-alt' : 'fa-user-circle'} me-1`}></i>
-                  <span className="fw-semibold small">
+                  <span className="fw-semibold small text-truncate" style={{ maxWidth: '180px' }}>
                     {currentUser.name || currentUser.email}
                   </span>
                 </Link>
                 <button
                   type="button"
-                  className="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                  className="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center shadow-sm flex-shrink-0"
                   onClick={logout}
                   title="Sign Out"
                   style={{ width: '32px', height: '32px' }}
@@ -197,12 +199,13 @@ export default function Navbar() {
               </div>
             )}
 
-            {/* Cart Drawer Trigger */}
+            {/* Cart Drawer Trigger - Desktop Only (Mobile has direct button in top row) */}
             <button
               type="button"
-              className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative"
+              className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative d-none d-lg-flex"
               onClick={() => setIsDrawerOpen(true)}
               title={t('nav_basket')}
+              style={{ width: '34px', height: '34px', alignItems: 'center', justifyContent: 'center' }}
             >
               <small className="fa fa-shopping-basket text-primary"></small>
               {totalItems > 0 && (

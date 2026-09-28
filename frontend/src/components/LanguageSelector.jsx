@@ -31,8 +31,8 @@ export default function LanguageSelector({ compact = false }) {
       <button
         type="button"
         id="country-language-switcher-btn"
-        className={`btn btn-sm ${compact ? 'btn-light border' : 'btn-outline-secondary'} rounded-pill px-2 py-1 d-flex align-items-center gap-1 shadow-sm`}
-        style={{ fontSize: '0.78rem' }}
+        className={`btn btn-sm ${compact ? 'btn-light border' : 'btn-outline-secondary'} rounded-pill px-2 py-1 d-flex align-items-center gap-1 shadow-sm flex-shrink-0`}
+        style={{ fontSize: '0.78rem', whiteSpace: 'nowrap' }}
         onClick={() => setIsOpen(!isOpen)}
         title="Regional Settings & Language"
         aria-expanded={isOpen}
