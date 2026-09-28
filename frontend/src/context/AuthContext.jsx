@@ -4,7 +4,7 @@
  */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { authAPI } from '../services/api';
+import { authAPI, cookieConsentAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -35,7 +35,9 @@ function formatAuthUser(user, defaultRole = 'customer') {
     bio: profile.bio || user.bio || '',
     approvalStatus: profile.approval_status || user.approvalStatus || (isFarmer ? 'pending' : 'approved'),
     farmerProfile: profile,
-    avatar: user.avatar || (isFarmer ? '/img/testimonial-2.jpg' : role === 'admin' ? '/img/testimonial-3.jpg' : '/img/testimonial-1.jpg')
+    avatar: user.avatar || (isFarmer ? '/img/testimonial-2.jpg' : role === 'admin' ? '/img/testimonial-3.jpg' : '/img/testimonial-1.jpg'),
+    essential_cookie_consent: user.essential_cookie_consent !== undefined ? Boolean(user.essential_cookie_consent) : false,
+    essential_cookie_consent_at: user.essential_cookie_consent_at || null
   };
 }
 
@@ -227,6 +229,23 @@ export function AuthProvider({ children }) {
     localStorage.setItem(TOKEN_KEY, authToken);
   };
 
+  // Record essential cookie consent status
+  const recordCookieConsent = async (accepted = true) => {
+    try {
+      const res = await cookieConsentAPI.saveConsent(accepted);
+      if (res.success) {
+        updateCurrentUser({
+          essential_cookie_consent: Boolean(accepted),
+          essential_cookie_consent_at: new Date().toISOString()
+        });
+        return { success: true };
+      }
+      return { success: false, message: res.message };
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  };
+
   const value = {
     currentUser,
     token,
@@ -242,6 +261,7 @@ export function AuthProvider({ children }) {
     loginWithGoogle,
     handleGoogleCallbackSession,
     updateCurrentUser,
+    recordCookieConsent,
     logout
   };
 

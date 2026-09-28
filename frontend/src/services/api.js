@@ -387,6 +387,54 @@ export const authAPI = {
   }
 };
 
+// ============================================================================
+// 1.1 COOKIE CONSENT MODULE
+// ============================================================================
+export const cookieConsentAPI = {
+  /**
+   * Get essential cookie consent status
+   */
+  async getConsent() {
+    return await request('/cookie-consent');
+  },
+
+  /**
+   * Record essential cookie consent decision
+   */
+  async saveConsent(accepted = true) {
+    const res = await request('/cookie-consent', {
+      method: 'POST',
+      body: JSON.stringify({ accepted: Boolean(accepted) })
+    });
+
+    if (res.success) {
+      return res;
+    }
+
+    // Local fallback support for offline/demo sessions
+    if (FALLBACK_ENABLED) {
+      try {
+        const storedUser = JSON.parse(localStorage.getItem('marketlink_auth_user') || '{}');
+        storedUser.essential_cookie_consent = Boolean(accepted);
+        storedUser.essential_cookie_consent_at = new Date().toISOString();
+        localStorage.setItem('marketlink_auth_user', JSON.stringify(storedUser));
+        return {
+          success: true,
+          data: {
+            essential_cookie_consent: storedUser.essential_cookie_consent,
+            essential_cookie_consent_at: storedUser.essential_cookie_consent_at
+          },
+          isFallback: true
+        };
+      } catch {
+        // ignore
+      }
+    }
+
+    return res;
+  }
+};
+
 // Data Normalizers for UI & Backend Schema Compatibility
 export function normalizeProduct(p) {
   if (!p) return null;

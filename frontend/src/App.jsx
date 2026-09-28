@@ -21,6 +21,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import MarketSupportDesk from './components/MarketSupportDesk';
+import CookieConsentModal from './components/CookieConsentModal';
+import { useAuth } from './context/AuthContext';
 
 // Scroll to top on route change
 function ScrollToTopAndAnimate() {
@@ -44,6 +46,15 @@ function ScrollToTopAndAnimate() {
 }
 
 export default function App() {
+  const { currentUser, isAuthenticated } = useAuth();
+
+  const showCookieConsent = Boolean(
+    isAuthenticated &&
+    currentUser &&
+    (currentUser.role === 'farmer' || currentUser.role === 'customer') &&
+    !currentUser.essential_cookie_consent
+  );
+
   return (
     <div className="app-container">
       <ScrollToTopAndAnimate />
@@ -74,6 +85,7 @@ export default function App() {
       <Footer />
       <BackToTop />
       <MarketSupportDesk />
+      <CookieConsentModal isOpen={showCookieConsent} />
     </div>
   );
 }
