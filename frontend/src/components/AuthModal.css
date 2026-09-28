@@ -365,16 +365,34 @@
   box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.12);
 }
 
+.marketlink-input-wrap .marketlink-input {
+  padding-right: 56px;
+}
+
+.marketlink-auth-card[dir="rtl"] .marketlink-input-wrap .marketlink-input {
+  padding-right: 12px;
+  padding-left: 56px;
+}
+
 .marketlink-eye-toggle {
   position: absolute;
   right: 10px;
   background: none;
   border: none;
-  color: #8da488;
+  color: #6c757d;
   cursor: pointer;
   padding: 2px 4px;
   font-size: 0.725rem;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+  user-select: none;
+}
+
+.marketlink-eye-toggle:hover {
+  color: #28a745;
 }
 
 /* I'm not a robot reCAPTCHA Card */

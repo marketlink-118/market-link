@@ -348,6 +348,10 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
 
   const [mode, setMode] = useState(defaultMode);
   const [showPassword, setShowPassword] = useState(false);
+  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [showResetConfirmPassword, setShowResetConfirmPassword] = useState(false);
+  const [showRegPassword, setShowRegPassword] = useState(false);
+  const [showRegConfirmPassword, setShowRegConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -1163,32 +1167,56 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
 
                 <div className="marketlink-field-group">
                   <label className="marketlink-field-label">{txt.newPasswordLabel}</label>
-                  <input
-                    type="password"
-                    className="marketlink-input"
-                    placeholder={txt.passwordMinPlaceholder}
-                    value={newPassword}
-                    onChange={(e) => {
-                      setNewPassword(e.target.value);
-                      if (errorMessage) setErrorMessage('');
-                    }}
-                    required
-                  />
+                  <div className="marketlink-input-wrap">
+                    <input
+                      type={showResetPassword ? 'text' : 'password'}
+                      className="marketlink-input"
+                      placeholder={txt.passwordMinPlaceholder}
+                      value={newPassword}
+                      onChange={(e) => {
+                        setNewPassword(e.target.value);
+                        if (errorMessage) setErrorMessage('');
+                      }}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="marketlink-eye-toggle"
+                      onClick={() => setShowResetPassword(!showResetPassword)}
+                      tabIndex="-1"
+                      aria-label={showResetPassword ? txt.hide : txt.show}
+                    >
+                      <i className={showResetPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                      <span>{showResetPassword ? txt.hide : txt.show}</span>
+                    </button>
+                  </div>
                 </div>
 
                 <div className="marketlink-field-group">
                   <label className="marketlink-field-label">{txt.confirmNewPasswordLabel}</label>
-                  <input
-                    type="password"
-                    className="marketlink-input"
-                    placeholder={txt.confirmPasswordPlaceholder}
-                    value={confirmPassword}
-                    onChange={(e) => {
-                      setConfirmPassword(e.target.value);
-                      if (errorMessage) setErrorMessage('');
-                    }}
-                    required
-                  />
+                  <div className="marketlink-input-wrap">
+                    <input
+                      type={showResetConfirmPassword ? 'text' : 'password'}
+                      className="marketlink-input"
+                      placeholder={txt.confirmPasswordPlaceholder}
+                      value={confirmPassword}
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                        if (errorMessage) setErrorMessage('');
+                      }}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="marketlink-eye-toggle"
+                      onClick={() => setShowResetConfirmPassword(!showResetConfirmPassword)}
+                      tabIndex="-1"
+                      aria-label={showResetConfirmPassword ? txt.hide : txt.show}
+                    >
+                      <i className={showResetConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                      <span>{showResetConfirmPassword ? txt.hide : txt.show}</span>
+                    </button>
+                  </div>
                 </div>
 
                 <button
@@ -1339,8 +1367,10 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                     className="marketlink-eye-toggle"
                     onClick={() => setShowPassword(!showPassword)}
                     tabIndex="-1"
+                    aria-label={showPassword ? txt.hide : txt.show}
                   >
-                    {showPassword ? txt.hide : txt.show}
+                    <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                    <span>{showPassword ? txt.hide : txt.show}</span>
                   </button>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '4px' }}>
@@ -1498,31 +1528,55 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     <div className="marketlink-field-group">
                       <label className="marketlink-field-label">{txt.password}</label>
-                      <input
-                        type="password"
-                        className="marketlink-input"
-                        placeholder={txt.passwordMinPlaceholder}
-                        value={registerForm.password}
-                        onChange={(e) => {
-                          setRegisterForm({ ...registerForm, password: e.target.value });
-                          if (errorMessage) setErrorMessage('');
-                        }}
-                        required
-                      />
+                      <div className="marketlink-input-wrap">
+                        <input
+                          type={showRegPassword ? 'text' : 'password'}
+                          className="marketlink-input"
+                          placeholder={txt.passwordMinPlaceholder}
+                          value={registerForm.password}
+                          onChange={(e) => {
+                            setRegisterForm({ ...registerForm, password: e.target.value });
+                            if (errorMessage) setErrorMessage('');
+                          }}
+                          required
+                        />
+                        <button
+                          type="button"
+                          className="marketlink-eye-toggle"
+                          onClick={() => setShowRegPassword(!showRegPassword)}
+                          tabIndex="-1"
+                          aria-label={showRegPassword ? txt.hide : txt.show}
+                        >
+                          <i className={showRegPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                          <span>{showRegPassword ? txt.hide : txt.show}</span>
+                        </button>
+                      </div>
                     </div>
                     <div className="marketlink-field-group">
                       <label className="marketlink-field-label">{txt.confirmPassword}</label>
-                      <input
-                        type="password"
-                        className="marketlink-input"
-                        placeholder={txt.confirmPasswordPlaceholder}
-                        value={registerForm.password_confirmation}
-                        onChange={(e) => {
-                          setRegisterForm({ ...registerForm, password_confirmation: e.target.value });
-                          if (errorMessage) setErrorMessage('');
-                        }}
-                        required
-                      />
+                      <div className="marketlink-input-wrap">
+                        <input
+                          type={showRegConfirmPassword ? 'text' : 'password'}
+                          className="marketlink-input"
+                          placeholder={txt.confirmPasswordPlaceholder}
+                          value={registerForm.password_confirmation}
+                          onChange={(e) => {
+                            setRegisterForm({ ...registerForm, password_confirmation: e.target.value });
+                            if (errorMessage) setErrorMessage('');
+                          }}
+                          required
+                        />
+                        <button
+                          type="button"
+                          className="marketlink-eye-toggle"
+                          onClick={() => setShowRegConfirmPassword(!showRegConfirmPassword)}
+                          tabIndex="-1"
+                          aria-label={showRegConfirmPassword ? txt.hide : txt.show}
+                        >
+                          <i className={showRegConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                          <span>{showRegConfirmPassword ? txt.hide : txt.show}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </>
@@ -1699,31 +1753,55 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     <div className="marketlink-field-group">
                       <label className="marketlink-field-label">{txt.password}</label>
-                      <input
-                        type="password"
-                        className="marketlink-input"
-                        placeholder={txt.passwordMinPlaceholder}
-                        value={registerForm.password}
-                        onChange={(e) => {
-                          setRegisterForm({ ...registerForm, password: e.target.value });
-                          if (errorMessage) setErrorMessage('');
-                        }}
-                        required
-                      />
+                      <div className="marketlink-input-wrap">
+                        <input
+                          type={showRegPassword ? 'text' : 'password'}
+                          className="marketlink-input"
+                          placeholder={txt.passwordMinPlaceholder}
+                          value={registerForm.password}
+                          onChange={(e) => {
+                            setRegisterForm({ ...registerForm, password: e.target.value });
+                            if (errorMessage) setErrorMessage('');
+                          }}
+                          required
+                        />
+                        <button
+                          type="button"
+                          className="marketlink-eye-toggle"
+                          onClick={() => setShowRegPassword(!showRegPassword)}
+                          tabIndex="-1"
+                          aria-label={showRegPassword ? txt.hide : txt.show}
+                        >
+                          <i className={showRegPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                          <span>{showRegPassword ? txt.hide : txt.show}</span>
+                        </button>
+                      </div>
                     </div>
                     <div className="marketlink-field-group">
                       <label className="marketlink-field-label">{txt.confirmPassword}</label>
-                      <input
-                        type="password"
-                        className="marketlink-input"
-                        placeholder={txt.confirmPasswordPlaceholder}
-                        value={registerForm.password_confirmation}
-                        onChange={(e) => {
-                          setRegisterForm({ ...registerForm, password_confirmation: e.target.value });
-                          if (errorMessage) setErrorMessage('');
-                        }}
-                        required
-                      />
+                      <div className="marketlink-input-wrap">
+                        <input
+                          type={showRegConfirmPassword ? 'text' : 'password'}
+                          className="marketlink-input"
+                          placeholder={txt.confirmPasswordPlaceholder}
+                          value={registerForm.password_confirmation}
+                          onChange={(e) => {
+                            setRegisterForm({ ...registerForm, password_confirmation: e.target.value });
+                            if (errorMessage) setErrorMessage('');
+                          }}
+                          required
+                        />
+                        <button
+                          type="button"
+                          className="marketlink-eye-toggle"
+                          onClick={() => setShowRegConfirmPassword(!showRegConfirmPassword)}
+                          tabIndex="-1"
+                          aria-label={showRegConfirmPassword ? txt.hide : txt.show}
+                        >
+                          <i className={showRegConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
+                          <span>{showRegConfirmPassword ? txt.hide : txt.show}</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </>
