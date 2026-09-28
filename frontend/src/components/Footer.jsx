@@ -20,32 +20,86 @@ export default function Footer() {
             </div>
             <div className="col-lg-3 col-md-6">
               <h4 className="text-light mb-4">{t('footer_address_title')}</h4>
+              
               <div className="mb-3">
-                <div className="d-flex align-items-center gap-2 mb-2">
-                  <span className="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-2 py-1 rounded">
-                    {hq.flag} {hq.city}
+                <div className="d-flex align-items-center flex-wrap gap-2 mb-2">
+                  <span 
+                    className="badge rounded-pill px-2 py-1 d-inline-flex align-items-center gap-1 shadow-sm"
+                    style={{
+                      backgroundColor: 'rgba(60, 184, 21, 0.18)',
+                      border: '1px solid rgba(60, 184, 21, 0.45)',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.3px'
+                    }}
+                  >
+                    <span>{hq.flag}</span>
+                    <span className="text-white fw-bold">{hq.city}</span>
                   </span>
-                  <span className="text-white-50 small">{hq.badge}</span>
+                  <small 
+                    className="fw-medium" 
+                    style={{ color: '#94a3b8', fontSize: '0.76rem', letterSpacing: '0.2px' }}
+                  >
+                    {hq.badge}
+                  </small>
                 </div>
-                <h6 className="text-white mb-2 fw-semibold" style={{ fontSize: '0.98rem' }}>
+
+                <h6 className="text-white mb-2 fw-bold" style={{ fontSize: '1.02rem', letterSpacing: '-0.2px' }}>
                   {hq.title}
                 </h6>
+
                 <Link 
                   to="/contact#headquarters" 
-                  className="text-white-50 text-decoration-none d-flex align-items-start gap-2"
-                  style={{ fontSize: '0.88rem', lineHeight: '1.45' }}
+                  className="text-decoration-none d-flex align-items-start gap-2 mb-3 footer-hq-link"
+                  style={{ 
+                    color: '#cbd5e1', 
+                    fontSize: '0.88rem', 
+                    lineHeight: '1.5',
+                    transition: 'color 0.2s ease'
+                  }}
                   title="View Headquarters Details & Map"
                 >
-                  <i className="fa fa-map-marker-alt text-primary mt-1 flex-shrink-0"></i>
-                  <span>{hq.address}</span>
+                  <span 
+                    className="rounded-circle d-inline-flex align-items-center justify-content-center flex-shrink-0 mt-1"
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      backgroundColor: 'rgba(60, 184, 21, 0.15)',
+                      color: 'var(--primary)',
+                      fontSize: '0.75rem'
+                    }}
+                  >
+                    <i className="fa fa-map-marker-alt"></i>
+                  </span>
+                  <span className="hq-address-text">{hq.address}</span>
                 </Link>
               </div>
-              <p className="text-white-50 mb-0">
-                <i className="fa fa-envelope me-2 text-primary"></i>
-                <a href={`mailto:${hq.email}`} className="text-white-50 text-decoration-none">
+
+              <div className="d-flex align-items-center gap-2">
+                <span 
+                  className="rounded-circle d-inline-flex align-items-center justify-content-center flex-shrink-0"
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    backgroundColor: 'rgba(60, 184, 21, 0.15)',
+                    color: 'var(--primary)',
+                    fontSize: '0.75rem'
+                  }}
+                >
+                  <i className="fa fa-envelope"></i>
+                </span>
+                <a 
+                  href={`mailto:${hq.email}`} 
+                  className="text-decoration-none footer-hq-link"
+                  style={{ 
+                    color: '#cbd5e1', 
+                    fontSize: '0.88rem',
+                    transition: 'color 0.2s ease'
+                  }}
+                >
                   {hq.email}
                 </a>
-              </p>
+              </div>
             </div>
             <div className="col-lg-3 col-md-6">
               <h4 className="text-light mb-4">{t('footer_links_title')}</h4>

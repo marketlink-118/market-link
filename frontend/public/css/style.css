@@ -460,6 +460,24 @@
     color: var(--primary);
 }
 
+.footer-hq-link {
+    transition: color 0.2s ease;
+}
+
+.footer-hq-link:hover,
+.footer-hq-link:hover .hq-address-text {
+    color: var(--primary) !important;
+}
+
+.footer-hq-link span.rounded-circle {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-hq-link:hover span.rounded-circle {
+    background-color: rgba(60, 184, 21, 0.3) !important;
+    transform: scale(1.06);
+}
+
 /* ==========================================================================
    RTL (Right-to-Left) Optimization & Fixes for Urdu & Arabic
    ========================================================================== */
@@ -740,6 +758,12 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-theme="dark"] .container-fluid.bg-light {
     background-color: #0e1422 !important;
+}
+
+[data-theme="dark"] .footer.bg-dark,
+[data-theme="dark"] .footer {
+    background-color: #0b1120 !important;
+    border-top: 1px solid var(--border-color);
 }
 
 /* Fix bg-icon background without dimming child content */
