@@ -35,12 +35,21 @@ export default function RoleSwitcherModal({ isOpen, onClose }) {
 
         {currentUser ? (
           <div className="d-flex align-items-center p-3 bg-light rounded-3 mb-3 border">
-            <img 
-              src={currentUser.avatar} 
-              alt={currentUser.name} 
-              className="rounded-circle me-3" 
-              style={{ width: '48px', height: '48px', objectFit: 'cover' }}
-            />
+            {currentUser.avatar ? (
+              <img 
+                src={currentUser.avatar} 
+                alt={currentUser.name} 
+                className="rounded-circle me-3" 
+                style={{ width: '48px', height: '48px', objectFit: 'cover' }}
+              />
+            ) : (
+              <div 
+                className="rounded-circle bg-primary bg-opacity-10 text-primary border me-3 d-flex align-items-center justify-content-center fw-bold" 
+                style={{ width: '48px', height: '48px', fontSize: '1.2rem' }}
+              >
+                {currentUser.name ? currentUser.name.trim().charAt(0).toUpperCase() : <i className="fa fa-user"></i>}
+              </div>
+            )}
             <div className="flex-grow-1">
               <h6 className="mb-0 fw-bold">{currentUser.name}</h6>
               <small className="text-muted d-block">{currentUser.email}</small>

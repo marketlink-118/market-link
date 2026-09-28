@@ -634,7 +634,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
         {
           name: profile.name,
           email: profile.email,
-          avatar: profile.avatar || (isFarmer ? '/img/testimonial-2.jpg' : '/img/testimonial-1.jpg'),
+          avatar: profile.avatar || null,
           phone: pendingFarmerData.phone || registerForm.phone,
           city: pendingFarmerData.city || registerForm.city,
           country: pendingFarmerData.country || registerForm.country,
@@ -681,7 +681,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
     handleSelectGoogleAccount({
       name,
       email,
-      avatar: googleTargetRole === 'farmer' ? '/img/testimonial-2.jpg' : '/img/testimonial-1.jpg'
+      avatar: null
     });
   };
 

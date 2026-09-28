@@ -142,25 +142,41 @@ export default function CustomerDashboard() {
           <div className="bg-white rounded-3 p-4 shadow-sm border mb-4">
             <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
               <div className="d-flex align-items-center gap-3">
-                <img 
-                  src={currentUser?.avatar || '/img/testimonial-1.jpg'} 
-                  alt={currentUser?.name || 'Customer'}
-                  className="rounded-circle border border-primary border-2"
-                  style={{ width: '64px', height: '64px', objectFit: 'cover' }}
-                />
+                {currentUser?.avatar ? (
+                  <img 
+                    src={currentUser.avatar} 
+                    alt={currentUser?.name || 'Customer'}
+                    className="rounded-circle border border-primary border-2"
+                    style={{ width: '64px', height: '64px', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <div
+                    className="rounded-circle bg-primary bg-opacity-10 text-primary border border-primary border-2 d-flex align-items-center justify-content-center fw-bold shadow-sm"
+                    style={{ width: '64px', height: '64px', fontSize: '1.5rem' }}
+                  >
+                    {currentUser?.name ? currentUser.name.trim().charAt(0).toUpperCase() : <i className="fa fa-user"></i>}
+                  </div>
+                )}
                 <div>
                   <div className="d-flex align-items-center gap-2">
-                    <h4 className="mb-0 fw-bold">{currentUser?.name || 'Hamza Ali'}</h4>
+                    <h4 className="mb-0 fw-bold">{currentUser?.name || 'Customer'}</h4>
                     <span className="badge bg-primary text-white rounded-pill text-uppercase" style={{ fontSize: '0.7rem' }}>
                       Customer
                     </span>
                   </div>
                   <small className="text-muted d-block">
-                    <i className="fa fa-envelope text-primary me-1"></i> {currentUser?.email || 'hamza@customer.com'} &bull; <i className="fa fa-phone text-primary me-1 ms-2"></i> {currentUser?.phone || '+92 300 1234567'}
+                    {currentUser?.email && (
+                      <span><i className="fa fa-envelope text-primary me-1"></i> {currentUser.email}</span>
+                    )}
+                    {currentUser?.phone && (
+                      <span className="ms-2">&bull; <i className="fa fa-phone text-primary me-1 ms-1"></i> {currentUser.phone}</span>
+                    )}
                   </small>
-                  <small className="text-muted">
-                    <i className="fa fa-map-marker-alt text-primary me-1"></i> {currentUser?.address || 'Gulberg III, Lahore'}
-                  </small>
+                  {currentUser?.address && (
+                    <small className="text-muted">
+                      <i className="fa fa-map-marker-alt text-primary me-1"></i> {currentUser.address}
+                    </small>
+                  )}
                 </div>
               </div>
 

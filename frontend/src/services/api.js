@@ -216,7 +216,7 @@ export const authAPI = {
         role: userData.role || 'customer',
         stallName: isFarmer ? (userData.farm_name || userData.stall_name || 'Punjab Organics Stall') : null,
         stallNumber: isFarmer ? (userData.stall_number || 'Stall #A-05') : null,
-        avatar: isFarmer ? '/img/testimonial-2.jpg' : '/img/testimonial-1.jpg',
+        avatar: null,
         password: userData.password
       };
 

@@ -43,7 +43,7 @@ export default function AuthCallbackPage() {
         name,
         email,
         role,
-        avatar: avatar || (role === 'farmer' ? '/img/testimonial-2.jpg' : '/img/testimonial-1.jpg'),
+        avatar: avatar || null,
         phone: pendingFarmer.phone || undefined,
         city: pendingFarmer.city || undefined,
         country: pendingFarmer.country || undefined,

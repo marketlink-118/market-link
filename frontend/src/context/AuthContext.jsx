@@ -35,7 +35,7 @@ function formatAuthUser(user, defaultRole = 'customer') {
     bio: profile.bio || user.bio || '',
     approvalStatus: profile.approval_status || user.approvalStatus || (isFarmer ? 'pending' : 'approved'),
     farmerProfile: profile,
-    avatar: user.avatar || (isFarmer ? '/img/testimonial-2.jpg' : role === 'admin' ? '/img/testimonial-3.jpg' : '/img/testimonial-1.jpg'),
+    avatar: user.avatar || null,
     essential_cookie_consent: user.essential_cookie_consent !== undefined ? Boolean(user.essential_cookie_consent) : false,
     essential_cookie_consent_at: user.essential_cookie_consent_at || null
   };
@@ -174,8 +174,8 @@ export function AuthProvider({ children }) {
         role,
         farm_name: googleProfile.farm_name || (isFarmer ? 'Punjab Green Organics' : undefined),
         stall_number: googleProfile.stall_number || (isFarmer ? 'Stall #A-04' : undefined),
-        phone: googleProfile.phone || '+92 300 1234567',
-        avatar: googleProfile.avatar || (isFarmer ? '/img/testimonial-2.jpg' : '/img/testimonial-1.jpg')
+        phone: googleProfile.phone || '',
+        avatar: googleProfile.avatar || null
       };
 
       const res = await authAPI.googleAuth(payload);
