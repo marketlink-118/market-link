@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { getHeadquarters } from '../data/headquartersData';
@@ -6,6 +6,17 @@ import { getHeadquarters } from '../data/headquartersData';
 export default function Footer() {
   const { t, isRTL, currentCountry } = useLanguage();
   const hq = getHeadquarters(currentCountry);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (newsletterEmail && newsletterEmail.includes('@')) {
+      setSubscribed(true);
+      setNewsletterEmail('');
+      setTimeout(() => setSubscribed(false), 4000);
+    }
+  };
 
   return (
     <>
@@ -112,19 +123,34 @@ export default function Footer() {
             <div className="col-lg-3 col-md-6">
               <h4 className="text-light mb-4">{t('footer_newsletter_title')}</h4>
               <p className="text-white-50">{t('footer_newsletter_desc')}</p>
-              <div className="position-relative mx-auto" style={{ maxWidth: '400px' }}>
+              <form onSubmit={handleSubscribe} className="position-relative mx-auto" style={{ maxWidth: '400px' }}>
                 <input 
-                  className="form-control bg-transparent w-100 py-3 ps-4 pe-5 text-white border-secondary" 
+                  className="form-control rounded-pill bg-transparent w-100 py-3 text-white border-secondary" 
                   type="email" 
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="your.email@example.com" 
+                  required
+                  style={{
+                    paddingRight: isRTL ? '18px' : '118px',
+                    paddingLeft: isRTL ? '118px' : '18px',
+                    fontSize: '0.88rem'
+                  }}
                 />
                 <button 
-                  type="button" 
-                  className={`btn btn-primary py-2 position-absolute top-0 ${isRTL ? 'start-0' : 'end-0'} mt-2 ${isRTL ? 'ms-2' : 'me-2'}`}
+                  type="submit" 
+                  className={`btn btn-primary rounded-pill px-3 py-2 position-absolute top-50 translate-middle-y ${isRTL ? 'start-0 ms-1' : 'end-0 me-1'}`}
+                  style={{ fontSize: '0.82rem', fontWeight: 600 }}
                 >
                   {t('footer_signup_btn')}
                 </button>
-              </div>
+              </form>
+              {subscribed && (
+                <div className="mt-2 text-success small d-flex align-items-center gap-1">
+                  <i className="fa fa-check-circle"></i>
+                  <span>Subscribed successfully! Thank you.</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
