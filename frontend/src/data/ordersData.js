@@ -11,10 +11,10 @@ export const sampleOrdersData = [
     pickupDate: '2026-09-29',
     timeSlot: '08:30 AM - 10:30 AM',
     items: [
-      { id: 1, name: 'Heirloom Vine Tomato', quantity: 3, unit: 'kg', price: 4.50 },
-      { id: 3, name: 'Crisp Green Bell Pepper', quantity: 2, unit: 'kg', price: 3.20 }
+      { id: 1, name: 'Heirloom Vine Tomato', quantity: 3, unit: 'kg', price: 342 },
+      { id: 3, name: 'Crisp Green Bell Pepper', quantity: 2, unit: 'kg', price: 243 }
     ],
-    totalAmount: 19.90,
+    totalAmount: 1512,
     pickupToken: 'PKP-8921A',
     status: 'ready_for_pickup',
     payOnPickup: true,
@@ -33,10 +33,10 @@ export const sampleOrdersData = [
     pickupDate: '2026-09-30',
     timeSlot: '09:30 AM - 11:30 AM',
     items: [
-      { id: 4, name: 'Sweet Field Strawberries', quantity: 2, unit: 'box (500g)', price: 6.50 },
-      { id: 6, name: 'Valencia Sweet Orange', quantity: 3, unit: 'kg', price: 4.20 }
+      { id: 4, name: 'Sweet Field Strawberries', quantity: 2, unit: 'box (500g)', price: 494 },
+      { id: 6, name: 'Valencia Sweet Orange', quantity: 3, unit: 'kg', price: 319 }
     ],
-    totalAmount: 25.60,
+    totalAmount: 1945,
     pickupToken: 'PKP-4402B',
     status: 'accepted',
     payOnPickup: true,
@@ -55,10 +55,10 @@ export const sampleOrdersData = [
     pickupDate: '2026-09-20',
     timeSlot: '10:30 AM - 12:30 PM',
     items: [
-      { id: 1, name: 'Farm Fresh Tomatoes', quantity: 2, unit: 'kg', price: 4.80 },
-      { id: 5, name: 'English Garden Cucumber', quantity: 1, unit: 'kg', price: 2.80 }
+      { id: 1, name: 'Farm Fresh Tomatoes', quantity: 2, unit: 'kg', price: 365 },
+      { id: 5, name: 'English Garden Cucumber', quantity: 1, unit: 'kg', price: 213 }
     ],
-    totalAmount: 12.40,
+    totalAmount: 943,
     pickupToken: 'PKP-7109C',
     status: 'completed',
     payOnPickup: true,

@@ -17,10 +17,26 @@ export function OrderProvider({ children }) {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map((ord) => ({
-            ...ord,
-            pickupToken: ord.pickupToken || `PKP-${String(ord.id || '').replace('ORD-', '')}X`
-          }));
+          return parsed.map((ord) => {
+            const normalizedItems = (ord.items || []).map((it) => {
+              const p = Number(it.price) || 0;
+              const normalizedPrice = p < 15 ? Math.round(p * 76) : p;
+              return {
+                ...it,
+                price: normalizedPrice
+              };
+            });
+            const computedTotal = normalizedItems.reduce(
+              (sum, it) => sum + (Number(it.price) || 0) * (Number(it.quantity) || 1),
+              0
+            );
+            return {
+              ...ord,
+              items: normalizedItems,
+              totalAmount: computedTotal > 0 ? computedTotal : (Number(ord.totalAmount) < 50 ? Math.round(Number(ord.totalAmount) * 76) : Number(ord.totalAmount) || 0),
+              pickupToken: ord.pickupToken || `PKP-${String(ord.id || '').replace('ORD-', '')}X`
+            };
+          });
         }
       }
       return sampleOrdersData;

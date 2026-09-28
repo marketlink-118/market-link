@@ -14,6 +14,10 @@ export default function PickupPassModal({ order, isOpen, onClose, onMarkCollecte
 
   const voucherRef = useRef(null);
 
+  const calculatedSubtotal = (order?.items && order.items.length > 0)
+    ? order.items.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1), 0)
+    : (Number(order?.totalAmount) || 0);
+
   useEffect(() => {
     if (!order) return;
 
@@ -27,7 +31,7 @@ export default function PickupPassModal({ order, isOpen, onClose, onMarkCollecte
       farmer: order.farmerName,
       pickupDate: order.pickupDate,
       timeSlot: order.timeSlot,
-      cashDue: order.totalAmount,
+      cashDue: calculatedSubtotal,
       rule: 'Cash on Stall Pickup Only'
     });
 
@@ -79,9 +83,9 @@ RESERVED PRODUCE:
 ${order.items.map((it, idx) => `  ${idx + 1}. ${it.name} x ${it.quantity} ${it.unit} @ ${formatPrice(it.price)} = ${formatPrice(it.price * it.quantity)}`).join('\n')}
 
 FINANCIAL SETTLEMENT (STRICT POLICY):
-ITEMS SUBTOTAL    : ${formatPrice(order.totalAmount)}
+ITEMS SUBTOTAL    : ${formatPrice(calculatedSubtotal)}
 STALL ADMIN FEE   : ${formatPrice(0)} (WAIVED)
-GRAND TOTAL DUE   : ${formatPrice(order.totalAmount)} [EXACT CASH ON PICKUP]
+GRAND TOTAL DUE   : ${formatPrice(calculatedSubtotal)} [EXACT CASH ON PICKUP]
 
 NOTE: No advance card charges were taken online.
 Hand cash directly to the farmer at stall upon collecting produce.
@@ -312,7 +316,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
               <div className="bg-light p-3 rounded-3 border mb-3">
                 <div className="d-flex justify-content-between mb-1 small text-muted">
                   <span>{t('pass_subtotal')}:</span>
-                  <span>{formatPrice(order.totalAmount)}</span>
+                  <span>{formatPrice(calculatedSubtotal)}</span>
                 </div>
                 <div className="d-flex justify-content-between mb-2 small text-muted">
                   <span>{t('pass_stall_fee')}:</span>
@@ -327,7 +331,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
                     </small>
                   </div>
                   <span className="fw-bolder text-primary fs-4">
-                    {formatPrice(order.totalAmount)}
+                    {formatPrice(calculatedSubtotal)}
                   </span>
                 </div>
               </div>

@@ -13,15 +13,15 @@ const INITIAL_CART = [
   {
     product: {
       id: 1,
-      name: 'Heirloom Vine Tomato',
-      price: 4.50,
+      name: 'Farm Fresh Vine Tomatoes',
+      price: 140,
       unit: 'kg',
       stockQuantity: 45,
       farmerId: '2',
-      farmerName: 'Oak Ridge Organics',
+      farmerName: 'Punjab Green Organic Farm',
       marketId: '1',
-      marketName: 'Liberty Farmers Market',
-      image: '/img/product-1.jpg'
+      marketName: 'Liberty Sunday Farmers Market',
+      image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80'
     },
     quantity: 2
   }
@@ -31,7 +31,22 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(() => {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : INITIAL_CART;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.map((it) => {
+            const p = Number(it.product?.price) || 0;
+            return {
+              ...it,
+              product: {
+                ...it.product,
+                price: p < 15 ? 140 : p
+              }
+            };
+          });
+        }
+      }
+      return INITIAL_CART;
     } catch {
       return INITIAL_CART;
     }

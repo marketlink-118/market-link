@@ -88,24 +88,24 @@ export function LanguageProvider({ children }) {
 
     switch (country.code) {
       case 'PK': {
-        const val = num < 15 ? Math.round(num * 76) : Math.round(num);
+        const val = Math.round(num);
         return isUr ? `${val.toLocaleString()} روپے` : `Rs ${val.toLocaleString()}`;
       }
       case 'SA': {
-        const val = num > 100 ? (num / 74).toFixed(2) : num.toFixed(2);
+        const val = (Math.round(num * 100) / 100).toFixed(2);
         return isAr ? `${val} ر.س` : `${val} SAR`;
       }
       case 'AE': {
-        const val = num > 100 ? (num / 76).toFixed(2) : num.toFixed(2);
+        const val = (Math.round(num * 100) / 100).toFixed(2);
         return isAr ? `${val} د.إ` : `${val} AED`;
       }
       case 'GB': {
-        const val = num > 50 ? (num / 360).toFixed(2) : num.toFixed(2);
+        const val = (Math.round(num * 100) / 100).toFixed(2);
         return `£${val}`;
       }
       case 'US':
       default: {
-        const val = num > 50 ? (num / 280).toFixed(2) : num.toFixed(2);
+        const val = (Math.round(num * 100) / 100).toFixed(2);
         return `$${val}`;
       }
     }

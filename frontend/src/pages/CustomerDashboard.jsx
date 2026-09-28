@@ -219,6 +219,9 @@ export default function CustomerDashboard() {
                 <div className="d-flex flex-column gap-4">
                   {activeOrders.map((order) => {
                     const step = getTimelineStep(order.status);
+                    const orderSubtotal = (order.items && order.items.length > 0)
+                      ? order.items.reduce((sum, it) => sum + (Number(it.price) || 0) * (Number(it.quantity) || 1), 0)
+                      : (Number(order.totalAmount) || 0);
                     return (
                       <div key={order.id} className="bg-white rounded-3 p-4 shadow-sm border">
                         {/* Order Header */}
@@ -276,7 +279,7 @@ export default function CustomerDashboard() {
                               <i className="fa fa-calendar-alt text-primary me-1"></i> Date: {order.pickupDate} ({order.timeSlot})
                             </span>
                             <div className="mt-2 text-success small">
-                              <i className="fa fa-hand-holding-usd me-1"></i> Payment: Settle <strong>{formatPrice(order.totalAmount)}</strong> cash at stall pickup
+                              <i className="fa fa-hand-holding-usd me-1"></i> Payment: Settle <strong>{formatPrice(orderSubtotal)}</strong> cash at stall pickup
                             </div>
                             {order.pickupToken && (
                               <div className="mt-2">
@@ -301,7 +304,7 @@ export default function CustomerDashboard() {
                             </ul>
                             <div className="d-flex justify-content-between fw-bold">
                               <span>Total:</span>
-                              <span className="text-primary fs-6">{formatPrice(order.totalAmount)}</span>
+                              <span className="text-primary fs-6">{formatPrice(orderSubtotal)}</span>
                             </div>
                           </div>
                         </div>
@@ -369,31 +372,35 @@ export default function CustomerDashboard() {
                   <p className="text-muted">No past order history found.</p>
                 </div>
               ) : (
-                pastOrders.map((order) => (
-                  <div key={order.id} className="bg-white rounded-3 p-4 shadow-sm border">
-                    <div className="d-flex flex-wrap justify-content-between align-items-center gap-2 pb-2 border-bottom">
-                      <div>
-                        <span className="fw-bold text-dark fs-6 me-2">{order.id}</span>
-                        <small className="text-muted">{order.farmerName} &bull; {order.pickupDate}</small>
+                pastOrders.map((order) => {
+                  const orderSubtotal = (order.items && order.items.length > 0)
+                    ? order.items.reduce((sum, it) => sum + (Number(it.price) || 0) * (Number(it.quantity) || 1), 0)
+                    : (Number(order.totalAmount) || 0);
+                  return (
+                    <div key={order.id} className="bg-white rounded-3 p-4 shadow-sm border">
+                      <div className="d-flex flex-wrap justify-content-between align-items-center gap-2 pb-2 border-bottom">
+                        <div>
+                          <span className="fw-bold text-dark fs-6 me-2">{order.id}</span>
+                          <small className="text-muted">{order.farmerName} &bull; {order.pickupDate}</small>
+                        </div>
+                        <div>
+                          {getStatusBadge(order.status)}
+                        </div>
                       </div>
-                      <div>
-                        {getStatusBadge(order.status)}
+
+                      <div className="py-2">
+                        <small className="text-muted">Items: {order.items.map(i => `${i.name} (${i.quantity})`).join(', ')}</small>
                       </div>
-                    </div>
 
-                    <div className="py-2">
-                      <small className="text-muted">Items: {order.items.map(i => `${i.name} (${i.quantity})`).join(', ')}</small>
-                    </div>
+                      {order.ratingGiven && (
+                        <div className="alert alert-light border small py-2 mb-2">
+                          <i className="fa fa-star text-warning me-1"></i>
+                          <strong>Your Review ({order.ratingGiven}/5):</strong> "{order.reviewGiven}"
+                        </div>
+                      )}
 
-                    {order.ratingGiven && (
-                      <div className="alert alert-light border small py-2 mb-2">
-                        <i className="fa fa-star text-warning me-1"></i>
-                        <strong>Your Review ({order.ratingGiven}/5):</strong> "{order.reviewGiven}"
-                      </div>
-                    )}
-
-                    <div className="d-flex justify-content-between align-items-center pt-2 border-top">
-                      <span className="fw-bold text-primary">{formatPrice(order.totalAmount)}</span>
+                      <div className="d-flex justify-content-between align-items-center pt-2 border-top">
+                        <span className="fw-bold text-primary">{formatPrice(orderSubtotal)}</span>
                       <div className="d-flex gap-2">
                         <button
                           type="button"
@@ -421,7 +428,8 @@ export default function CustomerDashboard() {
                       </div>
                     </div>
                   </div>
-                ))
+                );
+              })
               )}
             </div>
           )}
