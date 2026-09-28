@@ -43,10 +43,10 @@ export default function Navbar() {
 
   return (
     <div
-      className={`container-fluid fixed-top px-0 ${isScrolled ? 'bg-white shadow-sm' : ''}`}
+      className={`container-fluid fixed-top px-0 ${isScrolled ? 'scrolled bg-white shadow-sm' : ''}`}
       style={{
-        top: isScrolled ? (window.innerWidth >= 992 ? '-32px' : '0px') : '0px',
-        transition: 'all 0.3s ease'
+        top: '0px',
+        transition: 'background-color 0.3s ease, box-shadow 0.3s ease'
       }}
     >
       {/* Harvest Cutoff Announcement Banner */}

@@ -103,8 +103,31 @@
 
 .top-bar {
     height: 32px;
+    overflow: hidden;
+    transition: height 0.3s ease, opacity 0.25s ease;
     border-bottom: 1px solid rgba(0, 0, 0, .06);
     font-size: 0.78rem;
+}
+
+.cutoff-countdown-bar {
+    transition: height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+}
+
+.fixed-top.scrolled .top-bar {
+    height: 0;
+    opacity: 0;
+    border-bottom: none !important;
+}
+
+.fixed-top.scrolled .cutoff-countdown-bar {
+    height: 0;
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden;
+    opacity: 0;
+    border-bottom: none !important;
+    pointer-events: none;
 }
 
 .navbar .dropdown-toggle::after {
