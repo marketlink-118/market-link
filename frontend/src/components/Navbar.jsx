@@ -62,45 +62,47 @@ export default function Navbar() {
       </div>
 
       <nav className="navbar navbar-expand-lg navbar-light py-lg-0 px-2 px-sm-3 px-lg-5">
-        <Link to="/" className="navbar-brand ms-1 ms-lg-0 py-1 flex-shrink-0">
-          <h1 className="fw-bold text-primary m-0" style={{ fontSize: 'clamp(1.2rem, 3.8vw, 1.45rem)', letterSpacing: '-0.5px' }}>
-            Market<span className="text-secondary">Link</span>
-          </h1>
-        </Link>
+        <div className="d-lg-contents">
+          <Link to="/" className="navbar-brand ms-1 ms-lg-0 py-1 flex-shrink-0">
+            <h1 className="fw-bold text-primary m-0" style={{ fontSize: 'clamp(1.15rem, 3.5vw, 1.45rem)', letterSpacing: '-0.5px' }}>
+              Market<span className="text-secondary">Link</span>
+            </h1>
+          </Link>
 
-        {/* Mobile Controls Cluster - Guaranteed single-line flex-nowrap */}
-        <div className="d-flex align-items-center flex-nowrap d-lg-none gap-1 gap-sm-2 ms-auto me-1">
-          <ThemeToggle compact={true} />
-          <LanguageSelector compact={true} />
+          {/* Mobile Controls Cluster - Strictly locked single-line */}
+          <div className="d-flex align-items-center flex-nowrap d-lg-none gap-1 ms-auto me-0">
+            <ThemeToggle compact={true} />
+            <LanguageSelector compact={true} />
 
-          {/* Direct Mobile Basket Trigger */}
-          <button
-            type="button"
-            className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative flex-shrink-0"
-            onClick={() => setIsDrawerOpen(true)}
-            title={t('nav_basket')}
-            style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <small className="fa fa-shopping-basket text-primary" style={{ fontSize: '0.8rem' }}></small>
-            {totalItems > 0 && (
-              <span 
-                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
-                style={{ fontSize: '0.6rem', padding: '2px 4px' }}
-              >
-                {totalItems}
-              </span>
-            )}
-          </button>
+            {/* Direct Mobile Basket Trigger */}
+            <button
+              type="button"
+              className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative flex-shrink-0"
+              onClick={() => setIsDrawerOpen(true)}
+              title={t('nav_basket')}
+              style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <small className="fa fa-shopping-basket text-primary" style={{ fontSize: '0.8rem' }}></small>
+              {totalItems > 0 && (
+                <span 
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
+                  style={{ fontSize: '0.6rem', padding: '2px 4px' }}
+                >
+                  {totalItems}
+                </span>
+              )}
+            </button>
 
-          <button 
-            type="button" 
-            className="navbar-toggler p-1 border-0 flex-shrink-0" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation"
-            style={{ fontSize: '1.1rem' }}
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+            <button 
+              type="button" 
+              className="navbar-toggler p-1 border-0 flex-shrink-0 ms-1" 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle navigation"
+              style={{ fontSize: '1.1rem' }}
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
         </div>
 
         <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarCollapse">

@@ -42,50 +42,43 @@ export default function CutoffBanner() {
       }}
       aria-label="Pre-Order Cutoff Announcement"
     >
-      <div className="container-fluid d-flex flex-wrap align-items-center justify-content-between gap-2 py-1">
+      <div className="container-fluid d-flex flex-nowrap align-items-center justify-content-between gap-2 py-0.5 px-2 px-sm-3">
         {/* Left / Info */}
-        <div className="d-flex align-items-center gap-2 flex-wrap">
-          <span className={`badge rounded-pill px-2 py-1 fw-bold ${statusBadgeClass}`} style={{ fontSize: '0.68rem' }}>
+        <div className="d-flex align-items-center gap-1.5 flex-nowrap text-truncate">
+          <span className={`badge rounded-pill px-2 py-0.5 fw-bold ${statusBadgeClass} flex-shrink-0`} style={{ fontSize: '0.68rem' }}>
             <i className={`fa ${isExpired ? 'fa-lock' : 'fa-clock'} me-1`}></i>
             {statusText}
           </span>
-          <span className="fw-semibold text-white">
+          <span className="fw-semibold text-white text-truncate d-none d-sm-inline" style={{ fontSize: '0.78rem' }}>
             {t('cutoff_banner_title')}
-          </span>
-          <span className="text-white-50 d-none d-md-inline">•</span>
-          <span className="text-light d-none d-md-inline opacity-90">
-            {t('cutoff_urgent_alert')}
           </span>
         </div>
 
         {/* Center / Timer Countdown Digits */}
-        <div className="d-flex align-items-center gap-1 mx-auto mx-lg-0">
-          <span className="text-white-50 me-1 d-none d-sm-inline">{t('cutoff_closing_in')}:</span>
+        <div className="d-flex align-items-center gap-1 flex-shrink-0">
+          <span className="text-white-50 me-1 d-none d-md-inline">{t('cutoff_closing_in')}:</span>
           
-          <div className="d-inline-flex align-items-center gap-1">
-            <span className="px-2 py-1 rounded bg-black bg-opacity-50 text-warning font-monospace fw-bold" style={{ fontSize: '0.85rem' }}>
-              {pad(hours)}
+          <div className="d-inline-flex align-items-center gap-1 font-monospace fw-bold" style={{ fontSize: '0.8rem' }}>
+            <span className="px-1.5 py-0.5 rounded bg-black bg-opacity-50 text-warning">
+              {pad(hours)}h
             </span>
-            <small className="text-white-50 me-1">{t('cutoff_hours')}</small>
-
-            <span className="px-2 py-1 rounded bg-black bg-opacity-50 text-warning font-monospace fw-bold" style={{ fontSize: '0.85rem' }}>
-              {pad(minutes)}
+            <span className="text-white-50">:</span>
+            <span className="px-1.5 py-0.5 rounded bg-black bg-opacity-50 text-warning">
+              {pad(minutes)}m
             </span>
-            <small className="text-white-50 me-1">{t('cutoff_mins')}</small>
-
-            <span className="px-2 py-1 rounded bg-black bg-opacity-50 text-warning font-monospace fw-bold" style={{ fontSize: '0.85rem' }}>
-              {pad(seconds)}
+            <span className="text-white-50">:</span>
+            <span className="px-1.5 py-0.5 rounded bg-black bg-opacity-50 text-warning">
+              {pad(seconds)}s
             </span>
-            <small className="text-white-50">{t('cutoff_secs')}</small>
           </div>
         </div>
 
         {/* Right / CTA & Dismiss */}
-        <div className="d-flex align-items-center gap-2 ms-auto ms-lg-0">
+        <div className="d-flex align-items-center gap-1.5 flex-shrink-0">
           <button
             type="button"
-            className="btn btn-sm btn-outline-warning rounded-pill px-3 py-0 fw-semibold d-flex align-items-center gap-1 text-decoration-none shadow-sm"
-            style={{ fontSize: '0.72rem', height: '26px' }}
+            className="btn btn-sm btn-outline-warning rounded-pill px-2.5 py-0 fw-semibold d-none d-sm-inline-flex align-items-center gap-1 text-decoration-none shadow-sm"
+            style={{ fontSize: '0.7rem', height: '24px' }}
             onClick={() => setIsDrawerOpen(true)}
             title="Open Pre-Order Basket"
           >
@@ -95,11 +88,11 @@ export default function CutoffBanner() {
 
           <button
             type="button"
-            className="btn btn-sm btn-link text-white-50 p-0 text-decoration-none"
+            className="btn btn-sm btn-link text-white-50 p-0 text-decoration-none ms-1"
             onClick={() => setIsVisible(false)}
             aria-label="Dismiss cutoff banner"
             title="Dismiss"
-            style={{ fontSize: '14px', lineHeight: 1 }}
+            style={{ fontSize: '15px', lineHeight: 1 }}
           >
             &times;
           </button>

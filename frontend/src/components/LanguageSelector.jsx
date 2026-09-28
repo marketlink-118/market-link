@@ -50,7 +50,7 @@ export default function LanguageSelector({ compact = false }) {
       {isOpen && (
         <div
           className={`position-absolute bg-white shadow-lg rounded-3 border p-2 ${isRTL ? 'start-0' : 'end-0'} mt-1`}
-          style={{ width: '260px', zIndex: 1090, top: '100%' }}
+          style={{ width: '260px', maxWidth: 'calc(100vw - 24px)', zIndex: 1090, top: '100%' }}
         >
           {/* Priority: Country Switcher (Auto Language + Currency) */}
           <div className="px-2 py-1 border-bottom mb-1 bg-light rounded-2">
