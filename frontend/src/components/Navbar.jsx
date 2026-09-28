@@ -42,13 +42,14 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
   return (
-    <div
-      className={`container-fluid fixed-top px-0 ${isScrolled ? 'scrolled bg-white shadow-sm' : ''}`}
-      style={{
-        top: '0px',
-        transition: 'background-color 0.3s ease, box-shadow 0.3s ease'
-      }}
-    >
+    <>
+      <div
+        className={`container-fluid fixed-top px-0 ${isScrolled ? 'scrolled bg-white shadow-sm' : ''}`}
+        style={{
+          top: '0px',
+          transition: 'background-color 0.3s ease, box-shadow 0.3s ease'
+        }}
+      >
       {/* Harvest Cutoff Announcement Banner */}
       <CutoffBanner />
 
@@ -220,8 +221,9 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      </div>
 
-      {/* Authentication Modal */}
+      {/* Authentication Modal - Rendered outside fixed-top to prevent stacking context trapping */}
       <AuthModal 
         isOpen={isAuthModalOpen} 
         onClose={() => setIsAuthModalOpen(false)} 
@@ -229,6 +231,6 @@ export default function Navbar() {
 
       {/* Cart Drawer */}
       <CartDrawer />
-    </div>
+    </>
   );
 }
