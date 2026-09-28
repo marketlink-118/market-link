@@ -43,10 +43,10 @@ export default function Navbar() {
 
   return (
     <div
-      className={`container-fluid fixed-top px-0 ${isScrolled ? 'bg-white shadow' : ''}`}
+      className={`container-fluid fixed-top px-0 ${isScrolled ? 'bg-white shadow-sm' : ''}`}
       style={{
-        top: isScrolled ? (window.innerWidth >= 992 ? '-45px' : '0px') : '0px',
-        transition: 'all 0.4s ease'
+        top: isScrolled ? (window.innerWidth >= 992 ? '-32px' : '0px') : '0px',
+        transition: 'all 0.3s ease'
       }}
     >
       {/* Harvest Cutoff Announcement Banner */}
@@ -65,8 +65,8 @@ export default function Navbar() {
       </div>
 
       <nav className="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5">
-        <Link to="/" className="navbar-brand ms-4 ms-lg-0">
-          <h1 className="fw-bold text-primary m-0">
+        <Link to="/" className="navbar-brand ms-4 ms-lg-0 py-1">
+          <h1 className="fw-bold text-primary m-0" style={{ fontSize: '1.75rem', letterSpacing: '-0.5px' }}>
             Market<span className="text-secondary">Link</span>
           </h1>
         </Link>

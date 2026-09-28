@@ -102,8 +102,9 @@
 }
 
 .top-bar {
-    height: 45px;
-    border-bottom: 1px solid rgba(0, 0, 0, .07);
+    height: 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+    font-size: 0.78rem;
 }
 
 .navbar .dropdown-toggle::after {
@@ -116,11 +117,12 @@
 }
 
 .navbar .navbar-nav .nav-link {
-    padding: 25px 15px;
+    padding: 12px 14px;
     color: #FFFFFF !important;
     font-weight: 600;
+    font-size: 0.92rem;
     outline: none;
-    transition: .5s;
+    transition: .3s;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
