@@ -9,23 +9,7 @@ import { cartAPI } from '../services/api';
 const CartContext = createContext(null);
 const CART_STORAGE_KEY = 'marketlink_cart_state';
 
-const INITIAL_CART = [
-  {
-    product: {
-      id: 1,
-      name: 'Farm Fresh Vine Tomatoes',
-      price: 140,
-      unit: 'kg',
-      stockQuantity: 45,
-      farmerId: '2',
-      farmerName: 'Punjab Green Organic Farm',
-      marketId: '1',
-      marketName: 'Liberty Sunday Farmers Market',
-      image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80'
-    },
-    quantity: 2
-  }
-];
+const INITIAL_CART = [];
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(() => {
@@ -34,6 +18,11 @@ export function CartProvider({ children }) {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          // If stored cart is the old default 2x Tomatoes dummy, discard it
+          if (parsed.length === 1 && parsed[0]?.product?.id === 1 && parsed[0]?.quantity === 2) {
+            localStorage.removeItem(CART_STORAGE_KEY);
+            return [];
+          }
           return parsed.map((it) => {
             const p = Number(it.product?.price) || 0;
             return {
@@ -46,9 +35,9 @@ export function CartProvider({ children }) {
           });
         }
       }
-      return INITIAL_CART;
+      return [];
     } catch {
-      return INITIAL_CART;
+      return [];
     }
   });
 

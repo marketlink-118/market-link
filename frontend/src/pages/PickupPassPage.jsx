@@ -16,7 +16,7 @@ export default function PickupPassPage() {
   const [sunshineMode, setSunshineMode] = useState(false);
 
   // Find order by ID, order number, or raw integer ID
-  const order = orders.find((o) => o.id === orderId || String(o.rawId) === String(orderId) || o.pickupToken === orderId) || orders[0];
+  const order = orders.find((o) => o.id === orderId || String(o.rawId) === String(orderId) || o.pickupToken === orderId) || null;
 
   const calculatedSubtotal = (order?.items && order.items.length > 0)
     ? order.items.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1), 0)
