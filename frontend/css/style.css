@@ -157,14 +157,6 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
     }
 
-    .d-lg-contents {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        flex-wrap: nowrap;
-    }
-
     .navbar-collapse {
         margin-top: 10px;
         background: #FFFFFF;
@@ -211,12 +203,6 @@
     .navbar .navbar-nav .nav-link.active {
         color: var(--primary) !important;
         background: rgba(60, 184, 21, 0.08);
-    }
-}
-
-@media (min-width: 992px) {
-    .d-lg-contents {
-        display: contents !important;
     }
 }
 

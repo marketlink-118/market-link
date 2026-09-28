@@ -62,47 +62,45 @@ export default function Navbar() {
       </div>
 
       <nav className="navbar navbar-expand-lg navbar-light py-lg-0 px-2 px-sm-3 px-lg-5">
-        <div className="d-lg-contents">
-          <Link to="/" className="navbar-brand ms-1 ms-lg-0 py-1 flex-shrink-0">
-            <h1 className="fw-bold text-primary m-0" style={{ fontSize: 'clamp(1.15rem, 3.5vw, 1.45rem)', letterSpacing: '-0.5px' }}>
-              Market<span className="text-secondary">Link</span>
-            </h1>
-          </Link>
+        <Link to="/" className="navbar-brand ms-1 ms-lg-0 py-1 flex-shrink-0">
+          <h1 className="fw-bold text-primary m-0" style={{ fontSize: 'clamp(1.15rem, 3.5vw, 1.45rem)', letterSpacing: '-0.5px' }}>
+            Market<span className="text-secondary">Link</span>
+          </h1>
+        </Link>
 
-          {/* Mobile Controls Cluster - Strictly locked single-line */}
-          <div className="d-flex align-items-center flex-nowrap d-lg-none gap-1 ms-auto me-0">
-            <ThemeToggle compact={true} />
-            <LanguageSelector compact={true} />
+        {/* Mobile Controls Cluster - Strictly locked single-line */}
+        <div className="d-flex align-items-center flex-nowrap d-lg-none gap-1 ms-auto me-0">
+          <ThemeToggle compact={true} />
+          <LanguageSelector compact={true} />
 
-            {/* Direct Mobile Basket Trigger */}
-            <button
-              type="button"
-              className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative flex-shrink-0"
-              onClick={() => setIsDrawerOpen(true)}
-              title={t('nav_basket')}
-              style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              <small className="fa fa-shopping-basket text-primary" style={{ fontSize: '0.8rem' }}></small>
-              {totalItems > 0 && (
-                <span 
-                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
-                  style={{ fontSize: '0.6rem', padding: '2px 4px' }}
-                >
-                  {totalItems}
-                </span>
-              )}
-            </button>
+          {/* Direct Mobile Basket Trigger */}
+          <button
+            type="button"
+            className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative flex-shrink-0"
+            onClick={() => setIsDrawerOpen(true)}
+            title={t('nav_basket')}
+            style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <small className="fa fa-shopping-basket text-primary" style={{ fontSize: '0.8rem' }}></small>
+            {totalItems > 0 && (
+              <span 
+                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
+                style={{ fontSize: '0.6rem', padding: '2px 4px' }}
+              >
+                {totalItems}
+              </span>
+            )}
+          </button>
 
-            <button 
-              type="button" 
-              className="navbar-toggler p-1 border-0 flex-shrink-0 ms-1" 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle navigation"
-              style={{ fontSize: '1.1rem' }}
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-          </div>
+          <button 
+            type="button" 
+            className="navbar-toggler p-1 border-0 flex-shrink-0 ms-1" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation"
+            style={{ fontSize: '1.1rem' }}
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
         </div>
 
         <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarCollapse">
@@ -148,7 +146,7 @@ export default function Navbar() {
             <Link to="/contact" className={`nav-item nav-link ${isActive('/contact')}`}>{t('nav_contact')}</Link>
           </div>
 
-          <div className="d-flex align-items-center ms-lg-3 flex-wrap gap-2 py-2 py-lg-0 mt-3 mt-lg-0 pt-2 pt-lg-0 border-top border-lg-0">
+          <div className="d-flex align-items-center ms-lg-3 flex-wrap flex-lg-nowrap gap-2 py-2 py-lg-0 mt-3 mt-lg-0 pt-2 pt-lg-0 border-top border-lg-0">
             {/* Theme & Language Switchers (Always accessible on desktop navbar) */}
             <div className="d-none d-lg-flex align-items-center gap-2">
               <ThemeToggle compact={true} />
@@ -158,18 +156,37 @@ export default function Navbar() {
             {/* Direct Dashboard Shortcut */}
             <Link
               to={role === 'farmer' ? '/farmer' : role === 'admin' ? '/admin' : '/customer'}
-              className="btn btn-sm btn-light border rounded-pill px-3 py-1 d-none d-xl-flex align-items-center text-decoration-none shadow-sm"
+              className="btn btn-sm btn-light border rounded-pill px-3 py-1 d-none d-xl-flex align-items-center text-decoration-none shadow-sm flex-shrink-0 text-nowrap"
               title="Dashboard"
             >
               <i className="fa fa-tachometer-alt me-1 text-primary"></i>
               <span className="small fw-semibold text-dark">{t('nav_dashboard')}</span>
             </Link>
 
+            {/* Cart Drawer Trigger - Desktop Only */}
+            <button
+              type="button"
+              className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative d-none d-lg-flex flex-shrink-0"
+              onClick={() => setIsDrawerOpen(true)}
+              title={t('nav_basket')}
+              style={{ width: '34px', height: '34px', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <small className="fa fa-shopping-basket text-primary"></small>
+              {totalItems > 0 && (
+                <span 
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
+                  style={{ fontSize: '0.65rem' }}
+                >
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
             {/* Real Authentication: Sign In if Guest, User Badge if Logged In */}
             {!currentUser ? (
               <button
                 type="button"
-                className="btn btn-sm btn-outline-success rounded-pill px-3 py-1.5 d-flex align-items-center shadow-sm w-100 w-lg-auto justify-content-center"
+                className="btn btn-sm btn-outline-success rounded-pill px-3 py-1.5 d-flex align-items-center shadow-sm text-nowrap flex-shrink-0 justify-content-center"
                 onClick={() => { setIsAuthModalOpen(true); setMobileMenuOpen(false); }}
                 title="Sign In or Register"
               >
@@ -177,7 +194,7 @@ export default function Navbar() {
                 <span className="small fw-semibold">{t('nav_signin')}</span>
               </button>
             ) : (
-              <div className="d-flex align-items-center gap-1 w-100 w-lg-auto justify-content-between justify-content-lg-start">
+              <div className="d-flex align-items-center gap-1 text-nowrap flex-shrink-0 justify-content-between justify-content-lg-start">
                 <Link
                   to={role === 'admin' ? '/admin' : role === 'farmer' ? '/farmer' : '/customer'}
                   className={`btn btn-sm ${role === 'farmer' ? 'btn-success text-white' : role === 'admin' ? 'btn-danger text-white' : 'btn-primary text-white'} rounded-pill px-3 py-1 d-flex align-items-center shadow-sm text-decoration-none flex-grow-1 flex-lg-grow-0`}
@@ -200,25 +217,6 @@ export default function Navbar() {
                 </button>
               </div>
             )}
-
-            {/* Cart Drawer Trigger - Desktop Only (Mobile has direct button in top row) */}
-            <button
-              type="button"
-              className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative d-none d-lg-flex"
-              onClick={() => setIsDrawerOpen(true)}
-              title={t('nav_basket')}
-              style={{ width: '34px', height: '34px', alignItems: 'center', justifyContent: 'center' }}
-            >
-              <small className="fa fa-shopping-basket text-primary"></small>
-              {totalItems > 0 && (
-                <span 
-                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
-                  style={{ fontSize: '0.65rem' }}
-                >
-                  {totalItems}
-                </span>
-              )}
-            </button>
           </div>
         </div>
       </nav>
