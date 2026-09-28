@@ -18,10 +18,13 @@ $backend_dir = realpath(__DIR__ . '/..');
 // 1. Pull latest code from GitHub
 $git_output = shell_exec("cd {$backend_dir} && git pull origin main 2>&1");
 
-// 2. Run update_admin if present
+// 2. Run database updates if present
 $admin_output = '';
 if (file_exists("{$backend_dir}/update_admin.php")) {
     $admin_output = shell_exec("cd {$backend_dir} && php update_admin.php 2>&1");
+}
+if (file_exists("{$backend_dir}/update_honey_image.php")) {
+    $admin_output .= "\n" . shell_exec("cd {$backend_dir} && php update_honey_image.php 2>&1");
 }
 
 // 3. Clear Laravel caches

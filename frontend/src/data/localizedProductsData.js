@@ -88,7 +88,7 @@ export const COUNTRY_PRODUCTS = {
       stockQuantity: 25,
       farmerId: 'ae-3',
       harvestHoursAgo: 24,
-      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
+      image: 'https://cdn.pixabay.com/photo/2024/02/15/03/59/honey-8574616_1280.jpg',
       names: {
         ar: 'عسل سدر إماراتي جبلي حر (حتا)',
         en: 'Pure UAE Hatta Mountain Sidr Honey',
@@ -391,7 +391,7 @@ export const COUNTRY_PRODUCTS = {
       stockQuantity: 20,
       farmerId: 'sa-6',
       harvestHoursAgo: 36,
-      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
+      image: 'https://cdn.pixabay.com/photo/2024/02/15/03/59/honey-8574616_1280.jpg',
       names: {
         ar: 'عسل سدر جبال عسير البري الصافي',
         en: 'Asir Wild Mountain Raw Sidr Honey',
@@ -799,7 +799,7 @@ export const COUNTRY_PRODUCTS = {
       stockQuantity: 30,
       farmerId: 'us-6',
       harvestHoursAgo: 72,
-      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
+      image: 'https://cdn.pixabay.com/photo/2024/02/15/03/59/honey-8574616_1280.jpg',
       names: {
         en: 'Vermont Pure Grade A Amber Rich Maple Syrup',
         ar: 'شراب القيقب العضوي النقي من فيرمونت',
@@ -938,7 +938,7 @@ export const COUNTRY_PRODUCTS = {
       stockQuantity: 30,
       farmerId: 'pk-4',
       harvestHoursAgo: 24,
-      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
+      image: 'https://cdn.pixabay.com/photo/2024/02/15/03/59/honey-8574616_1280.jpg',
       names: {
         ur: 'پوٹھوہار ویلی کا خالص قدرتی بیری کا شہد (سدر)',
         en: 'Pure Pothohar Valley Wild Sidr Honey (Beri)',

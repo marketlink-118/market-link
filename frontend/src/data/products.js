@@ -468,7 +468,7 @@ export const productsData = [
     farmerName: 'Sargodha Citrus & Sidr Honey Orchard (Stall #C-08)',
     marketId: '3',
     marketName: 'DHA Phase 5 Weekend Green Market (Lahore)',
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
+    image: 'https://cdn.pixabay.com/photo/2024/02/15/03/59/honey-8574616_1280.jpg',
     badge: 'Raw & Pure',
     harvestHoursAgo: 24,
     harvestTimeLabel: 'Yesterday Morning',

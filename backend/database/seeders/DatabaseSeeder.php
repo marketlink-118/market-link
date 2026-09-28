@@ -356,7 +356,7 @@ class DatabaseSeeder extends Seeder
             'unit' => '500g jar',
             'price' => 1200.00,
             'stock_quantity' => 20,
-            'image' => 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=400&q=80',
+            'image' => 'https://cdn.pixabay.com/photo/2024/02/15/03/59/honey-8574616_1280.jpg',
             'is_sold_out' => false,
             'is_recurring' => true,
         ]);
