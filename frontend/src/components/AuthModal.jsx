@@ -57,25 +57,25 @@ const AUTH_DICT = {
     email: 'Email Address',
     emailPlaceholder: 'name@example.com',
     phone: 'Phone Number',
-    phoneFarmer: 'Contact / Phone * (Mandatory)',
+    phoneFarmer: 'Phone Number *',
     phonePlaceholder: '+92 300 1234567',
     chooseCountry: 'Choose Country:',
     citiesIn: 'Cities in',
     chooseCity: 'Choose City:',
-    countryLabel: 'Country * (Mandatory)',
-    cityLabel: 'City * (Mandatory)',
-    marketLabel: 'Choose Farmers Market / Bazar for Stall *',
+    countryLabel: 'Country *',
+    cityLabel: 'City *',
+    marketLabel: 'Assigned Market *',
     bazarsIn: 'Markets in',
-    selectMarketEmpty: '-- Choose Farmers Market --',
-    farmNameLabel: 'Farm / Stall Name * (Mandatory)',
+    selectMarketEmpty: '-- Select Farmers Market --',
+    farmNameLabel: 'Farm / Stall Name *',
     farmNamePlaceholder: 'e.g. Green Valley Organic Farm',
-    stallNumberLabel: 'Stall # * (Mandatory)',
+    stallNumberLabel: 'Stall Number *',
     stallNumberPlaceholder: 'e.g. Stall #A-04',
     password: 'Password',
-    passwordPlaceholder: 'Strong password (e.g. Market@2026)',
-    passwordMinPlaceholder: 'Strong password (e.g. Market@2026)',
+    passwordPlaceholder: 'Password',
+    passwordMinPlaceholder: 'Create password',
     confirmPassword: 'Confirm Password',
-    confirmPasswordPlaceholder: 'Re-enter password',
+    confirmPasswordPlaceholder: 'Confirm password',
     forgotPassword: 'Forgot Password?',
     hide: 'Hide',
     show: 'Show',
@@ -157,24 +157,24 @@ const AUTH_DICT = {
     email: 'ای میل ایڈریس',
     emailPlaceholder: 'name@example.com',
     phone: 'موبائل فون نمبر',
-    phoneFarmer: 'رابطہ فون نمبر * (لازمی)',
+    phoneFarmer: 'رابطہ فون نمبر *',
     phonePlaceholder: '0300-1234567',
     chooseCountry: 'ملک منتخب کریں:',
     citiesIn: 'کے شہر',
     chooseCity: 'شہر منتخب کریں:',
-    countryLabel: 'ملک * (لازمی)',
-    cityLabel: 'شہر * (لازمی)',
-    marketLabel: 'کس کسان منڈی یا بازار میں اسٹال لگانا ہے؟ *',
+    countryLabel: 'ملک *',
+    cityLabel: 'شہر *',
+    marketLabel: 'کسان منڈی یا بازار *',
     bazarsIn: 'میں بازار دستیاب ہیں',
     selectMarketEmpty: '-- کسان بازار منتخب کریں --',
-    farmNameLabel: 'فارم یا اسٹال کا نام * (لازمی)',
+    farmNameLabel: 'فارم یا اسٹال کا نام *',
     farmNamePlaceholder: 'مثلاً: گرین ویلی آرگینک فارم',
-    stallNumberLabel: 'اسٹال نمبر * (لازمی)',
+    stallNumberLabel: 'اسٹال نمبر *',
     stallNumberPlaceholder: 'مثلاً: Stall #A-04',
     password: 'پاس ورڈ',
-    passwordPlaceholder: 'مضبوط پاس ورڈ (مثال: Market@2026)',
-    passwordMinPlaceholder: 'مضبوط پاس ورڈ (مثال: Market@2026)',
-    confirmPassword: 'پاس ورڈ کی تصدیق کریں',
+    passwordPlaceholder: 'پاس ورڈ',
+    passwordMinPlaceholder: 'پاس ورڈ بنائیں',
+    confirmPassword: 'پاس ورڈ کی تصدیق',
     confirmPasswordPlaceholder: 'پاس ورڈ دوبارہ درج کریں',
     forgotPassword: 'پاس ورڈ بھول گئے؟',
     hide: 'چھپائیں',
@@ -257,23 +257,23 @@ const AUTH_DICT = {
     email: 'البريد الإلكتروني',
     emailPlaceholder: 'name@example.com',
     phone: 'رقم الهاتف',
-    phoneFarmer: 'رقم الجوال * (إلزامي)',
+    phoneFarmer: 'رقم الجوال *',
     phonePlaceholder: '+971 50 1234567',
     chooseCountry: 'اختر الدولة:',
     citiesIn: 'مدن',
     chooseCity: 'اختر المدينة:',
-    countryLabel: 'الدولة * (إلزامي)',
-    cityLabel: 'المدينة * (إلزامي)',
-    marketLabel: 'اختر سوق المزارعين لإقامة الكشك *',
+    countryLabel: 'الدولة *',
+    cityLabel: 'المدينة *',
+    marketLabel: 'سوق المزارعين *',
     bazarsIn: 'أسواق متوفرة في',
     selectMarketEmpty: '-- اختر سوق المزارعين --',
-    farmNameLabel: 'اسم المزرعة أو الكشك * (إلزامي)',
+    farmNameLabel: 'اسم المزرعة / الكشك *',
     farmNamePlaceholder: 'مثال: مزرعة الواحة العضوية',
-    stallNumberLabel: 'رقم الكشك * (إلزامي)',
+    stallNumberLabel: 'رقم الكشك *',
     stallNumberPlaceholder: 'مثال: كشك #A-04',
     password: 'كلمة المرور',
-    passwordPlaceholder: 'كلمة مرور قوية (مثال: Market@2026)',
-    passwordMinPlaceholder: 'كلمة مرور قوية (مثال: Market@2026)',
+    passwordPlaceholder: 'كلمة المرور',
+    passwordMinPlaceholder: 'إنشاء كلمة مرور',
     confirmPassword: 'تأكيد كلمة المرور',
     confirmPasswordPlaceholder: 'أعد إدخال كلمة المرور',
     forgotPassword: 'نسيت كلمة المرور؟',
@@ -1185,9 +1185,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                       onClick={() => setShowResetPassword(!showResetPassword)}
                       tabIndex="-1"
                       aria-label={showResetPassword ? txt.hide : txt.show}
+                      title={showResetPassword ? txt.hide : txt.show}
                     >
-                      <i className={showResetPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                      <span>{showResetPassword ? txt.hide : txt.show}</span>
+                      <i className={showResetPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                     </button>
                   </div>
                 </div>
@@ -1212,9 +1212,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                       onClick={() => setShowResetConfirmPassword(!showResetConfirmPassword)}
                       tabIndex="-1"
                       aria-label={showResetConfirmPassword ? txt.hide : txt.show}
+                      title={showResetConfirmPassword ? txt.hide : txt.show}
                     >
-                      <i className={showResetConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                      <span>{showResetConfirmPassword ? txt.hide : txt.show}</span>
+                      <i className={showResetConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                     </button>
                   </div>
                 </div>
@@ -1368,9 +1368,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                     onClick={() => setShowPassword(!showPassword)}
                     tabIndex="-1"
                     aria-label={showPassword ? txt.hide : txt.show}
+                    title={showPassword ? txt.hide : txt.show}
                   >
-                    <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                    <span>{showPassword ? txt.hide : txt.show}</span>
+                    <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                   </button>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '4px' }}>
@@ -1546,9 +1546,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                           onClick={() => setShowRegPassword(!showRegPassword)}
                           tabIndex="-1"
                           aria-label={showRegPassword ? txt.hide : txt.show}
+                          title={showRegPassword ? txt.hide : txt.show}
                         >
-                          <i className={showRegPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                          <span>{showRegPassword ? txt.hide : txt.show}</span>
+                          <i className={showRegPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                         </button>
                       </div>
                     </div>
@@ -1572,9 +1572,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                           onClick={() => setShowRegConfirmPassword(!showRegConfirmPassword)}
                           tabIndex="-1"
                           aria-label={showRegConfirmPassword ? txt.hide : txt.show}
+                          title={showRegConfirmPassword ? txt.hide : txt.show}
                         >
-                          <i className={showRegConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                          <span>{showRegConfirmPassword ? txt.hide : txt.show}</span>
+                          <i className={showRegConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                         </button>
                       </div>
                     </div>
@@ -1666,16 +1666,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                       </select>
                     </div>
                     <div className="marketlink-field-group">
-                      <label className="marketlink-field-label d-flex justify-content-between align-items-center">
-                        <span>
-                          <i className="fa fa-store text-success me-1"></i>
-                          {txt.marketLabel}
-                        </span>
-                        {availableCityMarkets.length > 0 && (
-                          <span className="badge bg-success-subtle text-success border border-success-subtle" style={{ fontSize: '0.62rem', padding: '1px 5px' }}>
-                            {availableCityMarkets.length} {txt.bazarsIn} {getCityDisplayName(registerForm.city)}
-                          </span>
-                        )}
+                      <label className="marketlink-field-label">
+                        <i className="fa fa-store text-success me-1"></i>
+                        {txt.marketLabel}
                       </label>
                       <select
                         className="marketlink-input"
@@ -1771,9 +1764,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                           onClick={() => setShowRegPassword(!showRegPassword)}
                           tabIndex="-1"
                           aria-label={showRegPassword ? txt.hide : txt.show}
+                          title={showRegPassword ? txt.hide : txt.show}
                         >
-                          <i className={showRegPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                          <span>{showRegPassword ? txt.hide : txt.show}</span>
+                          <i className={showRegPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                         </button>
                       </div>
                     </div>
@@ -1797,9 +1790,9 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
                           onClick={() => setShowRegConfirmPassword(!showRegConfirmPassword)}
                           tabIndex="-1"
                           aria-label={showRegConfirmPassword ? txt.hide : txt.show}
+                          title={showRegConfirmPassword ? txt.hide : txt.show}
                         >
-                          <i className={showRegConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"} style={{ marginRight: '4px' }}></i>
-                          <span>{showRegConfirmPassword ? txt.hide : txt.show}</span>
+                          <i className={showRegConfirmPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                         </button>
                       </div>
                     </div>

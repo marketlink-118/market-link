@@ -366,29 +366,36 @@
 }
 
 .marketlink-input-wrap .marketlink-input {
-  padding-right: 56px;
+  padding-right: 36px;
 }
 
 .marketlink-auth-card[dir="rtl"] .marketlink-input-wrap .marketlink-input {
   padding-right: 12px;
-  padding-left: 56px;
+  padding-left: 36px;
 }
 
 .marketlink-eye-toggle {
   position: absolute;
   right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
-  color: #6c757d;
+  color: #718096;
   cursor: pointer;
-  padding: 2px 4px;
-  font-size: 0.725rem;
-  font-weight: 600;
-  display: inline-flex;
+  padding: 4px;
+  font-size: 0.92rem;
+  display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
   transition: color 0.15s ease;
   user-select: none;
+  z-index: 2;
+}
+
+.marketlink-auth-card[dir="rtl"] .marketlink-eye-toggle {
+  right: auto;
+  left: 10px;
 }
 
 .marketlink-eye-toggle:hover {
