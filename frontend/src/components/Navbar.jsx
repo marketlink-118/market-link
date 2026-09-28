@@ -65,20 +65,41 @@ export default function Navbar() {
       </div>
 
       <nav className="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5">
-        <Link to="/" className="navbar-brand ms-4 ms-lg-0 py-1">
-          <h1 className="fw-bold text-primary m-0" style={{ fontSize: '1.75rem', letterSpacing: '-0.5px' }}>
+        <Link to="/" className="navbar-brand ms-2 ms-lg-0 py-1">
+          <h1 className="fw-bold text-primary m-0" style={{ fontSize: '1.5rem', letterSpacing: '-0.5px' }}>
             Market<span className="text-secondary">Link</span>
           </h1>
         </Link>
 
-        <div className="d-flex align-items-center d-lg-none gap-2 me-3">
+        <div className="d-flex align-items-center d-lg-none gap-2 me-2">
           <ThemeToggle compact={true} />
           <LanguageSelector compact={true} />
+
+          {/* Direct Mobile Basket Trigger */}
+          <button
+            type="button"
+            className="btn-sm-square bg-white rounded-circle shadow-sm border position-relative"
+            onClick={() => setIsDrawerOpen(true)}
+            title={t('nav_basket')}
+            style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <small className="fa fa-shopping-basket text-primary" style={{ fontSize: '0.8rem' }}></small>
+            {totalItems > 0 && (
+              <span 
+                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary text-white" 
+                style={{ fontSize: '0.6rem', padding: '2px 4px' }}
+              >
+                {totalItems}
+              </span>
+            )}
+          </button>
+
           <button 
             type="button" 
-            className="navbar-toggler" 
+            className="navbar-toggler p-1 border-0" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation"
+            style={{ fontSize: '1.1rem' }}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
