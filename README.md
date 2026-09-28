@@ -2,7 +2,20 @@
 
 MarketLink is a full-stack web application built for the **TechWiz 7** competition (**Category:** End-to-End Web Solutions, **Theme:** eGreen Basket).
 
-The main idea of the project is to connect local farmers with nearby shoppers. Instead of buying through third-party distributors or waiting in long queues at weekly farmers markets, customers can check market schedules, pre-order fresh produce before the weekly harvest, and pick up their packed orders directly at the farmer's stall. Pre-orders are paid in cash during pickup at the stall, which keeps the process simple and accessible for both farmers and local buyers.
+The main idea of the project is to connect local farmers with nearby urban shoppers. Instead of buying through multiple layers of middlemen or standing in crowded queues at weekend farmers markets, customers can check market schedules, pre-order fresh organic produce before the weekly harvest, and pick up their packed orders directly at the farmer's stall. Pre-orders are settled in cash during stall collection, ensuring zero online gateway fees for small-scale growers and full accessibility for local buyers.
+
+---
+
+## 🌐 Live Cloud Deployment (24/7 Available)
+
+The complete full-stack system is deployed and operational in production:
+
+| Service | Hosting Provider | Live URL / Details |
+| :--- | :--- | :--- |
+| **Frontend SPA** | Vercel Cloud | [https://market-link-five.vercel.app](https://market-link-five.vercel.app) |
+| **Backend REST API** | Alwaysdata Cloud | [https://marketlink-api.alwaysdata.net/api](https://marketlink-api.alwaysdata.net/api) |
+| **Database** | Alwaysdata MySQL Cloud | `mysql-marketlink-api.alwaysdata.net` (`marketlink-api_db`) |
+| **CI/CD Pipeline** | GitHub Webhooks | Instant auto-deploy to Vercel & Alwaysdata on `git push` |
 
 ---
 
@@ -10,23 +23,24 @@ The main idea of the project is to connect local farmers with nearby shoppers. I
 
 ### Frontend
 - **Framework:** React 18 (with Vite)
-- **Routing:** React Router v6 (with protected routes for Customer, Farmer, and Admin)
+- **Routing:** React Router v6 (with role-based protected routes for Customer, Farmer, and Admin)
 - **State Management:** React Context API (`AuthContext`, `CartContext`, `OrderContext`, `LanguageContext`)
-- **Styling:** Bootstrap 5.3 + Custom CSS (Fully responsive for desktop and mobile)
+- **Styling:** Bootstrap 5.3 + Custom CSS (Fully responsive for desktop, tablet, and mobile)
 - **Maps:** Leaflet.js & OpenStreetMap (Interactive map showing market locations and stall markers)
 - **QR Code:** `qrcode.react` (Generates digital pickup pass tokens for stall collection)
+- **Internationalization:** Multi-language engine supporting English, Urdu (اردو), and Arabic (العربية) with dynamic LTR / RTL layout switching
 
 ### Backend
 - **Framework:** Laravel 11 (PHP 8.2+)
-- **Architecture:** RESTful API (JSON responses)
-- **Authentication:** Laravel Sanctum (Token-based authentication)
-- **Mailing:** Laravel Mail via Gmail SMTP (Sends 6-digit OTP for password resets)
-- **Security:** Bcrypt password hashing, strong password validation rules
+- **Architecture:** RESTful API (Structured JSON responses)
+- **Authentication:** Laravel Sanctum (Token-based authentication) + Google OAuth 2.0 (Laravel Socialite)
+- **Mailing:** Laravel Mail via Gmail SMTP (Sends real 6-digit OTP for secure password recovery)
+- **Security:** Bcrypt password hashing, strong password validation rules, anti-automation captcha
 
 ### Database
 - **Database:** MySQL
 - **ORM:** Eloquent ORM
-- **Collation:** `utf8mb4_unicode_ci` (Supports English, Urdu, and Arabic text)
+- **Collation:** `utf8mb4_unicode_ci` (Full native support for English, Urdu Nastaliq, and Arabic text)
 
 ---
 
@@ -35,14 +49,15 @@ The main idea of the project is to connect local farmers with nearby shoppers. I
 The application fulfills all the core requirements outlined in the TechWiz SRS:
 
 ### 1. Customer Module
-- **Account Registration & Login:** Simple sign-up with name, email, phone number, address, and country selection.
-- **Weekly Market Discovery:** Browse physical weekend markets by city and scheduled market day (e.g., Saturday, Sunday).
+- **Account Registration & Login:** Sign-up with name, email, phone number, address, and country selection.
+- **Password Visibility Toggle (Eye 👁️):** One-click show/hide toggle across Login, Sign Up, and Password Reset forms.
+- **Weekly Market Discovery:** Browse physical weekend markets by city and scheduled market day (Saturday, Sunday).
 - **Interactive Map:** View market locations on an OpenStreetMap map with pins for attending farmers.
-- **Product Catalog & Filters:** Search produce and filter by category (Vegetables, Fruits, Dairy, Herbs) and price.
-- **Product Details:** Shows price per unit (kg, dozen, bundle), available stock quantity, farm name, and harvest cutoff info.
-- **Pre-Order & Pickup Window:** Add items to cart and select a convenient pickup time slot (e.g., 09:00 AM – 11:00 AM).
-- **Harvest Cutoff Timer:** Live countdown showing how much time is left before pre-orders close for harvesting.
-- **Order Status Tracking:** Live tracking through stages: `placed` -> `accepted` -> `ready_for_pickup` -> `completed` / `cancelled`.
+- **Product Catalog & Filters:** Search produce and filter by category (Vegetables, Fruits, Dairy, Herbs, Honey) and price.
+- **Product Details:** Shows price per unit (kg, dozen, jar, bundle), available stock quantity, farm name, and harvest cutoff info.
+- **Pre-Order & Pickup Window:** Add items to cart and select a convenient pickup time slot (e.g., 08:30 AM – 10:30 AM).
+- **Harvest Cutoff Timer:** Live countdown showing time remaining before pre-orders close for harvesting.
+- **Order Status Tracking:** Real-time tracking through stages: `placed` -> `accepted` -> `ready_for_pickup` -> `completed` / `cancelled`.
 - **Cancel Pre-Orders:** Customers can cancel an order as long as it is before the farmer's cutoff deadline.
 - **Order History & 1-Click Reorder:** View past purchases and reorder previous grocery baskets easily.
 - **Favorites:** Save favorite farms and produce for quick access.
@@ -72,7 +87,7 @@ The application fulfills all the core requirements outlined in the TechWiz SRS:
 
 ---
 
-## Extra Features We Added (Beyond SRS)
+## Extra Features (Beyond SRS)
 
 To make the platform more practical for real-world usage, we also built several additional features:
 
@@ -83,28 +98,28 @@ To make the platform more practical for real-world usage, we also built several 
    Prices automatically display in the local currency according to the selected country (PKR for Pakistan, SAR for Saudi Arabia, AED for UAE).
 
 3. **Multi-Language Support with Full RTL Layout:**  
-   The entire UI can be toggled between English, Urdu (اردو), and Arabic (العربية). When Urdu or Arabic is selected, the layout automatically switches to Right-to-Left (RTL) mode.
+   The entire UI can be toggled between English, Urdu (اردو), and Arabic (العربية). When Urdu or Arabic is selected, the layout automatically switches to Right-to-Left (RTL) mode with Cairo and Noto Nastaliq Urdu typography.
 
-4. **Haftawar Hisab (Weekly Statement) with Print & Export:**  
+4. **Password Visibility (Eye Toggle 👁️):**  
+   Independent view/hide password buttons on Login, Registration (Password & Confirm Password), and Password Reset forms.
+
+5. **Google Sign-In (OAuth 2.0):**  
+   One-click authentication using real Google accounts via Google Identity Services and Laravel Socialite.
+
+6. **Haftawar Hisab (Weekly Statement) with Print & Export:**  
    Farmers have a weekly ledger view of all their orders and cash collected, with buttons to print the receipt directly or export to CSV / Excel.
 
-5. **In-Stall Cash Adjustment:**  
+7. **In-Stall Cash Adjustment:**  
    During pickup, farmers can adjust and save the exact cash received if produce weight changes slightly at the scale.
 
-6. **Strong Password Security:**  
-   Requires a minimum password strength with at least one uppercase letter and one special character for better account safety.
+8. **Email OTP for Password Reset:**  
+   Forgot Password sends a real 6-digit OTP code to the user's email via Gmail SMTP. The code expires in 15 minutes and is never exposed in the browser.
 
-7. **Email OTP for Password Reset:**  
-   Forgot Password sends a real 6-digit OTP code to the user's email via Gmail SMTP. The code expires in 15 minutes and is never shown in the browser or API response for security.
-
-8. **Digital QR Code Pickup Pass:**  
+9. **Digital QR Code Pickup Pass:**  
    Customers get a QR code pass for each order on their phone screen. Farmers can scan or check the token at the stall to confirm the pickup quickly.
 
-9. **Dark Mode / Light Mode:**  
-   Built-in dark mode toggle for comfortable night-time browsing.
-
-10. **Clean 2-Column Farmer Registration Form:**  
-    Farmer registration is formatted in a clean 2-column layout to prevent long vertical scrolling on standard laptop screens.
+10. **Dark Mode / Light Mode:**  
+    Built-in dark mode toggle for comfortable night-time browsing.
 
 ---
 
@@ -112,110 +127,48 @@ To make the platform more practical for real-world usage, we also built several 
 
 ```text
 market-link full stack/
-├── frontend/                     # React + Vite application
+├── frontend/                     # React 18 + Vite application
+│   ├── public/                   # Static assets, bundled images, icons
 │   ├── src/
 │   │   ├── components/           # Navbar, Footer, AuthModal, MarketMap, QR Pass, ChatBot
 │   │   ├── contexts/             # AuthContext, CartContext, LanguageContext, OrderContext
 │   │   ├── pages/                # Home, Markets, Products, Cart, Orders, FarmerDashboard, AdminDashboard
+│   │   ├── services/api.js       # Live REST API client with auto production / dev switching
 │   │   ├── App.jsx               # Route definitions
 │   │   └── main.jsx              # React entry point
 │   ├── package.json
+│   ├── vercel.json               # SPA routing configuration
 │   └── vite.config.js
 │
-├── backend/                      # Laravel 11 API
+├── backend/                      # Laravel 11 REST API
 │   ├── app/
 │   │   ├── Http/Controllers/Api/ # Auth, Market, Product, Order, Farmer, Admin controllers
 │   │   └── Models/               # User, FarmerProfile, Market, Product, Order, Review models
 │   ├── database/
 │   │   ├── migrations/           # MySQL table schemas
-│   │   └── seeders/              # Initial test data
-│   ├── routes/api.php            # API endpoints
-│   ├── marketlink_database.sql   # MySQL database export
+│   │   └── seeders/              # Seeders with realistic market data
+│   ├── routes/api.php            # RESTful API endpoints
+│   ├── public/deploy_hook.php    # Automated CI/CD Webhook deploy script
+│   ├── marketlink_database.sql   # Clean UTF-8 MySQL database export
 │   └── composer.json
 │
-├── RUN_MARKETLINK.bat            # Windows 1-click launch script
+├── RUN_MARKETLINK.bat            # Windows 1-click local launch script
 ├── .gitignore                    # Protects .env, node_modules, vendor
 └── README.md
 ```
 
 ---
 
-## Database Design (MySQL)
-
-The project uses a relational **MySQL** database with the following primary tables:
-
-- **`users`** — User accounts with name, email, phone, role (`customer`, `farmer`, `admin`), country, and password.
-- **`farmer_profiles`** — Farm details linked to `users`, including farm name, stall number, market ID, coordinates, pickup windows, and approval status.
-- **`markets`** — Physical market locations with city, country, address, coordinates, and operating days.
-- **`categories`** — Produce categories (Vegetables, Fruits, Dairy, Herbs, etc.).
-- **`products`** — Produce items with name, price, measurement unit (`kg`, `dozen`, `bundle`), available stock, and farmer ID.
-- **`orders`** — Pre-order records with customer ID, farmer ID, market ID, pickup window, QR token, total amount, currency, and status (`placed`, `accepted`, `ready_for_pickup`, `completed`, `cancelled`).
-- **`order_items`** — Items included in each order with quantity and unit price.
-- **`reviews`** — Customer star ratings and feedback for farmers and products, including farmer replies.
-
----
-
-## Main API Endpoints
-
-All backend routes are prefixed with `/api`:
-
-### Auth
-- `POST /api/register` — Register customer or farmer
-- `POST /api/login` — Login and receive Sanctum token
-- `POST /api/forgot-password` — Send 6-digit OTP to user's email
-- `POST /api/verify-otp` — Verify reset code
-- `POST /api/reset-password` — Set new password
-- `GET /api/user` — Get logged-in user profile
-- `POST /api/logout` — Logout
-
-### Markets & Products
-- `GET /api/markets` — List all markets (supports country & city filter)
-- `GET /api/markets/{id}` — Single market details with attending farmers
-- `GET /api/categories` — List all product categories
-- `GET /api/products` — List products (supports market & category filter)
-- `GET /api/products/{id}` — Single product details
-
-### Orders
-- `POST /api/orders` — Place a new pre-order
-- `GET /api/orders` — Customer's order history
-- `GET /api/orders/{id}` — Order details with QR pickup pass
-- `PUT /api/orders/{id}/cancel` — Cancel order (before cutoff)
-
-### Farmer Portal
-- `GET /api/farmer/profile` — Get stall profile
-- `PUT /api/farmer/profile` — Update stall details and cutoff hours
-- `GET /api/farmer/products` — List farmer's own products
-- `POST /api/farmer/products` — Add a new product
-- `PUT /api/farmer/products/{id}` — Edit product price, stock, or status
-- `DELETE /api/farmer/products/{id}` — Delete product
-- `GET /api/farmer/orders` — View incoming pre-orders
-- `PUT /api/farmer/orders/{id}/status` — Update order status (Accept / Ready / Complete)
-- `PUT /api/farmer/orders/{id}/payment` — Save actual cash collected at stall
-- `GET /api/farmer/statement` — Weekly statement data (Haftawar Hisab)
-- `POST /api/farmer/templates/save` — Save current stock as weekly template
-- `POST /api/farmer/templates/apply` — Apply weekly template
-
-### Admin
-- `GET /api/admin/stats` — Platform statistics (Users, Farmers, Markets, Orders)
-- `GET /api/admin/farmers` — List all farmers for approval
-- `PUT /api/admin/farmers/{id}/status` — Approve, Reject, or Suspend farmer
-- `GET /api/admin/customers` — List registered customers
-- `POST /api/admin/markets` — Create a new market
-
----
-
 ## Test Accounts
 
-The database comes pre-seeded with accounts ready for testing:
+The system comes pre-configured with accounts ready for evaluation:
 
 | Role | Email | Password | What You Can Test |
 | :--- | :--- | :--- | :--- |
-| **Admin** | `marketlink118@gmail.com` | `#marketlink118@` | Full admin panel, approving pending farmers, adding markets, viewing platform stats |
-| **Approved Farmer** | `tariq@punjabfarm.com` | `password123` | Managing produce stock, recurring templates, order queue, Haftawar Hisab, recording pickup cash |
-| **Pending Farmer** | `aslam@pendingfarm.com` | `password123` | Shows the pending approval screen until approved by admin |
-| **Customer** | `kallimullahb@gmail.com` | `password123` | Browsing markets on map, adding produce to cart, pre-ordering, QR pass, order cancel, reviews |
-
-*(Note: Admin login link is located at the bottom of the sign-in modal)*
+| **System Admin** | `marketlink118@gmail.com` | `#marketlink118@` | Admin Control Panel, review/approve farmer stalls, monitor platform revenue, manage markets |
+| **Approved Farmer** | `tariq@punjabfarm.com` | `Password@123` | Managing produce inventory, recurring stock templates, incoming order queue, Haftawar Hisab |
+| **Pending Farmer** | `aslam@pendingfarm.com` | `Password@123` | Demonstrates pending verification screen until approved by Admin |
+| **Customer** | `hamza@customer.com` | `Password@123` | Browsing markets, adding produce to cart, selecting pickup slots, QR pickup pass, order history |
 
 ---
 
@@ -225,11 +178,11 @@ The database comes pre-seeded with accounts ready for testing:
 - PHP 8.2 or higher
 - Composer
 - Node.js 18 or higher & npm
-- MySQL running on port 3306 (e.g. via XAMPP or native MySQL)
+- MySQL running on port 3306 (via XAMPP or native MySQL)
 
 ---
 
-### Option 1: 1-Click Launch (Easiest)
+### Option 1: 1-Click Launch (Recommended)
 1. Make sure MySQL is running in XAMPP (port 3306).
 2. Double-click **`RUN_MARKETLINK.bat`** in the root folder.
 3. This opens both the backend (`http://127.0.0.1:8000`) and the frontend (`http://localhost:3000`) automatically in separate command windows.
@@ -239,9 +192,9 @@ The database comes pre-seeded with accounts ready for testing:
 
 ### Option 2: Manual Setup
 
-#### 1. Setup the Database:
+#### 1. Setup MySQL Database:
 - Open phpMyAdmin (`http://localhost/phpmyadmin`).
-- Create a database named `marketlink`.
+- Create a database named `marketlink_db`.
 - Import the file `backend/marketlink_database.sql` into it.
 
 #### 2. Start the Backend:
@@ -264,6 +217,8 @@ Frontend will run at `http://localhost:3000`.
 
 ---
 
-## Security Notes
-- The `.env` file containing database passwords and mail credentials is kept in `.gitignore` and is not committed to the repository.
-- A clean `.env.example` file is included with template configuration for anyone setting up the project.
+## Security & Privacy
+- Sensitive `.env` files containing database passwords and mail secrets are protected by `.gitignore` and never committed to version control.
+- A standardized `.env.example` template is provided for clean environment provisioning.
+- Passwords are encrypted using Bcrypt with 12 rounds.
+- Real 6-digit OTP codes are dispatched directly to the user's verified mailbox via TLS-encrypted SMTP and expire after 15 minutes.
