@@ -5,7 +5,7 @@ import { marketsData } from '../data/marketsData';
 import { farmersData } from '../data/farmersData';
 import { sampleOrdersData } from '../data/ordersData';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? 'https://marketlink-api.alwaysdata.net/api' : 'http://localhost:8000/api');
 const REQUEST_TIMEOUT = 10000;
 const FALLBACK_ENABLED = import.meta.env.VITE_ENABLE_MOCK_FALLBACK !== 'false';
 

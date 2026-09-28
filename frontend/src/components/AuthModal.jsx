@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { authAPI, marketsAPI } from '../services/api';
+import { authAPI, marketsAPI, API_BASE_URL } from '../services/api';
 import { marketsData, COUNTRIES_CONFIG } from '../data/marketsData';
 import './AuthModal.css';
 
@@ -613,7 +613,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }) {
 
     setLoading(true);
     setGoogleTargetRole(targetRole);
-    window.location.href = `http://localhost:8000/api/auth/google?role=${targetRole}`;
+    window.location.href = `${API_BASE_URL}/auth/google?role=${targetRole}`;
   };
 
   const handleSelectGoogleAccount = async (profile) => {
