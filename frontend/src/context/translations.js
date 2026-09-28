@@ -1,5 +1,5 @@
 export const SUPPORTED_COUNTRIES = [
-  { code: 'PK', name: 'Pakistan (پاکستان)', defaultLocale: 'ur', currency: 'PKR', symbol: 'Rs' },
+  { code: 'PK', name: 'Pakistan (پاکستان)', defaultLocale: 'en', currency: 'PKR', symbol: 'Rs' },
   { code: 'SA', name: 'Saudi Arabia (السعودية)', defaultLocale: 'ar', currency: 'SAR', symbol: 'SAR' },
   { code: 'AE', name: 'UAE (الإمارات)', defaultLocale: 'ar', currency: 'AED', symbol: 'AED' },
   { code: 'US', name: 'United States', defaultLocale: 'en', currency: 'USD', symbol: '$' },

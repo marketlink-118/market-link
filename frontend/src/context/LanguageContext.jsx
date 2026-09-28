@@ -19,13 +19,14 @@ export function LanguageProvider({ children }) {
 
   const [currentLocale, setCurrentLocale] = useState(() => {
     try {
+      const userSelected = localStorage.getItem('marketlink_user_selected_locale');
       const savedLocale = localStorage.getItem(STORAGE_LOCALE_KEY);
-      if (savedLocale) return savedLocale;
-      const initialCountry = localStorage.getItem(STORAGE_COUNTRY_KEY) || 'PK';
-      const c = SUPPORTED_COUNTRIES.find(item => item.code === initialCountry);
-      return c?.defaultLocale || 'ur';
+      if (userSelected === 'true' && savedLocale && TRANSLATIONS[savedLocale]) {
+        return savedLocale;
+      }
+      return 'en';
     } catch {
-      return 'ur';
+      return 'en';
     }
   });
 
@@ -46,6 +47,12 @@ export function LanguageProvider({ children }) {
   const changeLanguage = useCallback((locale) => {
     if (TRANSLATIONS[locale]) {
       setCurrentLocale(locale);
+      try {
+        localStorage.setItem(STORAGE_LOCALE_KEY, locale);
+        localStorage.setItem('marketlink_user_selected_locale', 'true');
+      } catch {
+        // storage unavailable
+      }
     }
   }, []);
 
@@ -56,6 +63,12 @@ export function LanguageProvider({ children }) {
       setCurrentCountry(matched.code);
       if (matched.defaultLocale && TRANSLATIONS[matched.defaultLocale]) {
         setCurrentLocale(matched.defaultLocale);
+        try {
+          localStorage.setItem(STORAGE_LOCALE_KEY, matched.defaultLocale);
+          localStorage.setItem('marketlink_user_selected_locale', 'true');
+        } catch {
+          // storage unavailable
+        }
       }
     }
   }, []);
