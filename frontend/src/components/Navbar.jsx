@@ -58,9 +58,6 @@ export default function Navbar() {
           <small><i className="fa fa-envelope me-2 text-primary"></i>marketlink118@gmail.com</small>
         </div>
         <div className="col-lg-6 px-5 text-end d-flex align-items-center justify-content-end gap-3">
-          <ThemeToggle compact={true} />
-          <LanguageSelector compact={true} />
-
           <span className="badge bg-light text-dark border px-2 py-1" style={{ fontSize: '0.72rem' }}>
             <i className="fa fa-leaf text-success me-1"></i> {t('topbar_api_ready')}
           </span>
@@ -130,7 +127,13 @@ export default function Navbar() {
             <Link to="/contact" className={`nav-item nav-link ${isActive('/contact')}`}>{t('nav_contact')}</Link>
           </div>
 
-          <div className="d-flex align-items-center ms-2 flex-wrap gap-2 py-2 py-lg-0">
+          <div className="d-flex align-items-center ms-lg-3 flex-wrap gap-2 py-2 py-lg-0">
+            {/* Theme & Language Switchers (Always accessible on desktop navbar) */}
+            <div className="d-none d-lg-flex align-items-center gap-2">
+              <ThemeToggle compact={true} />
+              <LanguageSelector compact={true} />
+            </div>
+
             {/* Direct Dashboard Shortcut */}
             <Link
               to={role === 'farmer' ? '/farmer' : role === 'admin' ? '/admin' : '/customer'}
