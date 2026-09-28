@@ -5,11 +5,11 @@
 
 export const productsData = [
   // ==========================================================================
-  // 1. FRESH VEGETABLES (Taaza Sabziyan)
+  // 1. FRESH VEGETABLES
   // ==========================================================================
   {
     id: 1,
-    name: 'Farm Fresh Vine Tomatoes (Taaza Tamatar)',
+    name: 'Farm Fresh Vine Tomatoes',
     category: 'vegetables',
     price: 140,
     oldPrice: 170,
@@ -24,11 +24,11 @@ export const productsData = [
     harvestHoursAgo: 3,
     harvestTimeLabel: 'Today, 05:30 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Naturally vine-ripened deep red juicy tomatoes harvested early morning from Kasur farm soil. Rich in lycopene, chemical-free and ideal for fresh salads and traditional curries.'
+    description: 'Naturally vine-ripened deep red juicy tomatoes harvested early morning from organic farm soil. Rich in lycopene, chemical-free and ideal for fresh salads and gourmet home cooking.'
   },
   {
     id: 2,
-    name: 'Organic Desi Red Potatoes (Desi Lal Aloo)',
+    name: 'Organic Farm Red Potatoes',
     category: 'vegetables',
     price: 95,
     oldPrice: 120,
@@ -43,11 +43,11 @@ export const productsData = [
     harvestHoursAgo: 6,
     harvestTimeLabel: 'Today, 06:15 AM',
     freshnessGrade: 'field-fresh',
-    description: 'Earthy, thin-skinned desi red potatoes freshly dug from organic alluvial soil. Firm texture, non-sweet, ideal for traditional aloo bhujia, parathas, and samosas.'
+    description: 'Earthy, thin-skinned red potatoes freshly dug from organic alluvial soil. Firm texture, non-sweet, ideal for roasting, baking, and steaming.'
   },
   {
     id: 3,
-    name: 'Fresh Green Spinach (Taaza Desi Palak)',
+    name: 'Fresh Organic Green Spinach',
     category: 'vegetables',
     price: 60,
     oldPrice: 80,
@@ -62,11 +62,11 @@ export const productsData = [
     harvestHoursAgo: 2,
     harvestTimeLabel: 'Today, 04:30 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Dark green, iron-packed tender desi spinach bunches freshly cut at dawn from Malir organic riverbeds and washed in sweet tube-well water. Crisp and free of grit.'
+    description: 'Dark green, iron-packed tender organic spinach bunches freshly cut at dawn from riverbeds and washed in sweet tube-well water. Crisp and free of grit.'
   },
   {
     id: 4,
-    name: 'Crisp Salad Cucumbers (Taaza Desi Kheera)',
+    name: 'Crisp Farm Salad Cucumbers',
     category: 'vegetables',
     price: 85,
     oldPrice: 110,
@@ -81,11 +81,11 @@ export const productsData = [
     harvestHoursAgo: 4,
     harvestTimeLabel: 'Today, 06:00 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Crisp, cooling desi green salad cucumbers with thin edible skin and zero bitterness. Grown under tunnel protection without artificial growth stimulants.'
+    description: 'Crisp, cooling green salad cucumbers with thin edible skin and zero bitterness. Grown under tunnel protection without artificial growth stimulants.'
   },
   {
     id: 5,
-    name: 'Desi Pink Onions (Taaza Gulabi Pyaz)',
+    name: 'Organic Sweet Pink Onions',
     category: 'vegetables',
     price: 130,
     oldPrice: 160,
@@ -100,11 +100,11 @@ export const productsData = [
     harvestHoursAgo: 12,
     harvestTimeLabel: 'Yesterday Afternoon',
     freshnessGrade: 'field-fresh',
-    description: 'Firm, aromatic Sindh pink onions with sharp pungent flavor. Sun-cured in open fields for long kitchen preservation. Essential for authentic Pakistani gravies.'
+    description: 'Firm, aromatic pink onions with rich savory flavor. Sun-cured in open fields for long kitchen preservation. Essential for gourmet bases and soups.'
   },
   {
     id: 6,
-    name: 'Glossy Green Bell Peppers (Shimla Mirch)',
+    name: 'Glossy Green Bell Peppers',
     category: 'vegetables',
     price: 160,
     oldPrice: 200,
@@ -119,11 +119,11 @@ export const productsData = [
     harvestHoursAgo: 5,
     harvestTimeLabel: 'Today, 06:45 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Crunchy, thick-walled green capsicum picked at peak maturity. Sweet grassy aroma, high vitamin C content, excellent for karahi and vegetable stir-fries.'
+    description: 'Crunchy, thick-walled green bell peppers picked at peak maturity. Sweet grassy aroma, high vitamin C content, excellent for stir-fries and fresh roasting.'
   },
   {
     id: 7,
-    name: 'Tender Farm Ladyfinger (Taaza Bhindi)',
+    name: 'Tender Fresh Farm Okra',
     category: 'vegetables',
     price: 140,
     oldPrice: 180,
@@ -138,11 +138,11 @@ export const productsData = [
     harvestHoursAgo: 3,
     harvestTimeLabel: 'Today, 05:00 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Hand-picked small tender ladyfingers (okra) without woody fibers. Snaps easily between fingers, cooks non-slimy, grown naturally in Malir farms.'
+    description: 'Hand-picked small tender okra pods without woody fibers. Snaps easily between fingers, cooks tender, grown naturally without chemicals.'
   },
   {
     id: 8,
-    name: 'Sweet Red Farm Carrots (Lal Desi Gajar)',
+    name: 'Sweet Farm Heritage Carrots',
     category: 'vegetables',
     price: 110,
     oldPrice: 140,
@@ -157,11 +157,11 @@ export const productsData = [
     harvestHoursAgo: 5,
     harvestTimeLabel: 'Today, 06:30 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Crisp, bright red Punjab winter carrots naturally sweet and crunchy. Ideal for fresh morning juicing and traditional gajar ka halwa.'
+    description: 'Crisp, bright red winter carrots naturally sweet and crunchy. Ideal for fresh morning juicing, healthy snacking, and slow roasting.'
   },
   {
     id: 9,
-    name: 'Fresh Garlic & Ginger Roots (Desi Lehsan & Adrak)',
+    name: 'Fresh Garlic & Ginger Roots',
     category: 'vegetables',
     price: 280,
     oldPrice: 340,
@@ -176,15 +176,15 @@ export const productsData = [
     harvestHoursAgo: 16,
     harvestTimeLabel: 'Yesterday Afternoon',
     freshnessGrade: 'field-fresh',
-    description: 'Aromatic organic desi purple-striped garlic and soil-fresh ginger rhizomes harvested from alluvial Punjab soil with strong spicy aroma.'
+    description: 'Aromatic organic purple-striped garlic and soil-fresh ginger rhizomes harvested with strong rich aroma.'
   },
 
   // ==========================================================================
-  // 2. SEASONAL & ORCHARD FRUITS (Taaza Mousami Phal)
+  // 2. SEASONAL & ORCHARD FRUITS
   // ==========================================================================
   {
     id: 10,
-    name: 'Multani Sweet Chaunsa Mangoes (Shahana Aam)',
+    name: 'Royal Sweet Chaunsa Mangoes',
     category: 'fruits',
     price: 320,
     oldPrice: 380,
@@ -199,11 +199,11 @@ export const productsData = [
     harvestHoursAgo: 14,
     harvestTimeLabel: 'Yesterday Evening',
     freshnessGrade: 'field-fresh',
-    description: 'World-famous aromatic Multani Chaunsa mangoes, 100% tree-ripened without harmful calcium carbide chemicals. Unmatched sweetness and nectar aroma.'
+    description: 'World-famous aromatic Chaunsa mangoes, 100% tree-ripened without artificial chemicals. Unmatched sweetness and rich nectar aroma.'
   },
   {
     id: 11,
-    name: 'Sargodha Export Kinnow Mandarins (Meetha Kinnow)',
+    name: 'Export Grade Kinnow Mandarins',
     category: 'fruits',
     price: 280,
     oldPrice: 340,
@@ -218,11 +218,11 @@ export const productsData = [
     harvestHoursAgo: 7,
     harvestTimeLabel: 'Today, 05:15 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Juicy sweet Kinnow mandarins with thin easy-peel rinds directly from prime Bhalwal orchards. Heavy with refreshing vitamin C-packed juice.'
+    description: 'Juicy sweet Kinnow mandarins with thin easy-peel rinds directly from prime orchards. Heavy with refreshing vitamin C-packed juice.'
   },
   {
     id: 12,
-    name: 'Swat Valley Royal Red Apples (Kala Kula Saib)',
+    name: 'Swat Valley Royal Red Apples',
     category: 'fruits',
     price: 260,
     oldPrice: 320,
@@ -237,11 +237,11 @@ export const productsData = [
     harvestHoursAgo: 18,
     harvestTimeLabel: 'Yesterday Noon',
     freshnessGrade: 'field-fresh',
-    description: 'Crisp, sweet, chemical-free red mountain apples from high-altitude Matta orchards watered by fresh glacial melting streams. Completely un-waxed.'
+    description: 'Crisp, sweet, chemical-free red mountain apples from high-altitude orchards watered by glacial streams. Completely un-waxed.'
   },
   {
     id: 13,
-    name: 'Sukkur Organic Aseel Dates (Khaalis Khajoor)',
+    name: 'Organic Aseel Palm Dates',
     category: 'fruits',
     price: 480,
     oldPrice: 580,
@@ -256,11 +256,11 @@ export const productsData = [
     harvestHoursAgo: 24,
     harvestTimeLabel: 'Yesterday Morning',
     freshnessGrade: 'field-fresh',
-    description: 'Soft, caramel-sweet natural Aseel dates handpicked and sun-dried on organic palm groves in Khairpur/Sukkur. Zero added glucose syrup or additives.'
+    description: 'Soft, caramel-sweet natural Aseel dates handpicked and sun-dried on organic palm groves. Zero added glucose syrup or additives.'
   },
   {
     id: 14,
-    name: 'Skardu Organic Sun-Dried Apricots (Khubani)',
+    name: 'Organic Sun-Dried Golden Apricots',
     category: 'fruits',
     price: 550,
     oldPrice: 650,
@@ -275,11 +275,11 @@ export const productsData = [
     harvestHoursAgo: 36,
     harvestTimeLabel: '2 Days Ago',
     freshnessGrade: 'field-fresh',
-    description: 'Golden organic apricots naturally sun-dried in the clean mountain air of Baltistan. Naturally sweet with healthy edible sweet almond kernels inside.'
+    description: 'Golden organic apricots naturally sun-dried in clean mountain air. Naturally sweet with healthy edible sweet kernels inside.'
   },
   {
     id: 15,
-    name: 'Farm Plucked Sweet Strawberries (Taaza Strawberry)',
+    name: 'Farm Plucked Sweet Strawberries',
     category: 'fruits',
     price: 340,
     oldPrice: 420,
@@ -294,11 +294,11 @@ export const productsData = [
     harvestHoursAgo: 3,
     harvestTimeLabel: 'Today, 05:00 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Fragrant, bright ruby-red strawberries picked at 5:00 AM from Kasur strawberry beds. Naturally sweet, fragrant, and packed with vitamin C.'
+    description: 'Fragrant, bright ruby-red strawberries picked early morning from strawberry beds. Naturally sweet, fragrant, and packed with vitamin C.'
   },
   {
     id: 16,
-    name: 'Larkana Fragrant Guavas (Meetha Desi Amrood)',
+    name: 'Fragrant White Orchard Guavas',
     category: 'fruits',
     price: 180,
     oldPrice: 220,
@@ -313,15 +313,15 @@ export const productsData = [
     harvestHoursAgo: 8,
     harvestTimeLabel: 'Today, 06:15 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Round white-fleshed Larkana guavas with floral fragrance and soft edible seeds. Rich in natural dietary fiber, potassium, and digestive enzymes.'
+    description: 'Round white-fleshed orchard guavas with floral fragrance and soft edible seeds. Rich in natural dietary fiber, potassium, and digestive enzymes.'
   },
 
   // ==========================================================================
-  // 3. FARM DAIRY & FREE-RANGE POULTRY (Taaza Dairy aur Desi Anday)
+  // 3. FARM DAIRY & FREE-RANGE POULTRY
   // ==========================================================================
   {
     id: 17,
-    name: '100% Pure Buffalo Milk (Khaalis Bhains ka Doodh)',
+    name: '100% Pure Grass-Fed Buffalo Milk',
     category: 'dairy',
     price: 240,
     oldPrice: 270,
@@ -336,11 +336,11 @@ export const productsData = [
     harvestHoursAgo: 2,
     harvestTimeLabel: 'Today, 04:45 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Whole raw unpasteurized buffalo milk with 7.5%+ natural butterfat, chilled immediately after morning milking in sterile food-grade milk cans.'
+    description: 'Whole raw fresh buffalo milk with 7.5%+ natural butterfat, chilled immediately after morning milking in sterile food-grade milk cans.'
   },
   {
     id: 18,
-    name: 'Farm Fresh Desi Cow Milk (Gaaye ka Taaza Doodh)',
+    name: 'Farm Fresh A2 Organic Cow Milk',
     category: 'dairy',
     price: 210,
     oldPrice: 240,
@@ -359,7 +359,7 @@ export const productsData = [
   },
   {
     id: 19,
-    name: 'Free-Range Desi Eggs (Asal Desi Murghi k Anday)',
+    name: 'Free-Range Pasture-Raised Brown Eggs',
     category: 'dairy',
     price: 380,
     oldPrice: 440,
@@ -374,11 +374,11 @@ export const productsData = [
     harvestHoursAgo: 6,
     harvestTimeLabel: 'Today, 06:00 AM',
     freshnessGrade: 'field-fresh',
-    description: 'Authentic brown nutrient-dense eggs laid by pastured desi chickens roaming freely in open farm fields and fed natural grains and greens.'
+    description: 'Authentic brown nutrient-dense eggs laid by pastured hens roaming freely in open farm fields and fed natural grains and greens.'
   },
   {
     id: 20,
-    name: 'Traditional Hand-Churned Makhan (Khaalis Desi Makhan)',
+    name: 'Traditional Cultured Farm Butter',
     category: 'dairy',
     price: 750,
     oldPrice: 880,
@@ -393,11 +393,11 @@ export const productsData = [
     harvestHoursAgo: 10,
     harvestTimeLabel: 'Today, 03:00 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Slowly churned from cultured cow dahi using traditional wooden madhani. Unsalted, fragrant, and packed with healthy natural probiotics.'
+    description: 'Slowly churned from cultured cow cream using traditional wooden churns. Unsalted, fragrant, and rich in natural healthy dairy cultures.'
   },
   {
     id: 21,
-    name: 'Pure Bilona Desi Ghee (Khaalis Danedaar Desi Ghee)',
+    name: 'Pure Grass-Fed Clarified Butter (Ghee)',
     category: 'dairy',
     price: 2400,
     oldPrice: 2800,
@@ -412,11 +412,11 @@ export const productsData = [
     harvestHoursAgo: 24,
     harvestTimeLabel: 'Yesterday Morning',
     freshnessGrade: 'field-fresh',
-    description: 'Prepared strictly via the ancient Vedic Bilona method from curdled cow milk, slow-simmered on low flame until golden, aromatic, and granular.'
+    description: 'Prepared strictly via the traditional churned-curd method from cow milk, slow-simmered on low flame until golden, aromatic, and granular.'
   },
   {
     id: 22,
-    name: 'Fresh Artisan Desi Paneer (Khaalis Paneer)',
+    name: 'Fresh Artisan Cottage Cheese (Paneer)',
     category: 'dairy',
     price: 650,
     oldPrice: 750,
@@ -431,11 +431,11 @@ export const productsData = [
     harvestHoursAgo: 4,
     harvestTimeLabel: 'Today, 06:30 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Preservative-free soft cottage cheese crafted from whole buffalo milk and curdled with fresh lemon juice. High protein, soft texture, perfect for palak paneer.'
+    description: 'Preservative-free soft cottage cheese crafted from whole milk and curdled with fresh lemon juice. High protein, soft texture, perfect for gourmet dishes.'
   },
   {
     id: 23,
-    name: 'Organic Clay Pot Dahi (Matka Desi Yogurt)',
+    name: 'Organic Whole Milk Terracotta Yogurt',
     category: 'dairy',
     price: 260,
     oldPrice: 300,
@@ -450,15 +450,15 @@ export const productsData = [
     harvestHoursAgo: 6,
     harvestTimeLabel: 'Set Overnight',
     freshnessGrade: 'morning-pluck',
-    description: 'Thick, creamy whole-milk yogurt fermented overnight in porous terracotta clay pots that absorb excess water, yielding natural thick curd.'
+    description: 'Thick, creamy whole-milk yogurt fermented overnight in porous terracotta clay pots that absorb excess moisture, yielding natural thick curd.'
   },
 
   // ==========================================================================
-  // 4. NATURAL HONEY, SPICES & HERBS (Shehad, Masalay aur Bootiyan)
+  // 4. NATURAL HONEY, SPICES & HERBS
   // ==========================================================================
   {
     id: 24,
-    name: 'Karak Mountain Wild Sidr Honey (Khaalis Beri Shehad)',
+    name: 'Wild Karak Mountain Sidr Honey',
     category: 'bakery',
     price: 1600,
     oldPrice: 1950,
@@ -473,11 +473,11 @@ export const productsData = [
     harvestHoursAgo: 24,
     harvestTimeLabel: 'Yesterday Morning',
     freshnessGrade: 'field-fresh',
-    description: '100% monofloral raw wild Sidr (Beri) honey harvested from Karak and Kohat desert hills. Unheated, unfiltered, rich caramel taste with proven medicinal qualities.'
+    description: '100% monofloral raw wild Sidr honey harvested from mountain flora. Unheated, unfiltered, rich caramel taste with proven medicinal qualities.'
   },
   {
     id: 25,
-    name: 'Northern Acacia Flower Honey (Safaid Palosa Shehad)',
+    name: 'Northern Acacia Blossom Wild Honey',
     category: 'bakery',
     price: 1250,
     oldPrice: 1500,
@@ -492,11 +492,11 @@ export const productsData = [
     harvestHoursAgo: 48,
     harvestTimeLabel: '2 Days Ago',
     freshnessGrade: 'field-fresh',
-    description: 'Clear golden honey collected from wild Acacia blossoms in the pine-scented Hazara hills. Mild pleasant sweetness and slow crystallization.'
+    description: 'Clear golden honey collected from wild Acacia blossoms in high mountain hills. Mild pleasant sweetness and slow crystallization.'
   },
   {
     id: 26,
-    name: 'Fresh Garden Mint & Coriander (Pudina aur Dhanya)',
+    name: 'Fresh Garden Mint & Cilantro Leaves',
     category: 'vegetables',
     price: 50,
     oldPrice: 70,
@@ -511,11 +511,11 @@ export const productsData = [
     harvestHoursAgo: 2,
     harvestTimeLabel: 'Today, 04:30 AM',
     freshnessGrade: 'morning-pluck',
-    description: 'Vibrant aromatic spearmint and fresh green coriander with tender roots attached. Hand-bunched at sunrise for maximum aroma.'
+    description: 'Vibrant aromatic spearmint and fresh green cilantro with tender roots attached. Hand-bunched at sunrise for maximum aroma.'
   },
   {
     id: 27,
-    name: 'Raw Mountain Turmeric Rhizomes (Taaza Kachi Haldi)',
+    name: 'Raw Organic Mountain Turmeric Rhizomes',
     category: 'vegetables',
     price: 240,
     oldPrice: 300,
@@ -530,11 +530,11 @@ export const productsData = [
     harvestHoursAgo: 24,
     harvestTimeLabel: 'Yesterday Morning',
     freshnessGrade: 'field-fresh',
-    description: 'Freshly un-earthed golden turmeric roots from Swat valley slopes. High natural curcumin concentration, perfect for organic golden latte and remedies.'
+    description: 'Freshly harvested golden turmeric roots from mountain slopes. High natural curcumin concentration, perfect for organic wellness teas and cooking.'
   },
   {
     id: 28,
-    name: 'Pure Himalayan Mountain Shilajit (Khaalis Salajeet)',
+    name: 'Pure Himalayan Mountain Shilajit Resin',
     category: 'bakery',
     price: 1950,
     oldPrice: 2400,
@@ -549,15 +549,15 @@ export const productsData = [
     harvestHoursAgo: 72,
     harvestTimeLabel: '3 Days Ago',
     freshnessGrade: 'field-fresh',
-    description: 'Authentic Grade-A gold-grade Himalayan Shilajit resin purified through natural sunlight drying at high altitude in Baltistan. 100% lab tested.'
+    description: 'Authentic Grade-A gold-grade Himalayan Shilajit resin purified through natural sunlight drying at high altitude. 100% lab tested.'
   },
 
   // ==========================================================================
-  // 5. FLOUR, GRAINS & COLD-PRESSED OILS (Chakki Atta, Makai aur Sarson)
+  // 5. FLOUR, GRAINS & COLD-PRESSED OILS
   // ==========================================================================
   {
     id: 29,
-    name: 'Stone-Ground Chakki Whole Wheat Atta (Khaalis Gandum Atta)',
+    name: 'Stone-Ground 100% Whole Wheat Flour',
     category: 'bakery',
     price: 680,
     oldPrice: 780,
@@ -568,15 +568,15 @@ export const productsData = [
     marketId: '1',
     marketName: 'Liberty Sunday Farmers Market (Lahore)',
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
-    badge: 'Chakki Fresh',
+    badge: 'Stone Ground',
     harvestHoursAgo: 12,
     harvestTimeLabel: 'Yesterday Afternoon',
     freshnessGrade: 'field-fresh',
-    description: '100% whole grain wheat ground slowly on traditional stone chakki at low temperatures. Retains full natural bran (choker) and wheat germ nutrients.'
+    description: '100% whole grain wheat ground slowly on traditional millstones at low temperatures. Retains full natural bran and wheat germ nutrients.'
   },
   {
     id: 30,
-    name: 'Desi Chakki Maize Flour (Taaza Makai ka Atta)',
+    name: 'Stone-Ground Organic Yellow Cornmeal',
     category: 'bakery',
     price: 190,
     oldPrice: 240,
@@ -587,15 +587,15 @@ export const productsData = [
     marketId: '1',
     marketName: 'Liberty Sunday Farmers Market (Lahore)',
     image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80',
-    badge: 'Milled Today',
+    badge: 'Freshly Milled',
     harvestHoursAgo: 14,
     harvestTimeLabel: 'Yesterday Evening',
     freshnessGrade: 'field-fresh',
-    description: 'Finely stone-milled yellow cornmeal from indigenous non-GMO maize. Perfect for rustic Punjabi makai ki roti paired with fresh saag.'
+    description: 'Finely stone-milled yellow cornmeal from indigenous non-GMO maize. Perfect for rustic organic baking and wholesome cornbread.'
   },
   {
     id: 31,
-    name: 'Cold-Pressed Raw Mustard Oil (Kachhi Ghani Sarson Tail)',
+    name: 'Cold-Pressed Virgin Mustard Seed Oil',
     category: 'bakery',
     price: 720,
     oldPrice: 850,
@@ -610,6 +610,6 @@ export const productsData = [
     harvestHoursAgo: 24,
     harvestTimeLabel: 'Yesterday Morning',
     freshnessGrade: 'field-fresh',
-    description: 'Extracted from clean yellow mustard seeds on traditional wooden Kohlu without heat or chemicals. Pungent, unrefined, golden and 100% pure.'
+    description: 'Extracted from clean yellow mustard seeds on traditional wooden presses without heat or chemicals. Pungent, unrefined, golden and 100% pure.'
   }
 ];

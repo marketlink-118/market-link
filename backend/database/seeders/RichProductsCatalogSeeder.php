@@ -287,13 +287,13 @@ class RichProductsCatalogSeeder extends Seeder
         // 3. Products Catalog Setup (31 Authentic Pakistani Farm Products)
         $productsCatalog = [
             // ================================================================
-            // VEGETABLES (Sabziyan)
+            // VEGETABLES
             // ================================================================
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Farm Fresh Vine Tomatoes (Taaza Tamatar)',
-                'description' => 'Naturally vine-ripened deep red juicy tomatoes harvested early morning from Kasur farm soil. Rich in lycopene and free from chemical spray.',
+                'name' => 'Farm Fresh Vine Tomatoes',
+                'description' => 'Naturally vine-ripened deep red juicy tomatoes harvested early morning from organic farm soil. Rich in lycopene and free from chemical spray.',
                 'unit' => 'kg',
                 'price' => 140.00,
                 'stock_quantity' => 75,
@@ -303,8 +303,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Organic Desi Red Potatoes (Desi Lal Aloo)',
-                'description' => 'Earthy, thin-skinned desi red potatoes freshly dug from organic soil. Firm texture, non-sweet, ideal for traditional aloo bhujia and samosas.',
+                'name' => 'Organic Farm Red Potatoes',
+                'description' => 'Earthy, thin-skinned red potatoes freshly dug from organic alluvial soil. Firm texture, non-sweet, ideal for roasting, baking, and steaming.',
                 'unit' => 'kg',
                 'price' => 95.00,
                 'stock_quantity' => 120,
@@ -314,8 +314,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerKarachi1->id,
                 'category_id' => $catHerbs->id,
-                'name' => 'Fresh Green Spinach (Taaza Desi Palak)',
-                'description' => 'Dark green, iron-packed tender desi spinach bunches freshly cut at dawn from Malir organic riverbeds and washed in sweet tube-well water.',
+                'name' => 'Fresh Organic Green Spinach',
+                'description' => 'Dark green, iron-packed tender organic spinach bunches freshly cut at dawn from riverbeds and washed in sweet tube-well water.',
                 'unit' => 'bunch',
                 'price' => 60.00,
                 'stock_quantity' => 50,
@@ -325,8 +325,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Crisp Salad Cucumbers (Taaza Desi Kheera)',
-                'description' => 'Crisp, cooling desi green salad cucumbers with thin edible skin and zero bitterness. Grown under tunnel protection without artificial enhancers.',
+                'name' => 'Crisp Farm Salad Cucumbers',
+                'description' => 'Crisp, cooling green salad cucumbers with thin edible skin and zero bitterness. Grown under tunnel protection without artificial enhancers.',
                 'unit' => 'kg',
                 'price' => 85.00,
                 'stock_quantity' => 45,
@@ -336,8 +336,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerKarachi1->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Desi Pink Onions (Taaza Gulabi Pyaz)',
-                'description' => 'Firm, aromatic Sindh pink onions with sharp pungent flavor. Sun-cured in open fields for long kitchen preservation.',
+                'name' => 'Organic Sweet Pink Onions',
+                'description' => 'Firm, aromatic pink onions with rich savory flavor. Sun-cured in open fields for long kitchen preservation.',
                 'unit' => 'kg',
                 'price' => 130.00,
                 'stock_quantity' => 100,
@@ -347,8 +347,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Glossy Green Bell Peppers (Shimla Mirch)',
-                'description' => 'Crunchy, thick-walled green capsicum picked at peak maturity. Sweet grassy aroma and rich in vitamin C.',
+                'name' => 'Glossy Green Bell Peppers',
+                'description' => 'Crunchy, thick-walled green bell peppers picked at peak maturity. Sweet grassy aroma and rich in vitamin C.',
                 'unit' => 'kg',
                 'price' => 160.00,
                 'stock_quantity' => 35,
@@ -358,8 +358,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerKarachi1->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Tender Farm Ladyfinger (Taaza Bhindi)',
-                'description' => 'Hand-picked small tender ladyfingers (okra) without woody fibers. Snaps easily between fingers, cooks non-slimy.',
+                'name' => 'Tender Fresh Farm Okra',
+                'description' => 'Hand-picked small tender okra pods without woody fibers. Snaps easily between fingers, cooks tender.',
                 'unit' => 'kg',
                 'price' => 140.00,
                 'stock_quantity' => 40,
@@ -369,8 +369,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Sweet Red Farm Carrots (Lal Desi Gajar)',
-                'description' => 'Crisp, bright red Punjab winter carrots naturally sweet and crunchy. Ideal for fresh morning juicing and traditional gajar ka halwa.',
+                'name' => 'Sweet Farm Heritage Carrots',
+                'description' => 'Crisp, bright red winter carrots naturally sweet and crunchy. Ideal for fresh morning juicing and healthy salads.',
                 'unit' => 'kg',
                 'price' => 110.00,
                 'stock_quantity' => 60,
@@ -380,8 +380,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catVeg->id,
-                'name' => 'Fresh Garlic & Ginger Roots (Desi Lehsan & Adrak)',
-                'description' => 'Aromatic organic desi purple-striped garlic and soil-fresh ginger rhizomes harvested from alluvial Punjab soil.',
+                'name' => 'Fresh Garlic & Ginger Roots',
+                'description' => 'Aromatic organic purple-striped garlic and soil-fresh ginger rhizomes harvested with strong aroma.',
                 'unit' => '500g pack',
                 'price' => 280.00,
                 'stock_quantity' => 30,
@@ -390,13 +390,13 @@ class RichProductsCatalogSeeder extends Seeder
             ],
 
             // ================================================================
-            // FRUITS (Mousami Phal)
+            // FRUITS
             // ================================================================
             [
                 'farmer_id' => $farmerMultan->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Multani Sweet Chaunsa Mangoes (Shahana Aam)',
-                'description' => 'World-famous aromatic Multani Chaunsa mangoes, 100% tree-ripened without harmful calcium carbide chemicals. Unmatched sweetness and nectar aroma.',
+                'name' => 'Royal Sweet Chaunsa Mangoes',
+                'description' => 'World-famous aromatic Chaunsa mangoes, 100% tree-ripened without artificial chemicals. Unmatched sweetness and rich nectar aroma.',
                 'unit' => 'kg',
                 'price' => 320.00,
                 'stock_quantity' => 65,
@@ -406,8 +406,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerRasheed->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Sargodha Export Kinnow Mandarins (Meetha Kinnow)',
-                'description' => 'Juicy sweet Kinnow mandarins with thin easy-peel rinds directly from prime Bhalwal orchards. Heavy with refreshing vitamin-packed juice.',
+                'name' => 'Export Grade Kinnow Mandarins',
+                'description' => 'Juicy sweet Kinnow mandarins with thin easy-peel rinds directly from prime orchards. Heavy with refreshing vitamin-packed juice.',
                 'unit' => 'dozen',
                 'price' => 280.00,
                 'stock_quantity' => 80,
@@ -417,8 +417,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerIslamabad->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Swat Valley Royal Red Apples (Kala Kula Saib)',
-                'description' => 'Crisp, sweet, chemical-free red mountain apples from high-altitude Matta orchards watered by fresh glacial melting streams.',
+                'name' => 'Swat Valley Royal Red Apples',
+                'description' => 'Crisp, sweet, chemical-free red mountain apples from high-altitude orchards watered by glacial streams.',
                 'unit' => 'kg',
                 'price' => 260.00,
                 'stock_quantity' => 55,
@@ -428,8 +428,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerKarachi2->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Sukkur Organic Aseel Dates (Khaalis Khajoor)',
-                'description' => 'Soft, caramel-sweet natural Aseel dates handpicked and sun-dried on organic palm groves in Khairpur/Sukkur. Zero added syrup.',
+                'name' => 'Organic Aseel Palm Dates',
+                'description' => 'Soft, caramel-sweet natural Aseel dates handpicked and sun-dried on organic palm groves. Zero added syrup.',
                 'unit' => 'kg',
                 'price' => 480.00,
                 'stock_quantity' => 40,
@@ -439,8 +439,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerIslamabad->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Skardu Organic Sun-Dried Apricots (Khubani)',
-                'description' => 'Golden organic apricots naturally sun-dried in the fresh mountain air of Baltistan. Sweet with edible bitter-free almond kernels inside.',
+                'name' => 'Organic Sun-Dried Golden Apricots',
+                'description' => 'Golden organic apricots naturally sun-dried in fresh mountain air. Sweet with edible bitter-free almond kernels inside.',
                 'unit' => '500g pack',
                 'price' => 550.00,
                 'stock_quantity' => 35,
@@ -450,8 +450,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Farm Plucked Sweet Strawberries (Taaza Strawberry)',
-                'description' => 'Fragrant, bright ruby-red strawberries picked at 5:00 AM from Kasur strawberry beds. Naturally sweet and aromatic.',
+                'name' => 'Farm Plucked Sweet Strawberries',
+                'description' => 'Fragrant, bright ruby-red strawberries picked early morning from strawberry beds. Naturally sweet and aromatic.',
                 'unit' => 'box (400g)',
                 'price' => 340.00,
                 'stock_quantity' => 25,
@@ -461,8 +461,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerKarachi2->id,
                 'category_id' => $catFruit->id,
-                'name' => 'Larkana Fragrant Guavas (Meetha Desi Amrood)',
-                'description' => 'Round white-fleshed Larkana guavas with floral fragrance and soft edible seeds. Rich in natural dietary fiber and vitamin C.',
+                'name' => 'Fragrant White Orchard Guavas',
+                'description' => 'Round white-fleshed orchard guavas with floral fragrance and soft edible seeds. Rich in natural dietary fiber and vitamin C.',
                 'unit' => 'kg',
                 'price' => 180.00,
                 'stock_quantity' => 45,
@@ -471,13 +471,13 @@ class RichProductsCatalogSeeder extends Seeder
             ],
 
             // ================================================================
-            // DAIRY & EGGS (Taaza Dairy aur Desi Anday)
+            // DAIRY & EGGS
             // ================================================================
             [
                 'farmer_id' => $farmerBashir->id,
                 'category_id' => $catDairy->id,
-                'name' => '100% Pure Buffalo Milk (Khaalis Bhains ka Doodh)',
-                'description' => 'Whole raw unpasteurized buffalo milk with 7.5%+ natural butterfat, chilled immediately after morning milking in sterile food-grade milk cans.',
+                'name' => '100% Pure Grass-Fed Buffalo Milk',
+                'description' => 'Whole raw fresh buffalo milk with 7.5%+ natural butterfat, chilled immediately after morning milking in sterile food-grade milk cans.',
                 'unit' => 'litre',
                 'price' => 240.00,
                 'stock_quantity' => 70,
@@ -487,7 +487,7 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerBashir->id,
                 'category_id' => $catDairy->id,
-                'name' => 'Farm Fresh Desi Cow Milk (Gaaye ka Taaza Doodh)',
+                'name' => 'Farm Fresh A2 Organic Cow Milk',
                 'description' => 'Naturally sweet A2 milk from pastured Sahiwal breed cows. Light, easily digestible, and golden with natural beta-carotene.',
                 'unit' => 'litre',
                 'price' => 210.00,
@@ -498,8 +498,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerBashir->id,
                 'category_id' => $catDairy->id,
-                'name' => 'Free-Range Desi Eggs (Asal Desi Murghi k Anday)',
-                'description' => 'Authentic brown nutrient-dense eggs laid by pastured desi chickens roaming freely in open farm fields and fed natural grains.',
+                'name' => 'Free-Range Pasture-Raised Brown Eggs',
+                'description' => 'Authentic brown nutrient-dense eggs laid by pastured hens roaming freely in open farm fields and fed natural grains.',
                 'unit' => 'dozen',
                 'price' => 380.00,
                 'stock_quantity' => 45,
@@ -509,8 +509,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerBashir->id,
                 'category_id' => $catDairy->id,
-                'name' => 'Traditional Hand-Churned Makhan (Khaalis Desi Makhan)',
-                'description' => 'Slowly churned from cultured cow dahi using traditional wooden madhani. Unsalted, fragrant, and packed with healthy natural probiotics.',
+                'name' => 'Traditional Cultured Farm Butter',
+                'description' => 'Slowly churned from cultured cow cream using traditional methods. Unsalted, fragrant, and rich in natural healthy dairy cultures.',
                 'unit' => '500g',
                 'price' => 750.00,
                 'stock_quantity' => 25,
@@ -520,8 +520,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerMultan->id,
                 'category_id' => $catDairy->id,
-                'name' => 'Pure Bilona Desi Ghee (Khaalis Danedaar Desi Ghee)',
-                'description' => 'Prepared strictly via the ancient Vedic Bilona method from curdled cow milk, slow-simmered on low flame until golden, aromatic, and granular.',
+                'name' => 'Pure Grass-Fed Clarified Butter (Ghee)',
+                'description' => 'Prepared strictly via the traditional churned-curd method from cow milk, slow-simmered on low flame until golden, aromatic, and granular.',
                 'unit' => '1kg jar',
                 'price' => 2400.00,
                 'stock_quantity' => 30,
@@ -531,8 +531,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerBashir->id,
                 'category_id' => $catDairy->id,
-                'name' => 'Fresh Artisan Desi Paneer (Khaalis Paneer)',
-                'description' => 'Preservative-free soft cottage cheese crafted from whole buffalo milk and curdled with fresh lemon juice. High protein, soft texture.',
+                'name' => 'Fresh Artisan Cottage Cheese (Paneer)',
+                'description' => 'Preservative-free soft cottage cheese crafted from whole milk and curdled with fresh lemon juice. High protein, soft texture.',
                 'unit' => '500g block',
                 'price' => 650.00,
                 'stock_quantity' => 20,
@@ -542,8 +542,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerBashir->id,
                 'category_id' => $catDairy->id,
-                'name' => 'Organic Clay Pot Dahi (Matka Desi Yogurt)',
-                'description' => 'Thick, creamy whole-milk yogurt fermented overnight in porous terracotta clay pots that absorb excess water, yielding natural thick curd.',
+                'name' => 'Organic Whole Milk Terracotta Yogurt',
+                'description' => 'Thick, creamy whole-milk yogurt fermented overnight in porous terracotta clay pots that absorb excess moisture, yielding natural thick curd.',
                 'unit' => '1kg clay pot',
                 'price' => 260.00,
                 'stock_quantity' => 35,
@@ -552,13 +552,13 @@ class RichProductsCatalogSeeder extends Seeder
             ],
 
             // ================================================================
-            // HONEY, HERBS & SPICES (Shehad, Masalay aur Bootiyan)
+            // HONEY, HERBS & SPICES
             // ================================================================
             [
                 'farmer_id' => $farmerRasheed->id,
                 'category_id' => $catHoney->id,
-                'name' => 'Karak Mountain Wild Sidr Honey (Khaalis Beri Shehad)',
-                'description' => '100% monofloral raw wild Sidr (Beri) honey harvested from Karak and Kohat desert hills. Unheated, unfiltered, rich caramel taste with proven medicinal qualities.',
+                'name' => 'Wild Karak Mountain Sidr Honey',
+                'description' => '100% monofloral raw wild Sidr honey harvested from mountain flora. Unheated, unfiltered, rich caramel taste with proven medicinal qualities.',
                 'unit' => '500g jar',
                 'price' => 1600.00,
                 'stock_quantity' => 40,
@@ -568,8 +568,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerIslamabad->id,
                 'category_id' => $catHoney->id,
-                'name' => 'Northern Acacia Flower Honey (Safaid Palosa Shehad)',
-                'description' => 'Clear golden honey collected from wild Acacia blossoms in the pine-scented Hazara hills. Mild pleasant sweetness and slow crystallization.',
+                'name' => 'Northern Acacia Blossom Wild Honey',
+                'description' => 'Clear golden honey collected from wild Acacia blossoms in high mountain hills. Mild pleasant sweetness and slow crystallization.',
                 'unit' => '500g jar',
                 'price' => 1250.00,
                 'stock_quantity' => 30,
@@ -579,8 +579,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerKarachi1->id,
                 'category_id' => $catHerbs->id,
-                'name' => 'Fresh Garden Mint & Coriander (Pudina aur Dhanya)',
-                'description' => 'Vibrant aromatic spearmint and fresh green coriander with tender roots attached. Hand-bunched at sunrise for maximum aroma.',
+                'name' => 'Fresh Garden Mint & Cilantro Leaves',
+                'description' => 'Vibrant aromatic spearmint and fresh green cilantro with tender roots attached. Hand-bunched at sunrise for maximum aroma.',
                 'unit' => 'combo bunch',
                 'price' => 50.00,
                 'stock_quantity' => 60,
@@ -590,8 +590,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerIslamabad->id,
                 'category_id' => $catHerbs->id,
-                'name' => 'Raw Mountain Turmeric Rhizomes (Taaza Kachi Haldi)',
-                'description' => 'Freshly un-earthed golden turmeric roots from Swat valley slopes. High natural curcumin concentration, perfect for organic golden latte and remedies.',
+                'name' => 'Raw Organic Mountain Turmeric Rhizomes',
+                'description' => 'Freshly harvested golden turmeric roots from mountain slopes. High natural curcumin concentration, perfect for organic wellness teas and cooking.',
                 'unit' => '500g pack',
                 'price' => 240.00,
                 'stock_quantity' => 25,
@@ -601,8 +601,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerIslamabad->id,
                 'category_id' => $catHerbs->id,
-                'name' => 'Pure Himalayan Mountain Shilajit (Khaalis Salajeet)',
-                'description' => 'Authentic Grade-A gold-grade Himalayan Shilajit resin purified through natural sunlight drying at high altitude in Baltistan. 100% lab tested.',
+                'name' => 'Pure Himalayan Mountain Shilajit Resin',
+                'description' => 'Authentic Grade-A gold-grade Himalayan Shilajit resin purified through natural sunlight drying at high altitude. 100% lab tested.',
                 'unit' => '20g jar',
                 'price' => 1950.00,
                 'stock_quantity' => 20,
@@ -611,13 +611,13 @@ class RichProductsCatalogSeeder extends Seeder
             ],
 
             // ================================================================
-            // FLOUR, GRAINS & COLD-PRESSED OILS (Chakki Atta, Makai aur Sarson)
+            // FLOUR, GRAINS & COLD-PRESSED OILS
             // ================================================================
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catBakery->id,
-                'name' => 'Stone-Ground Chakki Whole Wheat Atta (Khaalis Gandum Atta)',
-                'description' => '100% whole grain wheat ground slowly on traditional stone chakki at low temperatures. Retains full natural bran (choker) and wheat germ nutrients.',
+                'name' => 'Stone-Ground 100% Whole Wheat Flour',
+                'description' => '100% whole grain wheat ground slowly on traditional millstones at low temperatures. Retains full natural bran and wheat germ nutrients.',
                 'unit' => '5kg bag',
                 'price' => 680.00,
                 'stock_quantity' => 50,
@@ -627,8 +627,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerTariq->id,
                 'category_id' => $catBakery->id,
-                'name' => 'Desi Chakki Maize Flour (Taaza Makai ka Atta)',
-                'description' => 'Finely stone-milled yellow cornmeal from indigenous non-GMO maize. Perfect for rustic Punjabi makai ki roti paired with fresh saag.',
+                'name' => 'Stone-Ground Organic Yellow Cornmeal',
+                'description' => 'Finely stone-milled yellow cornmeal from indigenous non-GMO maize. Perfect for rustic organic baking and wholesome cornbread.',
                 'unit' => 'kg',
                 'price' => 190.00,
                 'stock_quantity' => 40,
@@ -638,8 +638,8 @@ class RichProductsCatalogSeeder extends Seeder
             [
                 'farmer_id' => $farmerMultan->id,
                 'category_id' => $catBakery->id,
-                'name' => 'Cold-Pressed Raw Mustard Oil (Kachhi Ghani Sarson Tail)',
-                'description' => 'Extracted from clean yellow mustard seeds on traditional wooden Kohlu without heat or chemicals. Pungent, unrefined, golden and 100% pure.',
+                'name' => 'Cold-Pressed Virgin Mustard Seed Oil',
+                'description' => 'Extracted from clean yellow mustard seeds on traditional wooden presses without heat or chemicals. Pungent, unrefined, golden and 100% pure.',
                 'unit' => '1 litre bottle',
                 'price' => 720.00,
                 'stock_quantity' => 35,

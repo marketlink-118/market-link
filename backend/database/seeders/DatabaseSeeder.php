@@ -271,7 +271,7 @@ class DatabaseSeeder extends Seeder
         $p3 = Product::create([
             'farmer_id' => $farmer1->id,
             'category_id' => $catHerbs->id,
-            'name' => 'Fresh Green Spinach (Palak)',
+            'name' => 'Fresh Organic Green Spinach',
             'description' => 'Tender green leaves, washed in clean tube-well water.',
             'unit' => 'bunch',
             'price' => 50.00,
@@ -284,7 +284,7 @@ class DatabaseSeeder extends Seeder
         $p4 = Product::create([
             'farmer_id' => $farmer1->id,
             'category_id' => $catVeg->id,
-            'name' => 'Crunchy Cucumbers (Kheera)',
+            'name' => 'Crisp Farm Salad Cucumbers',
             'description' => 'Crisp local salad cucumbers, zero bitter taste.',
             'unit' => 'kg',
             'price' => 80.00,
@@ -311,7 +311,7 @@ class DatabaseSeeder extends Seeder
         $p6 = Product::create([
             'farmer_id' => $farmer2->id,
             'category_id' => $catDairy->id,
-            'name' => 'Free-Range Desi Eggs',
+            'name' => 'Free-Range Pasture-Raised Brown Eggs',
             'description' => 'Brown nutrient-dense eggs from pastured, grain-fed hens.',
             'unit' => 'dozen',
             'price' => 360.00,
@@ -324,7 +324,7 @@ class DatabaseSeeder extends Seeder
         $p7 = Product::create([
             'farmer_id' => $farmer2->id,
             'category_id' => $catDairy->id,
-            'name' => 'Homemade Cultured Makhan (Butter)',
+            'name' => 'Traditional Cultured Farm Butter',
             'description' => 'Churned traditionally from cow curd, aromatic and golden.',
             'unit' => '500g',
             'price' => 650.00,
@@ -338,7 +338,7 @@ class DatabaseSeeder extends Seeder
         $p8 = Product::create([
             'farmer_id' => $farmer3->id,
             'category_id' => $catFruit->id,
-            'name' => 'Sweet Kinnow Mandarins',
+            'name' => 'Export Grade Kinnow Mandarins',
             'description' => 'Export-grade juicy sweet Kinnow from prime Sargodha orchards.',
             'unit' => 'dozen',
             'price' => 280.00,
@@ -351,7 +351,7 @@ class DatabaseSeeder extends Seeder
         $p9 = Product::create([
             'farmer_id' => $farmer3->id,
             'category_id' => $catHoney->id,
-            'name' => 'Pure Raw Wild Berry (Sidr) Honey',
+            'name' => 'Wild Mountain Sidr Honey',
             'description' => '100% natural unfiltered honey harvested directly from wild hives.',
             'unit' => '500g jar',
             'price' => 1200.00,

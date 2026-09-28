@@ -874,7 +874,7 @@ export const COUNTRY_PRODUCTS = {
       image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80',
       names: {
         ur: 'اوکاڑہ فارم کا خالص نیلی راوی بھینس کا دودھ',
-        en: 'Pure Nili Ravi Buffalo Milk (Khaalis Bhains)',
+        en: 'Pure Nili Ravi Grass-Fed Buffalo Milk',
         ar: 'حليب جاموس نيلي رافي الطازج 100%'
       },
       farmers: {
@@ -1007,7 +1007,7 @@ export const COUNTRY_PRODUCTS = {
       image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=600&q=80',
       names: {
         ur: 'ملیر ویلی کی تازہ دیسی پالک',
-        en: 'Malir Valley Fresh Organic Spinach (Palak)',
+        en: 'Malir Valley Fresh Organic Spinach',
         ar: 'سبانخ بلدية طازجة من وادي ملير'
       },
       farmers: {
