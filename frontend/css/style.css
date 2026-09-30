@@ -1133,6 +1133,17 @@ h1, h2, h3, h4, h5, h6 {
     color: #bae6fd !important;
 }
 
+/* Badge Opacity Fallback & Dark Mode Harmony */
+.bg-success.bg-opacity-10 {
+    background-color: rgba(60, 184, 21, 0.12) !important;
+    color: #1b5e20 !important;
+}
+
+[data-theme="dark"] .bg-success.bg-opacity-10 {
+    background-color: rgba(60, 184, 21, 0.22) !important;
+    color: #86efac !important;
+}
+
 
 
 

@@ -185,8 +185,16 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
                     <i className="fa fa-star text-warning me-1"></i> 
                     {currentLocale === 'ur' ? 'خریداروں کے حقیقی جائزے (5.0)' : currentLocale === 'ar' ? 'تقييمات المتسوقين الحقيقية (5.0)' : 'Verified Customer Ratings (5.0)'}
                   </span>
-                  <span className="badge bg-success bg-opacity-10 text-success rounded-pill fw-normal" style={{ fontSize: '0.72rem' }}>
-                    <i className="fa fa-check-circle me-1"></i> {currentLocale === 'ur' ? 'تصدیق شدہ خریدار' : currentLocale === 'ar' ? 'متسوق موثق' : 'Verified'}
+                  <span 
+                    className="badge rounded-pill px-2 py-1 fw-semibold d-inline-flex align-items-center" 
+                    style={{ 
+                      backgroundColor: 'rgba(60, 184, 21, 0.12)', 
+                      color: '#1b5e20', 
+                      border: '1px solid rgba(60, 184, 21, 0.35)', 
+                      fontSize: '0.74rem' 
+                    }}
+                  >
+                    <i className="fa fa-check-circle me-1 text-success"></i> {currentLocale === 'ur' ? 'تصدیق شدہ خریدار' : currentLocale === 'ar' ? 'متسوق موثق' : 'Verified'}
                   </span>
                 </h6>
                 <div className="d-flex flex-column gap-2">
