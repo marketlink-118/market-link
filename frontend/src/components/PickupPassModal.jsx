@@ -14,9 +14,20 @@ export default function PickupPassModal({ order, isOpen, onClose, onMarkCollecte
 
   const voucherRef = useRef(null);
 
-  const calculatedSubtotal = (order?.items && order.items.length > 0)
-    ? order.items.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1), 0)
-    : (Number(order?.totalAmount) || 0);
+  const displayOrderId = order?.id || order?.order_number || String(order?.rawId || 'ORD-001');
+  const displayToken = order?.pickupToken || order?.pickup_token || displayOrderId;
+  const displayCustomer = order?.customerName || order?.customer_name || 'Valued Customer';
+  const displayPhone = order?.customerPhone || order?.customer_phone || '';
+  const displayFarmer = order?.farmerName || order?.farmer_name || 'Farm Producer';
+  const displayStall = order?.stallNumber || order?.stall_number || 'Stall A-12';
+  const displayMarket = order?.marketName || order?.market_name || 'Liberty Farmers Market';
+  const displayPickupDate = order?.pickupDate || order?.pickup_date || 'Scheduled Pickup';
+  const displayTimeSlot = order?.timeSlot || order?.pickup_time_slot || order?.pickup_slot || 'Standard Window';
+  const displayItems = Array.isArray(order?.items) ? order.items : (Array.isArray(order?.order_items) ? order.order_items : []);
+
+  const calculatedSubtotal = (displayItems.length > 0)
+    ? displayItems.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1), 0)
+    : (Number(order?.totalAmount) || Number(order?.total) || Number(order?.total_amount) || 0);
 
   useEffect(() => {
     if (!order) return;
@@ -24,13 +35,13 @@ export default function PickupPassModal({ order, isOpen, onClose, onMarkCollecte
     // Generate structured QR Payload
     const qrPayload = JSON.stringify({
       portal: 'MarketLink',
-      orderId: order.id,
-      token: order.pickupToken || order.id,
-      customer: order.customerName,
-      stall: order.stallNumber || 'Stall A-12',
-      farmer: order.farmerName,
-      pickupDate: order.pickupDate,
-      timeSlot: order.timeSlot,
+      orderId: displayOrderId,
+      token: displayToken,
+      customer: displayCustomer,
+      stall: displayStall,
+      farmer: displayFarmer,
+      pickupDate: displayPickupDate,
+      timeSlot: displayTimeSlot,
       cashDue: calculatedSubtotal,
       rule: 'Cash on Stall Pickup Only'
     });
@@ -42,17 +53,21 @@ export default function PickupPassModal({ order, isOpen, onClose, onMarkCollecte
         dark: '#0d381e',
         light: '#ffffff'
       },
-      errorCorrectionLevel: 'H'
+      errorCorrectionLevel: 'M'
     })
       .then((url) => setQrDataUrl(url))
-      .catch((err) => console.error('Failed to generate QR code:', err));
-  }, [order]);
+      .catch((err) => {
+        console.error('Failed to generate full QR, falling back to token:', err);
+        QRCode.toDataURL(`MarketLink:${displayToken}`, { width: 240, margin: 1 })
+          .then((url) => setQrDataUrl(url))
+          .catch(() => {});
+      });
+  }, [order, displayOrderId, displayToken, displayCustomer, displayStall, displayFarmer, displayPickupDate, displayTimeSlot, calculatedSubtotal]);
 
   if (!isOpen || !order) return null;
 
   const handleCopyToken = () => {
-    const token = order.pickupToken || order.id;
-    navigator.clipboard.writeText(token).then(() => {
+    navigator.clipboard.writeText(displayToken).then(() => {
       setCopiedToken(true);
       setTimeout(() => setCopiedToken(false), 2000);
     });
@@ -68,19 +83,19 @@ export default function PickupPassModal({ order, isOpen, onClose, onMarkCollecte
 =============================================================
   MARKETLINK FARM-TO-COMMUNITY PRE-ORDER PICKUP SLIP
 =============================================================
-ORDER REFERENCE   : ${order.id}
-STALL TOKEN       : ${order.pickupToken || order.id}
-CUSTOMER          : ${order.customerName} (${order.customerPhone || 'N/A'})
-DATE PLACED       : ${new Date(order.placedAt || Date.now()).toLocaleString()}
+ORDER REFERENCE   : ${displayOrderId}
+STALL TOKEN       : ${displayToken}
+CUSTOMER          : ${displayCustomer} (${displayPhone || 'N/A'})
+DATE PLACED       : ${new Date(order.placedAt || order.created_at || Date.now()).toLocaleString()}
 
 STALL PICKUP LOGISTICS:
-FARMER / PRODUCER : ${order.farmerName}
-MARKET LOCATION   : ${order.marketName || 'Green Valley Farmers Market'}
-STALL NUMBER      : ${order.stallNumber || 'Stall A-12'}
-SCHEDULED WINDOW  : ${order.pickupDate} (${order.timeSlot})
+FARMER / PRODUCER : ${displayFarmer}
+MARKET LOCATION   : ${displayMarket}
+STALL NUMBER      : ${displayStall}
+SCHEDULED WINDOW  : ${displayPickupDate} (${displayTimeSlot})
 
 RESERVED PRODUCE:
-${order.items.map((it, idx) => `  ${idx + 1}. ${it.name} x ${it.quantity} ${it.unit} @ ${formatPrice(it.price)} = ${formatPrice(it.price * it.quantity)}`).join('\n')}
+${displayItems.length > 0 ? displayItems.map((it, idx) => `  ${idx + 1}. ${it.name || it.product_name || 'Produce'} x ${it.quantity || 1} ${it.unit || 'kg'} @ ${formatPrice(it.price || 0)} = ${formatPrice((it.price || 0) * (it.quantity || 1))}`).join('\n') : '  (Items verified at stall pickup)'}
 
 FINANCIAL SETTLEMENT (STRICT POLICY):
 ITEMS SUBTOTAL    : ${formatPrice(calculatedSubtotal)}
@@ -95,7 +110,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `MarketLink_Pickup_Pass_${order.id}.txt`;
+    link.download = `MarketLink_Pickup_Pass_${displayOrderId}.txt`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -135,7 +150,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
               <i className="fa fa-ticket-alt me-1"></i> {t('pass_modal_title')}
             </span>
             <span className="text-muted small d-none d-sm-inline">
-              Ref: <strong className="text-dark">{order.id}</strong>
+              Ref: <strong className="text-dark">{displayOrderId}</strong>
             </span>
           </div>
 
@@ -192,7 +207,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
                   {isCompleted ? t('pass_status_verified') : (order.status?.replace('_', ' ').toUpperCase() || 'CONFIRMED')}
                 </span>
                 <div className="text-white font-monospace small mt-1 opacity-75">
-                  #{order.id}
+                  #{displayOrderId}
                 </div>
               </div>
             </div>
@@ -205,7 +220,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
                     {qrDataUrl ? (
                       <img
                         src={qrDataUrl}
-                        alt={`QR Pass for ${order.id}`}
+                        alt={`QR Pass for ${displayOrderId}`}
                         style={{ width: '160px', height: '160px' }}
                       />
                     ) : (
@@ -227,7 +242,7 @@ Hand cash directly to the farmer at stall upon collecting produce.
                     </small>
                     <div className="d-flex align-items-center gap-2 mb-2">
                       <span className="px-3 py-1 bg-dark text-warning font-monospace fw-bold fs-5 rounded-2 tracking-wider">
-                        {order.pickupToken || order.id}
+                        {displayToken}
                       </span>
                       <button
                         type="button"
@@ -241,12 +256,12 @@ Hand cash directly to the farmer at stall upon collecting produce.
                     </div>
 
                     <div className="small text-muted mb-1">
-                      <i className="fa fa-user me-1 text-primary"></i> <strong>{order.customerName}</strong>
-                      {order.customerPhone && <span className="ms-2">({order.customerPhone})</span>}
+                      <i className="fa fa-user me-1 text-primary"></i> <strong>{displayCustomer}</strong>
+                      {displayPhone && <span className="ms-2">({displayPhone})</span>}
                     </div>
 
                     <div className="small text-muted">
-                      <i className="fa fa-calendar-alt me-1 text-primary"></i> Placed: {new Date(order.placedAt || Date.now()).toLocaleDateString()}
+                      <i className="fa fa-calendar-alt me-1 text-primary"></i> Placed: {new Date(order.placedAt || order.created_at || Date.now()).toLocaleDateString()}
                     </div>
                   </div>
 
@@ -256,13 +271,13 @@ Hand cash directly to the farmer at stall upon collecting produce.
                       <small className="text-success fw-bold d-block" style={{ fontSize: '0.68rem' }}>
                         {t('pass_stall_number')}
                       </small>
-                      <strong className="text-dark fs-6">{order.stallNumber || 'Stall A-12'}</strong>
+                      <strong className="text-dark fs-6">{displayStall}</strong>
                     </div>
                     <div className="text-end">
                       <small className="text-success fw-bold d-block" style={{ fontSize: '0.68rem' }}>
                         {t('pass_pickup_window')}
                       </small>
-                      <strong className="text-dark small">{order.pickupDate} ({order.timeSlot})</strong>
+                      <strong className="text-dark small">{displayPickupDate} ({displayTimeSlot})</strong>
                     </div>
                   </div>
                 </div>
@@ -275,11 +290,11 @@ Hand cash directly to the farmer at stall upon collecting produce.
               <div className="row g-2 mb-3 small">
                 <div className="col-6">
                   <span className="text-muted d-block">{t('pass_market_location')}:</span>
-                  <strong className="text-dark">{order.marketName || 'Green Valley Farmers Market'}</strong>
+                  <strong className="text-dark">{displayMarket}</strong>
                 </div>
                 <div className="col-6 text-end">
                   <span className="text-muted d-block">Producer / Farm:</span>
-                  <strong className="text-primary">{order.farmerName || 'Oak Ridge Organics'}</strong>
+                  <strong className="text-primary">{displayFarmer}</strong>
                 </div>
               </div>
 
@@ -299,14 +314,22 @@ Hand cash directly to the farmer at stall upon collecting produce.
                       </tr>
                     </thead>
                     <tbody>
-                      {order.items?.map((item, idx) => (
-                        <tr key={idx}>
-                          <td className="fw-semibold text-dark">{item.name}</td>
-                          <td className="text-center">{item.quantity} {item.unit}</td>
-                          <td className="text-end">{formatPrice(item.price)}</td>
-                          <td className="text-end fw-bold">{formatPrice(item.price * item.quantity)}</td>
+                      {displayItems.length > 0 ? (
+                        displayItems.map((item, idx) => (
+                          <tr key={idx}>
+                            <td className="fw-semibold text-dark">{item.name || item.product_name || 'Produce Item'}</td>
+                            <td className="text-center">{item.quantity || 1} {item.unit || 'kg'}</td>
+                            <td className="text-end">{formatPrice(item.price || 0)}</td>
+                            <td className="text-end fw-bold">{formatPrice((item.price || 0) * (item.quantity || 1))}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="4" className="text-center text-muted py-2">
+                            Produce reservation confirmed. Pay exact cash at stall pickup.
+                          </td>
                         </tr>
-                      ))}
+                      )}
                     </tbody>
                   </table>
                 </div>

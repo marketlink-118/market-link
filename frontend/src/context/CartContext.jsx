@@ -203,12 +203,50 @@ export function CartProvider({ children }) {
         const res = await cartAPI.checkout(payload);
 
         if (res.success && res.data) {
+          const rawOrders = res.data.orders || res.data.orders_placed || (Array.isArray(res.data) ? res.data : [res.data]);
+
+          let savedUser = null;
+          try {
+            savedUser = JSON.parse(localStorage.getItem('marketlink_user') || 'null');
+          } catch {
+            savedUser = null;
+          }
+
+          const currentCartItems = [...cartItems];
+          const currentSubtotal = subtotal;
+
+          const enrichedOrders = rawOrders.map((ord, idx) => ({
+            id: ord.order_number || ord.id || `ORD-${ord.id || Math.floor(1000 + Math.random() * 9000)}`,
+            rawId: ord.id,
+            order_number: ord.order_number || ord.id,
+            pickupToken: ord.pickup_token || ord.pickupToken || `PKP-${ord.id || Math.random().toString(36).substring(2, 8).toUpperCase()}`,
+            pickup_token: ord.pickup_token || ord.pickupToken,
+            status: ord.status || ord.order_status || 'placed',
+            totalAmount: Number(ord.total || ord.total_amount || currentSubtotal),
+            total: Number(ord.total || ord.total_amount || currentSubtotal),
+            pickupDate: checkoutPayload.pickupDate || pickupDate,
+            timeSlot: checkoutPayload.pickupTimeSlot || pickupTimeSlot,
+            customerName: savedUser?.name || 'Hamza Ali',
+            customerPhone: savedUser?.phone || '+92 300 1234567',
+            farmerName: currentCartItems[0]?.product?.farmerName || 'Punjab Green Organics',
+            stallNumber: currentCartItems[0]?.product?.stallNumber || 'Stall #A-04',
+            marketName: currentCartItems[0]?.product?.marketName || 'Liberty Farmers Market',
+            items: currentCartItems.map((it) => ({
+              id: it.product.id,
+              name: it.product.name,
+              quantity: it.quantity,
+              unit: it.product.unit,
+              price: it.product.price
+            })),
+            placedAt: new Date().toISOString()
+          }));
+
           clearCart();
-          const placedOrders = res.data.orders_placed || [res.data];
+
           return {
             success: true,
-            orders: placedOrders,
-            primaryOrder: placedOrders[0],
+            orders: enrichedOrders,
+            primaryOrder: enrichedOrders[0],
             message: res.message || 'Pre-order created successfully'
           };
         } else if (res.message && !res.isOffline) {
