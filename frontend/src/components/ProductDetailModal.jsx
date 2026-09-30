@@ -141,6 +141,13 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
 
               <p className="text-muted mb-4">{product.description}</p>
 
+              {/* Error Notice */}
+              {cartError && (
+                <div className="alert alert-danger py-2 px-3 small mb-3 rounded-3">
+                  <i className="fa fa-exclamation-circle me-1"></i> {cartError}
+                </div>
+              )}
+
               {/* Quantity Selector & Action */}
               <div className="d-flex align-items-center gap-3 mb-4 pt-3 border-top">
                 <div className="d-flex align-items-center border rounded-pill px-2 py-1 bg-light">
@@ -160,12 +167,6 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
                     +
                   </button>
                 </div>
-
-                {cartError && (
-                  <div className="w-100 alert alert-danger py-1 px-3 small mb-2 rounded-3">
-                    <i className="fa fa-exclamation-circle me-1"></i> {cartError}
-                  </div>
-                )}
 
                 <button 
                   type="button" 

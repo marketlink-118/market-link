@@ -469,7 +469,10 @@ export default function CustomerDashboard() {
                     <h5 className="fw-bold mb-1">{farmer.stallName}</h5>
                     <p className="small text-muted mb-2">{farmer.marketName}</p>
                     <p className="small text-secondary mb-3">{farmer.bio}</p>
-                    <Link to="/products" className="btn btn-sm btn-primary rounded-pill w-100">
+                    <Link 
+                      to={`/products?search=${encodeURIComponent(farmer.stallName)}`} 
+                      className="btn btn-sm btn-primary rounded-pill w-100"
+                    >
                       View Stall Harvest
                     </Link>
                   </div>

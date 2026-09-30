@@ -52,9 +52,13 @@ export default function ProductCard({ product, delay = '0.1s', onViewDetail, onO
               </small>
             )}
           </div>
-          <Link className="d-block h5 mb-2 text-decoration-none" to="/products">
+          <h5 
+            className="d-block mb-2 text-dark" 
+            style={{ cursor: 'pointer' }}
+            onClick={() => handleDetail ? handleDetail(product) : null}
+          >
             {product.name}
-          </Link>
+          </h5>
           <div className="mb-2">
             <span className="text-primary me-1 fw-bold fs-5">{formatPrice ? formatPrice(product.price) : `Rs. ${product.price}`}</span>
             {product.unit && <small className="text-muted me-2">/ {product.unit}</small>}

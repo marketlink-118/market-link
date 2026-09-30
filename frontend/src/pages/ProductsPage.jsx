@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import ProductCard from '../components/ProductCard';
 import ProductDetailModal from '../components/ProductDetailModal';
@@ -15,6 +16,11 @@ import { productsAPI, marketsAPI, categoriesAPI } from '../services/api';
 
 export default function ProductsPage() {
   const { t, isRTL, formatPrice, currentCountry, currentLocale } = useLanguage();
+  const [searchParams] = useSearchParams();
+
+  const initialMarket = searchParams.get('market') || 'all';
+  const initialCategory = searchParams.get('category') || 'all';
+  const initialSearch = searchParams.get('search') || '';
 
   const [products, setProducts] = useState(() => getLocalizedProducts(currentCountry, currentLocale));
   const [markets, setMarkets] = useState(marketsData);
@@ -25,9 +31,19 @@ export default function ProductsPage() {
     setProducts(getLocalizedProducts(currentCountry, currentLocale));
   }, [currentCountry, currentLocale]);
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedMarketId, setSelectedMarketId] = useState('all');
+  // Sync state if URL query parameters change
+  useEffect(() => {
+    const market = searchParams.get('market');
+    const category = searchParams.get('category');
+    const search = searchParams.get('search');
+    if (market) setSelectedMarketId(market);
+    if (category) setSelectedCategory(category);
+    if (search) setSearchQuery(search);
+  }, [searchParams]);
+
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [selectedMarketId, setSelectedMarketId] = useState(initialMarket);
   const [selectedDay, setSelectedDay] = useState('all');
   const [maxPrice, setMaxPrice] = useState(3000);
   const [sortBy, setSortBy] = useState('default');
