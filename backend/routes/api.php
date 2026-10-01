@@ -102,7 +102,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/insights', [FarmerInsightsController::class, 'index']);
     });
 
-    Route::middleware('role:customer')->prefix('customer')->group(function () {
+    Route::middleware('role:customer,admin,farmer')->prefix('customer')->group(function () {
         Route::get('/cart', [CartController::class, 'index']);
         Route::post('/cart', [CartController::class, 'add']);
         Route::patch('/cart/{id}', [CartController::class, 'update']);
