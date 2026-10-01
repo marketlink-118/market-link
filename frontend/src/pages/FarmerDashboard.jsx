@@ -1826,8 +1826,8 @@ export default function FarmerDashboard() {
                   </div>
                 </div>
                 <div className="col-sm-3 col-6">
-                  <div className="bg-success bg-opacity-10 p-3 rounded-3 text-center border border-success">
-                    <small className="text-success text-uppercase d-block fw-bold" style={{ fontSize: '0.72rem' }}>Settled Revenue</small>
+                  <div className="bg-light p-3 rounded-3 text-center border">
+                    <small className="text-muted text-uppercase d-block fw-semibold" style={{ fontSize: '0.72rem' }}>Settled Revenue</small>
                     <h4 className="fw-bold text-success mb-0">{formatPrice(totalRevenue)}</h4>
                   </div>
                 </div>
