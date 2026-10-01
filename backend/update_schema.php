@@ -69,6 +69,11 @@ try {
         }
     }
 
+    // 3. Clean up legacy Desi bracketed slang from product names
+    $pdo->exec("UPDATE `products` SET `name` = 'Fresh Green Spinach' WHERE `name` LIKE '%Spinach%' OR `name` LIKE '%Palak%'");
+    $pdo->exec("UPDATE `products` SET `name` = 'Homemade Cultured Butter' WHERE `name` LIKE '%Makhan%'");
+    echo "==> SUCCESS: Product names cleaned to standard international titles!\n";
+
     echo "==> SUCCESS: Schema synchronization completed!\n";
 } catch (\Throwable $e) {
     echo "ERROR during schema sync: " . $e->getMessage() . "\n";

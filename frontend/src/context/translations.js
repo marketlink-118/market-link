@@ -197,7 +197,24 @@ export const TRANSLATIONS = {
     pass_subtotal: 'Produce Subtotal',
     pass_stall_fee: 'Stall Reservation Fee',
     pass_free_waived: 'FREE ($0.00)',
-    pass_total_cash: 'Total Cash Payable'
+    pass_total_cash: 'Total Cash Payable',
+    // Farmer Dashboard & Statements
+    farmer_weekly_report_btn: 'Weekly Statement (Print & Excel)',
+    farmer_weekly_modal_title: 'Weekly Stall Settlement Statement',
+    farmer_verify_desk_title: 'In-Stall QR & Token Verifier Desk',
+    farmer_verify_notice: 'When a customer arrives at your stall, scan their QR pass or enter their Stall Pass Token to verify cash pickup:',
+    farmer_stall_setup_help: 'Configure your stall details and submit for administration approval',
+    farmer_pending_approval_notice: 'Your stall setup has been submitted and is pending Market Administration approval. Once approved, your stall will appear live on the interactive map.',
+    farmer_adjust_amount_hint: 'If customer paid a different amount or an error occurred, adjust the cash amount here.',
+    farmer_select_bazaar_prefix: 'Select Market in',
+    // Produce Translations
+    prod_spinach: 'Fresh Green Spinach',
+    prod_butter: 'Homemade Cultured Butter',
+    prod_tomatoes: 'Farm Fresh Vine Tomatoes',
+    prod_potatoes: 'Organic Red Potatoes',
+    prod_milk: 'Pure Fresh Cow Milk',
+    prod_mandarins: 'Sweet Mandarin Oranges',
+    prod_honey: 'Pure Raw Wild Berry (Sidr) Honey'
   },
   ur: {
     direction: 'rtl',
@@ -389,7 +406,24 @@ export const TRANSLATIONS = {
     pass_subtotal: 'اجناس کی کل قیمت',
     pass_stall_fee: 'اسٹال بکنگ فیس',
     pass_free_waived: 'مفت (0.00 روپے)',
-    pass_total_cash: 'کل قابل ادائیگی نقد رقم'
+    pass_total_cash: 'کل قابل ادائیگی نقد رقم',
+    // Farmer Dashboard & Statements
+    farmer_weekly_report_btn: 'ہفتہ وار حساب کتاب (پرنٹ اور ایکسل)',
+    farmer_weekly_modal_title: 'اسٹال کا ہفتہ وار مالیاتی گوشوارہ',
+    farmer_verify_desk_title: 'اسٹال پر کیو آر کوڈ اور ٹوکن تصدیقی ڈیسک',
+    farmer_verify_notice: 'جب گاہک اسٹال پر آئے، تو ان کا کیو آر کوڈ اسکین کریں یا اسٹال ٹوکن درج کر کے نقد رقم کی تصدیق کریں:',
+    farmer_stall_setup_help: 'اپنے اسٹال کی تفصیلات مرتب کریں اور انتظامیہ کی منظوری کے لیے جمع کروائیں',
+    farmer_pending_approval_notice: 'آپ کے اسٹال کی درخواست موصول ہو چکی ہے اور انتظامیہ کی منظوری کے لیے زیر غور ہے۔ منظوری کے بعد اسٹال لائیو ہو جائے گا۔',
+    farmer_adjust_amount_hint: 'اگر گاہک نے کم یا زیادہ ادا کیا، یا غلطی سے رقم غلط لکھی گئی، تو یہاں درست کریں۔',
+    farmer_select_bazaar_prefix: 'منڈی کا انتخاب کریں',
+    // Produce Translations
+    prod_spinach: 'تازہ سبز پالک',
+    prod_butter: 'خالص روایتی مکھن',
+    prod_tomatoes: 'فارم کے تازہ ٹماٹر',
+    prod_potatoes: 'آرگینک سرخ آلو',
+    prod_milk: 'خالص تازہ گائے کا دودھ',
+    prod_mandarins: 'میٹھے کینو',
+    prod_honey: 'خالص بیری (سدر) کا شہد'
   },
   ar: {
     direction: 'rtl',
@@ -581,6 +615,23 @@ export const TRANSLATIONS = {
     pass_subtotal: 'مجموع المنتجات',
     pass_stall_fee: 'رسوم حجز الكشك',
     pass_free_waived: 'مجاناً (0.00)',
-    pass_total_cash: 'إجمالي المبلغ المستحق نقداً'
+    pass_total_cash: 'إجمالي المبلغ المستحق نقداً',
+    // Farmer Dashboard & Statements
+    farmer_weekly_report_btn: 'كشف الحساب الأسبوعي (طباعة و Excel)',
+    farmer_weekly_modal_title: 'كشف الحساب الأسبوعي للكشك',
+    farmer_verify_desk_title: 'مكتب التحقق من رمز الاستجابة السريعة وتصريح الكشك',
+    farmer_verify_notice: 'عند وصول العميل إلى كشكك، امسح رمز الاستجابة السريعة (QR) أو أدخل رمز تصريح الكشك للتحقق واستلام النقد:',
+    farmer_stall_setup_help: 'قم بتهيئة بيانات الكشك وإرسالها للموافقة من إدارة السوق',
+    farmer_pending_approval_notice: 'تم تقديم طلب إنشاء الكشك وهو قيد المراجعة من قبل إدارة السوق. بمجرد الموافقة، سيظهر كشكك على الخريطة التفاعلية.',
+    farmer_adjust_amount_hint: 'إذا دفع العميل مبلغاً مختلفاً أو حدث خطأ في التسجيل، يمكنك تعديل المبلغ هنا.',
+    farmer_select_bazaar_prefix: 'اختر السوق في',
+    // Produce Translations
+    prod_spinach: 'سبانخ خضراء طازجة',
+    prod_butter: 'زبدة بلدية طازجة',
+    prod_tomatoes: 'طماطم طازجة من المزرعة',
+    prod_potatoes: 'بطاطس حمراء عضوية',
+    prod_milk: 'حليب أبقار طازج نقي',
+    prod_mandarins: 'يوسفي حلو طازج',
+    prod_honey: 'عسل سدر بري خام نقي'
   }
 };

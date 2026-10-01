@@ -19,7 +19,7 @@ const PK_MAJOR_CITIES = ['Karachi', 'Lahore', 'Islamabad', 'Faisalabad', 'Multan
 export default function FarmerDashboard() {
   const { currentUser, updateCurrentUser } = useAuth();
   const { orders: contextOrders, updateOrderStatus: updateContextOrderStatus } = useOrders();
-  const { formatPrice, currentCountry: globalCountry, currentLocale } = useLanguage();
+  const { t, formatPrice, translateProduct, currentCountry: globalCountry, currentLocale } = useLanguage();
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [selectedPassOrder, setSelectedPassOrder] = useState(null);
@@ -804,7 +804,7 @@ export default function FarmerDashboard() {
                       <span className="badge bg-warning text-dark text-uppercase px-2 py-1">Awaiting Review</span>
                     </div>
                     <p className="alert-subtitle mb-3 small">
-                      Aapka stall setup submit ho chuka hai aur <strong>Market Administration</strong> ki approval k liye pending hai. Admin approval milty hi aapka stall public marketplace aur Leaflet Interactive Map par live ho jaye ga aur customers pre-order kar sakein ge.
+                      {t('farmer_pending_approval_notice')}
                     </p>
 
                     <div className="alert-inner-card rounded-3 p-3 border small shadow-xs">
@@ -982,7 +982,7 @@ export default function FarmerDashboard() {
                   onClick={() => setIsWeeklyReportOpen(true)}
                   style={{ fontSize: '0.78rem' }}
                 >
-                  <i className="fa fa-file-invoice-dollar me-1"></i> Week Ka Hisab (Print & Excel)
+                  <i className="fa fa-file-invoice-dollar me-1"></i> {t('farmer_weekly_report_btn')}
                 </button>
               </div>
             </div>
@@ -1001,7 +1001,7 @@ export default function FarmerDashboard() {
             </div>
             <div className="card-body p-4 bg-light">
               <p className="small text-muted mb-3">
-                Customer jab aapke stall par aaye, to unka <strong>QR Code scan karein</strong> ya unka <strong>Stall Pass Token</strong> (jaise <code>PKP-XXXXXX</code>) yahan enter karke <strong>Verify & Settle Cash</strong> dabayein:
+                {t('farmer_verify_notice')}
               </p>
 
               <form onSubmit={handleVerifyOrder} className="row g-2 align-items-center">
@@ -1072,7 +1072,7 @@ export default function FarmerDashboard() {
                   onClick={() => setIsWeeklyReportOpen(true)}
                   title="View and print weekly statement or download Excel spreadsheet"
                 >
-                  <i className="fa fa-file-excel me-1 text-success"></i> Week Ka Hisab (Print & Excel)
+                  <i className="fa fa-file-excel me-1 text-success"></i> {t('farmer_weekly_report_btn')}
                 </button>
                 <span className="badge bg-primary text-white rounded-pill px-3 py-2">
                   {pendingOrders.length} New Orders
@@ -1113,7 +1113,7 @@ export default function FarmerDashboard() {
                         </td>
                         <td>
                           <small>
-                            {ord.items.map((i) => `${i.name} (${i.quantity} ${i.unit})`).join(', ')}
+                            {ord.items.map((i) => `${translateProduct ? translateProduct(i.name) : i.name} (${i.quantity} ${i.unit})`).join(', ')}
                           </small>
                         </td>
                         <td>
@@ -1424,7 +1424,7 @@ export default function FarmerDashboard() {
                 </div>
                 <div>
                   <h5 className="modal-title fw-bold mb-0 text-dark">Stall Setup & Application</h5>
-                  <small className="text-muted">Apna stall configure karein aur approval k liye bhejein</small>
+                  <small className="text-muted">{t('farmer_stall_setup_help')}</small>
                 </div>
               </div>
               <button 
@@ -1637,7 +1637,7 @@ export default function FarmerDashboard() {
                     >
                       {availableCityMarkets.length > 0 ? (
                         <>
-                          <option value="">-- {stallForm.city} ({currentCountryConfig.name}) ka Bazar Select Karein --</option>
+                          <option value="">-- {t('farmer_select_bazaar_prefix')}: {stallForm.city} ({currentCountryConfig.name}) --</option>
                           {availableCityMarkets.map((m) => (
                             <option key={m.id} value={m.id}>
                               {m.name} &bull; ({Array.isArray(m.operatingDays) ? m.operatingDays.join(', ') : m.operatingDays || 'Weekend'}) - {m.location || m.address}
@@ -1787,7 +1787,7 @@ export default function FarmerDashboard() {
                     <i className="fa fa-file-invoice-dollar fs-4"></i>
                   </div>
                   <div>
-                    <h5 className="fw-bold mb-0 text-dark">Weekly Stall Statement / ہفتہ وار حساب کتاب</h5>
+                    <h5 className="fw-bold mb-0 text-dark">{t('farmer_weekly_modal_title')}</h5>
                     <small className="text-muted">
                       {farmerName} &bull; {stallNumber} &bull; {marketName}
                     </small>
@@ -2023,7 +2023,7 @@ export default function FarmerDashboard() {
                   />
                 </div>
                 <small className="text-muted">
-                  Agr customer ne kam ya zyada ada kia, ya ghalti se amount ghalat likh di gai, to yahan theek karein.
+                  {t('farmer_adjust_amount_hint')}
                 </small>
               </div>
 

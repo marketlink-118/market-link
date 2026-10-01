@@ -6,7 +6,7 @@ import FreshnessBadge from './FreshnessBadge';
 
 export default function ProductCard({ product, delay = '0.1s', onViewDetail, onOpenDetail, colClass = 'col-lg-4 col-md-6' }) {
   const { addToCart, setIsDrawerOpen } = useCart();
-  const { t, formatPrice } = useLanguage();
+  const { t, formatPrice, translateProduct } = useLanguage();
   const handleDetail = onViewDetail || onOpenDetail;
 
   if (!product) return null;
@@ -57,7 +57,7 @@ export default function ProductCard({ product, delay = '0.1s', onViewDetail, onO
             style={{ cursor: 'pointer' }}
             onClick={() => handleDetail ? handleDetail(product) : null}
           >
-            {product.name}
+            {translateProduct ? translateProduct(product.name) : product.name}
           </h5>
           <div className="mb-2">
             <span className="text-primary me-1 fw-bold fs-5">{formatPrice ? formatPrice(product.price) : `Rs. ${product.price}`}</span>

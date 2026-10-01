@@ -8,7 +8,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
   const [quantity, setQuantity] = useState(1);
   const [cartError, setCartError] = useState('');
   const { addToCart, setIsDrawerOpen } = useCart();
-  const { t, formatPrice, currentLocale } = useLanguage();
+  const { t, formatPrice, translateProduct, currentLocale } = useLanguage();
 
   if (!isOpen || !product) return null;
 
@@ -120,7 +120,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
 
             {/* Details */}
             <div className="col-md-7">
-              <h3 className="fw-bold mb-2 text-dark">{product.name}</h3>
+              <h3 className="fw-bold mb-2 text-dark">{translateProduct ? translateProduct(product.name) : product.name}</h3>
 
               <div className="d-flex align-items-baseline gap-2 mb-3">
                 <span className="display-6 fw-bold text-primary">{formatPrice(product.price)}</span>

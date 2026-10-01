@@ -453,9 +453,16 @@ export function normalizeProduct(p) {
     harvestHoursAgo = ((Number(p.id) || 1) % 12) + 2;
   }
 
+  let cleanName = (p.name || 'Fresh Produce')
+    .replace(/\s*\(Palak\)/gi, '')
+    .replace(/\s*\(Makhan\)/gi, '');
+  if (/Homemade Cultured Makhan/i.test(cleanName)) {
+    cleanName = 'Homemade Cultured Butter';
+  }
+
   return {
     id: p.id,
-    name: p.name,
+    name: cleanName,
     category: categorySlug || 'vegetables',
     price: Number(p.price) || 0,
     unit: p.unit || 'kg',
@@ -465,7 +472,7 @@ export function normalizeProduct(p) {
     marketId: String(marketId),
     marketName,
     image: p.image_url || p.image || `/img/product-${((Number(p.id) || 1) % 8) + 1}.jpg`,
-    description: p.description || `${p.name} directly harvested from ${farmerName}.`,
+    description: p.description || `${cleanName} directly harvested from ${farmerName}.`,
     harvestHoursAgo: Number(harvestHoursAgo),
     harvestTimeLabel: p.harvestTimeLabel || `${harvestHoursAgo} hrs ago`,
     badge: p.badge || (stockQuantity <= 0 ? 'Sold Out' : (harvestHoursAgo <= 8 ? 'Super Fresh' : 'Organic')),
@@ -509,13 +516,21 @@ export function normalizeOrder(ord) {
   const totalAmount = Number(ord.totalAmount || ord.total_amount || 0);
 
   // Normalize items
-  const items = (ord.items || []).map((it) => ({
-    id: it.product_id || it.id,
-    name: it.product_name || it.product?.name || it.name || 'Fresh Produce',
-    quantity: Number(it.quantity || 1),
-    unit: it.unit || it.product?.unit || 'kg',
-    price: Number(it.unit_price || it.product?.price || it.price || 0)
-  }));
+  const items = (ord.items || []).map((it) => {
+    let cleanItemName = (it.product_name || it.product?.name || it.name || 'Fresh Produce')
+      .replace(/\s*\(Palak\)/gi, '')
+      .replace(/\s*\(Makhan\)/gi, '');
+    if (/Homemade Cultured Makhan/i.test(cleanItemName)) {
+      cleanItemName = 'Homemade Cultured Butter';
+    }
+    return {
+      id: it.product_id || it.id,
+      name: cleanItemName,
+      quantity: Number(it.quantity || 1),
+      unit: it.unit || it.product?.unit || 'kg',
+      price: Number(it.unit_price || it.product?.price || it.price || 0)
+    };
+  });
 
   return {
     id: ord.order_number || (ord.id ? `ORD-${ord.id}` : 'ORD-1001'),

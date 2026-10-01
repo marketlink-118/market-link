@@ -111,6 +111,46 @@ export function LanguageProvider({ children }) {
     }
   }, [currentCountry, currentLocale]);
 
+  // Translate product produce names country/language-wise and clean any legacy slang
+  const translateProduct = useCallback((name) => {
+    if (!name) return '';
+    const clean = String(name)
+      .replace(/\s*\(Palak\)/gi, '')
+      .replace(/\s*\(Makhan\)/gi, '')
+      .replace(/Homemade Cultured Makhan \(Butter\)/gi, 'Homemade Cultured Butter');
+
+    const keyMap = {
+      'fresh green spinach': 'prod_spinach',
+      'fresh organic green spinach': 'prod_spinach',
+      'organic green spinach': 'prod_spinach',
+      'spinach': 'prod_spinach',
+      'farm fresh vine tomatoes': 'prod_tomatoes',
+      'vine tomatoes': 'prod_tomatoes',
+      'tomatoes': 'prod_tomatoes',
+      'organic farm red potatoes': 'prod_potatoes',
+      'organic red potatoes': 'prod_potatoes',
+      'red potatoes': 'prod_potatoes',
+      'potatoes': 'prod_potatoes',
+      'homemade cultured butter': 'prod_butter',
+      'pure fresh cow milk': 'prod_milk',
+      'cow milk': 'prod_milk',
+      'sweet kinnow mandarins': 'prod_mandarins',
+      'sweet mandarins': 'prod_mandarins',
+      'mandarins': 'prod_mandarins',
+      'pure raw wild berry (sidr) honey': 'prod_honey',
+      'pure raw wild berry honey': 'prod_honey',
+      'raw wild honey': 'prod_honey'
+    };
+
+    const lower = clean.trim().toLowerCase();
+    const key = keyMap[lower];
+    if (key) {
+      const dict = TRANSLATIONS[currentLocale] || TRANSLATIONS.en;
+      return dict[key] || clean;
+    }
+    return clean;
+  }, [currentLocale]);
+
   const value = {
     currentLocale,
     currentCountry,
@@ -120,6 +160,7 @@ export function LanguageProvider({ children }) {
     changeLanguage,
     changeCountry,
     formatPrice,
+    translateProduct,
     t
   };
 
