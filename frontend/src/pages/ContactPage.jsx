@@ -195,15 +195,32 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <div className="container-xxl px-0" style={{ marginBottom: '-6px' }}>
-        <iframe 
-          className="w-100" 
-          style={{ height: '450px', border: 0 }}
-          src={`https://maps.google.com/maps?q=${encodeURIComponent(hq.mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-          allowFullScreen="" 
-          loading="lazy"
-          title={`${hq.title} Location Map`}
-        ></iframe>
+      <div className="container pb-5">
+        <div className="rounded-4 overflow-hidden shadow-sm border">
+          <iframe 
+            className="w-100 d-block contact-map-frame" 
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(hq.mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+            allowFullScreen="" 
+            loading="lazy"
+            title={`${hq.title} Location Map`}
+          ></iframe>
+        </div>
+        <style>{`
+          .contact-map-frame {
+            height: 310px;
+            border: 0;
+          }
+          @media (max-width: 991.98px) {
+            .contact-map-frame {
+              height: 260px;
+            }
+          }
+          @media (max-width: 575.98px) {
+            .contact-map-frame {
+              height: 220px;
+            }
+          }
+        `}</style>
       </div>
     </>
   );
