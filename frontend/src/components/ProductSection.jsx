@@ -117,15 +117,12 @@ export default function ProductSection() {
             <div className="position-relative d-inline-block text-start" ref={dropdownRef}>
               <button 
                 type="button"
-                className="btn btn-outline-primary border-2 active d-inline-flex align-items-center justify-content-between gap-3 px-4 py-2 shadow-sm"
+                className="btn btn-outline-primary border-2 bg-white d-inline-flex align-items-center justify-content-between gap-3 px-4 py-2 shadow-sm"
                 onClick={() => setDropdownOpen(prev => !prev)}
                 aria-expanded={dropdownOpen}
-                style={{ minWidth: '220px' }}
+                style={{ minWidth: '200px' }}
               >
-                <span className="d-inline-flex align-items-center gap-2">
-                  <i className="fa fa-filter small"></i>
-                  <span>{currentCategoryLabel}</span>
-                </span>
+                <span className="fw-semibold">{currentCategoryLabel}</span>
                 <i 
                   className="fa fa-chevron-down small" 
                   style={{ 
