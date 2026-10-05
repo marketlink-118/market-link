@@ -3,7 +3,7 @@
  * Dynamic harvest showcase component
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import ProductDetailModal from './ProductDetailModal';
@@ -13,12 +13,25 @@ import { productsAPI } from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function ProductSection() {
-  const { t, currentCountry, currentLocale } = useLanguage();
+  const { t, currentCountry, currentLocale, isRTL } = useLanguage();
   const [activeTab, setActiveTab] = useState('all');
   const [products, setProducts] = useState(() => getLocalizedProducts(currentCountry, currentLocale));
   const [loading, setLoading] = useState(false);
   const [activeModalProduct, setActiveModalProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Instantly re-localize products when country or language switches
   useEffect(() => {
@@ -80,6 +93,16 @@ export default function ProductSection() {
         return true;
       });
 
+  const categoryOptions = [
+    { key: 'all', label: t('all_categories') },
+    { key: 'vegetables', label: t('vegetables') },
+    { key: 'fruits', label: t('fruits') },
+    { key: 'dairy', label: t('dairy') },
+    { key: 'bakery', label: t('honey_essentials') || 'Honey & Essentials' }
+  ];
+
+  const currentCategoryLabel = categoryOptions.find(c => c.key === activeTab)?.label || t('all_categories');
+
   return (
     <div className="container-xxl py-5">
       <div className="container">
@@ -90,49 +113,77 @@ export default function ProductSection() {
               <p className="text-muted">{t('harvest_desc')}</p>
             </div>
           </div>
-          <div className="col-lg-7 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
-            <ul className="nav nav-pills d-inline-flex justify-content-end mb-5 flex-wrap gap-2">
-              <li className="nav-item">
-                <button 
-                  className={`btn btn-outline-primary border-2 ${activeTab === 'all' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('all')}
+          <div className="col-lg-7 text-start text-lg-end mb-5 wow slideInRight" data-wow-delay="0.1s">
+            <div className="position-relative d-inline-block text-start" ref={dropdownRef}>
+              <button 
+                type="button"
+                className="btn btn-outline-primary border-2 active d-inline-flex align-items-center justify-content-between gap-3 px-4 py-2 shadow-sm"
+                onClick={() => setDropdownOpen(prev => !prev)}
+                aria-expanded={dropdownOpen}
+                style={{ minWidth: '220px' }}
+              >
+                <span className="d-inline-flex align-items-center gap-2">
+                  <i className="fa fa-filter small"></i>
+                  <span>{currentCategoryLabel}</span>
+                </span>
+                <i 
+                  className="fa fa-chevron-down small" 
+                  style={{ 
+                    transition: 'transform 0.25s ease',
+                    transform: dropdownOpen ? 'rotate(180deg)' : 'none'
+                  }}
+                ></i>
+              </button>
+
+              {dropdownOpen && (
+                <div 
+                  className="dropdown-menu show shadow-lg border-2 p-1 position-absolute"
+                  style={{
+                    borderColor: 'var(--primary, #3CB815)',
+                    borderRadius: '8px',
+                    minWidth: '100%',
+                    top: 'calc(100% + 6px)',
+                    [isRTL ? 'left' : 'right']: 0,
+                    zIndex: 1050
+                  }}
                 >
-                  {t('all_categories')}
-                </button>
-              </li>
-              <li className="nav-item">
-                <button 
-                  className={`btn btn-outline-primary border-2 ${activeTab === 'vegetables' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('vegetables')}
-                >
-                  {t('vegetables')}
-                </button>
-              </li>
-              <li className="nav-item">
-                <button 
-                  className={`btn btn-outline-primary border-2 ${activeTab === 'fruits' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('fruits')}
-                >
-                  {t('fruits')}
-                </button>
-              </li>
-              <li className="nav-item">
-                <button 
-                  className={`btn btn-outline-primary border-2 ${activeTab === 'dairy' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('dairy')}
-                >
-                  {t('dairy')}
-                </button>
-              </li>
-              <li className="nav-item">
-                <button 
-                  className={`btn btn-outline-primary border-2 ${activeTab === 'bakery' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('bakery')}
-                >
-                  Honey & Essentials
-                </button>
-              </li>
-            </ul>
+                  {categoryOptions.map((cat) => {
+                    const isSelected = activeTab === cat.key;
+                    return (
+                      <button
+                        key={cat.key}
+                        type="button"
+                        className={`dropdown-item px-3 py-2 rounded-2 d-flex align-items-center justify-content-between fw-semibold ${isSelected ? 'active text-white' : 'text-dark'}`}
+                        style={{
+                          backgroundColor: isSelected ? 'var(--primary, #3CB815)' : 'transparent',
+                          transition: 'all 0.2s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isSelected) {
+                            e.currentTarget.style.backgroundColor = 'rgba(60, 184, 21, 0.12)';
+                            e.currentTarget.style.color = 'var(--primary, #3CB815)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isSelected) {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                            e.currentTarget.style.color = '#212529';
+                          }
+                        }}
+                        onClick={() => {
+                          setActiveTab(cat.key);
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        <span>{cat.label}</span>
+                        {isSelected && <i className="fa fa-check text-white small ms-2"></i>}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
