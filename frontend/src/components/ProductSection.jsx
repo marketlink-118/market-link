@@ -108,12 +108,12 @@ export default function ProductSection() {
       <div className="container">
         <div className="row g-0 gx-5 align-items-end">
           <div className="col-lg-5">
-            <div className="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
+            <div className="section-header text-center text-lg-start mb-4 mb-lg-5 mx-auto mx-lg-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
               <h1 className="display-5 mb-3">{t('harvest_heading')}</h1>
               <p className="text-muted">{t('harvest_desc')}</p>
             </div>
           </div>
-          <div className="col-lg-7 text-start text-lg-end mb-5 wow slideInRight" data-wow-delay="0.1s">
+          <div className="col-lg-7 text-center text-lg-end mb-4 mb-lg-5 wow slideInRight" data-wow-delay="0.1s">
             <div className="position-relative d-inline-block text-start" ref={dropdownRef}>
               <button 
                 type="button"
